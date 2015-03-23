@@ -12,7 +12,7 @@ public class LayoutController {
 		System.out.println(1);
 		ModelAndView mav = new ModelAndView();
 		System.out.println(1);
-		mav.setViewName("layout.jsp");
+		mav.setViewName("layout");
 		return mav;
 	}
 }
