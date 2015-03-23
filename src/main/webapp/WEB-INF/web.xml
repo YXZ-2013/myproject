@@ -30,7 +30,7 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.css</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.html</url-pattern>
@@ -39,7 +39,6 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.gif</url-pattern>
-
 	</servlet-mapping>
 
 	<servlet-mapping>
@@ -96,8 +95,8 @@
 		<error-code>403</error-code>
 		<location>/common/403.jsp</location>
 	</error-page>
-
+	<!-- welcome page -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file></welcome-file>
 	</welcome-file-list>
 </web-app>  
