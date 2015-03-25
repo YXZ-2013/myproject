@@ -35,7 +35,7 @@
 	</div>
 	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div>
 	<div data-options="region:'center',title:'Center'">
-	<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="http://localhost:8080/easyUIDemo/layout/basic.html"  name="content">111</iframe>
+	<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="${pageContext.request.contextPath}/index_center"  name="content"></iframe>
 	</div>
 </body>
 </html>
