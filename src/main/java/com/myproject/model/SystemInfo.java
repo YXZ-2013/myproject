@@ -22,6 +22,14 @@ public class SystemInfo {
 	 * 当前目录
 	 */
 	private String currentDir;
+	/**
+	 * 总内存
+	 */
+	private Long totalRam;
+	/**
+	 * 已使用内存
+	 */
+	private Long usedRam;
 
 	public String getJavaVersion() {
 		if (javaVersion == null) {
@@ -69,6 +77,23 @@ public class SystemInfo {
 
 	public void setCurrentDir(String currentDir) {
 		this.currentDir = currentDir;
+	}
+
+	public Long getTotalRam() {
+		return Runtime.getRuntime().totalMemory() / 1024 / 1024;
+	}
+
+	public void setTotalRam(Long totalRam) {
+		this.totalRam = totalRam;
+	}
+
+	public Long getUsedRam() {
+		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime()
+				.freeMemory()) / 1024 / 1024;
+	}
+
+	public void setUsedRam(Long usedRam) {
+		this.usedRam = usedRam;
 	}
 
 }

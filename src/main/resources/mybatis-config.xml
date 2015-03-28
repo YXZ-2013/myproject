@@ -2,6 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- 
+		development : 开发模式
+		work : 工作模式
+	 -->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
