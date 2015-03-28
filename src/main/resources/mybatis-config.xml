@@ -18,6 +18,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/myproject/dao/mapper/UserMapper.xml"/>
+        <mapper resource="com/myproject/dao/mapper/userMapper.xml"/>
     </mappers>
 </configuration>
