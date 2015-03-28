@@ -190,4 +190,19 @@ public class User {
 	public void setDisableTime(Date disableTime) {
 		this.disableTime = disableTime;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", photo=" + photo
+				+ ", email=" + email + ", password=" + password + ", status="
+				+ status + ", realname=" + realname + ", sex=" + sex
+				+ ", cashPassword=" + cashPassword + ", birthday=" + birthday
+				+ ", homeAddress=" + homeAddress + ", qq=" + qq
+				+ ", mobileNumber=" + mobileNumber + ", idCard=" + idCard
+				+ ", currentAddress=" + currentAddress + ", nickname="
+				+ nickname + ", lastLoginTime=" + lastLoginTime
+				+ ", registerTime=" + registerTime + ", comment=" + comment
+				+ ", disableTime=" + disableTime + "]";
+	}
+	
 }
