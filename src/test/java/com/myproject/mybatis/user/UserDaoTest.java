@@ -11,15 +11,15 @@ import com.myproject.model.User;
 
 public class UserDaoTest {
 	@Test
-	public void findUserById(){
-		String resource = "/mybatis-config.xml";
+	public void findUserById() {
+		String resource = "/mybatis-config-test.xml";
 		InputStream is = UserDaoTest.class.getResourceAsStream(resource);
-		
+
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 		SqlSession session = factory.openSession();
-		
-//		String statement = "com.myproject.easyui.user.dao.userMapper.getUser";
-//		User user = session.selectOne(statement,2);
-//		System.out.println(user);
+
+		String statement = "com.myproject.mybatis.user.userMapper.getUser";
+		User user = session.selectOne(statement, 2);
+		System.out.println(user);
 	}
 }
