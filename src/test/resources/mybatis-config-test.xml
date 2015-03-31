@@ -11,12 +11,13 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
+                <property name="url" value="jdbc:mysql://localhost:3306/yinxunzhi?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
                 <property name="username" value="root" />
                 <property name="password" value="123abc" />
             </dataSource>
         </environment>
     </environments>
+    
     <mappers>
         <mapper resource="com/myproject/mybatis/user/userMapper.xml"/>
     </mappers>
