@@ -16,6 +16,6 @@
 	</insert>
 	
 	<update id="updateUser" parameterType="com.myproject.model.User">
-		update user set 
+		update user set values(#{id},#{username},#{email},#{password});
 	</update>
 </mapper>  

@@ -59,4 +59,20 @@ public class UserDaoTest {
 		session.insert(statement, user);
 		session.close();
 	}
+	
+	@Test
+	public void updateUser() {
+		String resource = "/mybatis-config-test.xml";
+		InputStream is = UserDaoTest.class.getResourceAsStream(resource);
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+		SqlSession session = factory.openSession();
+		User user = new User();
+		user.setId(UUID.randomUUID().toString().substring(0, 32));
+		user.setUsername("ddd");
+		user.setEmail("1111");
+		user.setPassword("111");
+		String statement = "com.myproject.mybatis.user.userMapper.saveUser";
+		session.insert(statement, user);
+		session.close();
+	}
 }
