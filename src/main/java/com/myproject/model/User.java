@@ -1,6 +1,6 @@
 package com.myproject.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * 
@@ -30,6 +30,7 @@ public class User {
 	private Date registerTime;
 	private String comment;
 	private Date disableTime;
+	private String ipsIdentification;
 
 	public String getId() {
 		return id;
@@ -191,6 +192,14 @@ public class User {
 		this.disableTime = disableTime;
 	}
 
+	public String getIpsIdentification() {
+		return ipsIdentification;
+	}
+
+	public void setIpsIdentification(String ipsIdentification) {
+		this.ipsIdentification = ipsIdentification;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", photo=" + photo
@@ -202,7 +211,8 @@ public class User {
 				+ ", currentAddress=" + currentAddress + ", nickname="
 				+ nickname + ", lastLoginTime=" + lastLoginTime
 				+ ", registerTime=" + registerTime + ", comment=" + comment
-				+ ", disableTime=" + disableTime + "]";
+				+ ", disableTime=" + disableTime + ", ipsIdentification="
+				+ ipsIdentification + "]";
 	}
 	
 }

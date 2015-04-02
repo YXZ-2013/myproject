@@ -17,6 +17,9 @@
             </dataSource>
         </environment>
     </environments>
+    <typeAliases>
+    	<typeAlias type="com.myproject.model.User" alias="user"/>
+    </typeAliases>
     <mappers>
         <mapper resource="com/myproject/dao/mapper/userMapper.xml"/>
     </mappers>

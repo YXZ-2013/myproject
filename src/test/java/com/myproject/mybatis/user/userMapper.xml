@@ -3,19 +3,17 @@
    "-//mybatis.org//DTD Mapper 3.0//EN"  
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myproject.mybatis.user.userMapper">
-	<select id="getUser" parameterType="string" resultType="com.myproject.model.User">
-		select * from User where id = #{id}
+	<resultMap type="user" id="userModel">
+		<id column="id" property="id"/>
+		<result column="username" property="username"/>
+		<result column="email" property="email"/>
+		<result column="realname" property="realname"/>
+		<result column="mobile_number" property="mobileNumber"/>
+		<result column="ipsAcctNo" property="registerTime"/>
+		<result column="ipsIdentification" property="ipsAcctNo"/>
+	</resultMap>
+
+	<select id="getAll" resultMap="userModel">
+		select * from user
 	</select>
-	
-	<select id="getAll" resultType="com.myproject.model.User">
-		select * from User
-	</select>
-	
-	<insert id="saveUser" parameterType="com.myproject.model.User">
-		insert into user values(#{id},#{username},#{email},#{password});
-	</insert>
-	
-	<update id="updateUser" parameterType="com.myproject.model.User">
-		update user set values(#{id},#{username},#{email},#{password});
-	</update>
 </mapper>  

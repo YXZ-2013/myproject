@@ -16,10 +16,10 @@
 	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">north region</div>
 	<div data-options="region:'west',split:true,title:'West'" style="width:250px;padding:10px;">
 	<div class="easyui-accordion">
-		<div title="layout" style="overflow:auto;padding:10px;display:block">
+		<div title="用户管理" style="overflow:auto;padding:10px;display:block">
 			<ul>
-				<li><a href="http://localhost:8080/easyUIDemo/layout/full.html">full</a></li>
-				<li><a href="http://localhost:8080/easyUIDemo/layout/basic.html" target="content">basic</a></li>
+				<li><a href="#">用户列表</a></li>
+				<li><a href="#" target="content">basic</a></li>
 				<li><a href="#">权限分配</a></li>
 			</ul>
 		</div>
