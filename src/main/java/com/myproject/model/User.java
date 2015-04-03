@@ -1,11 +1,11 @@
 package com.myproject.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 
  * @author yinxunzhi
- * @creatTime 2015年3月26日下午12:18:30
+ * @creatTime 2015骞�鏈�6鏃ヤ笅鍗�2:18:30
  * @version 1.0
  * @description User Entity
  */

@@ -18,7 +18,7 @@
 	<div class="easyui-accordion">
 		<div title="用户管理" style="overflow:auto;padding:10px;display:block">
 			<ul>
-				<li><a href="#">用户列表</a></li>
+				<li><a href="${pageContext.request.contextPath}/manager/user/userList" target="content">用户列表</a></li>
 				<li><a href="#" target="content">basic</a></li>
 				<li><a href="#">权限分配</a></li>
 			</ul>
