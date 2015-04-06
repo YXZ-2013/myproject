@@ -17,39 +17,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/demo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#gridUser').datagrid({   
+		    url:'user/userList1',
+		    fit:true,
+		    columns:[[   
+		        {field:'id',title:'ID',width:100},   
+		        {field:'username',title:'用户名',width:100},   
+		        {field:'mobileNumber',title:'电话',width:100,align:'right'}   
+		    ]],
+		    toolbar:[
+                {
+					text : "修改" , iconCls : "icon-edit" , handler : function(){
+					}
+				},
+				"-",
+				{
+					text : "修改" , iconCls : "icon-edit" , handler : function(){
+					}
+		    	}
+				],
+			pagination : true
+		});  
+	})
+</script>
 </head>
 <body>
-	<div id="toolbar">
-	<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
-	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-	<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
-	</div>
-	<table class="easyui-datagrid" title="用户列表" style="width:100%;height:500px" 
-		data-options="rownumbers:true,pagination:true,pageSize:10,toolbar:'#toolbar'">
-		<thead>
-			<tr>
-				<th data-options="field:'id',width:'15%'">id</th>
-				<th data-options="field:'username',width:'15%'">username</th>
-				<th data-options="field:'eamail',width:'15%'">email</th>
-				<th data-options="field:'realname',width:'5%'">realname</th>
-				<th data-options="field:'mobileNumber',width:'10%'">mobileNumber</th>
-				<th data-options="field:'registerTime',width:'15%'">registerTime</th>
-				<th data-options="field:'ipsIdentification',width:'15%',align:'right'">ips</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${userList }" var="user">
-				<tr>
-					<td>${user.id }</td>
-					<td>${user.username }</td>
-					<td>${user.email }</td>
-					<td>${user.realname }</td>
-					<td>${user.mobileNumber }</td>
-					<td><fmt:formatDate value="${user.registerTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-					<td>${user.ipsIdentification }</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<table id="gridUser"></table>
 </body>
 </html>
