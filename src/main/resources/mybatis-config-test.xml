@@ -13,8 +13,8 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url"
-					value="jdbc:mysql://localhost:3306/yinxunzhi?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
-				<property name="username" value="root" />
+					value="jdbc:mysql://123.56.113.97:3306/antourong?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull" />
+				<property name="username" value="yinxunzhi" />
 				<property name="password" value="123abc" />
 			</dataSource>
 		</environment>
