@@ -27,12 +27,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    url:'${pageContext.request.contextPath}/manager/user/userList',
 			    fit:true,
 			    columns:[[   
-			        {field:'id',title:'ID',width:'10%'},   
-			        {field:'username',title:'用户名',width:'15%'},   
+			        {field:'id',title:'ID',width:'10%',sortable:true},   
+			        {field:'username',title:'用户名',width:'15%',sortable:true},   
 			        {field:'email',title:'邮箱',width:'15%'},   
 			        {field:'realname',title:'姓名',width:'5%'},   
-			        {field:'registerTime',title:'注册时间',width:'15%'},   
-			        {field:'ipsIdentification',title:'ips',width:'15%'} 
+			        {field:'registerTime',title:'注册时间',width:'15%',sortable:true},   
+			        {field:'ipsIdentification',title:'ips',width:'15%',sortable:true} 
 			    ]],
 			    toolbar:[
 	                {
@@ -45,7 +45,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						}
 			    	}
 					],
-				pagination : true
+				pagination : true,
+				pageSize : 20,
+				singleSelect : true
 			});  
 		})
 	</script>

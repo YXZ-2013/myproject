@@ -199,20 +199,4 @@ public class User {
 	public void setIpsIdentification(String ipsIdentification) {
 		this.ipsIdentification = ipsIdentification;
 	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", photo=" + photo
-				+ ", email=" + email + ", password=" + password + ", status="
-				+ status + ", realname=" + realname + ", sex=" + sex
-				+ ", cashPassword=" + cashPassword + ", birthday=" + birthday
-				+ ", homeAddress=" + homeAddress + ", qq=" + qq
-				+ ", mobileNumber=" + mobileNumber + ", idCard=" + idCard
-				+ ", currentAddress=" + currentAddress + ", nickname="
-				+ nickname + ", lastLoginTime=" + lastLoginTime
-				+ ", registerTime=" + registerTime + ", comment=" + comment
-				+ ", disableTime=" + disableTime + ", ipsIdentification="
-				+ ipsIdentification + "]";
-	}
-	
 }

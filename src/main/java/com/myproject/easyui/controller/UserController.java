@@ -22,13 +22,40 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myproject.easyui.web.util.ResponseResult;
 import com.myproject.model.User;
 
+/**
+ * 用户处理层
+ * 
+ * @author yinxunzhi
+ * @creatTime 2015年4月7日下午4:40:06
+ * @version 1.0
+ * @description
+ */
 @Controller
 public class UserController {
+	/**
+	 * 用户列表显示
+	 * 
+	 * @author yinxunzhi
+	 * @time 2015年4月7日下午4:41:38
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/manager/user/userList", method = RequestMethod.GET)
 	public String userListView(Model model) {
 		return "/user/userList";
 	}
 
+	/**
+	 * 返回用户列表所需数据
+	 * 
+	 * @author yinxunzhi
+	 * @time 2015年4月7日下午4:41:58
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/manager/user/userList", method = RequestMethod.POST)
 	public String getUserData(Model model, HttpServletRequest request,
