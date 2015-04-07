@@ -18,33 +18,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$('#gridUser').datagrid({   
-		    url:'user/userList1',
-		    fit:true,
-		    columns:[[   
-		        {field:'id',title:'ID',width:100},   
-		        {field:'username',title:'用户名',width:100},   
-		        {field:'mobileNumber',title:'电话',width:100,align:'right'}   
-		    ]],
-		    toolbar:[
-                {
-					text : "修改" , iconCls : "icon-edit" , handler : function(){
-					}
-				},
-				"-",
-				{
-					text : "修改" , iconCls : "icon-edit" , handler : function(){
-					}
-		    	}
-				],
-			pagination : true
-		});  
-	})
-</script>
 </head>
 <body>
 	<table id="gridUser"></table>
+	<script type="text/javascript">
+		$(function(){
+			$('#gridUser').datagrid({   
+			    url:'${pageContext.request.contextPath}/manager/user/userList',
+			    fit:true,
+			    columns:[[   
+			        {field:'id',title:'ID',width:'10%'},   
+			        {field:'username',title:'用户名',width:'15%'},   
+			        {field:'email',title:'邮箱',width:'15%'},   
+			        {field:'realname',title:'姓名',width:'5%'},   
+			        {field:'registerTime',title:'注册时间',width:'15%'},   
+			        {field:'ipsIdentification',title:'ips',width:'15%'} 
+			    ]],
+			    toolbar:[
+	                {
+						text : "添加" , iconCls : "icon-save" , handler : function(){
+						}
+					},
+					"-",
+					{
+						text : "修改" , iconCls : "icon-edit" , handler : function(){
+						}
+			    	}
+					],
+				pagination : true
+			});  
+		})
+	</script>
 </body>
 </html>

@@ -35,33 +35,7 @@
 	</div>
 	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div>
 	<div data-options="region:'center',title:'Center'">
-<%-- 	<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="${pageContext.request.contextPath}/index_center"  name="content"></iframe> --%>
-		<script type="text/javascript">
-		$(function(){
-			$('#gridUser').datagrid({   
-			    url:'user/userList1',
-			    fit:true,
-			    columns:[[   
-			        {field:'id',title:'ID',width:100},   
-			        {field:'username',title:'用户名',width:100},   
-			        {field:'mobileNumber',title:'电话',width:100,align:'right'}   
-			    ]],
-			    toolbar:[
-	                {
-						text : "修改" , iconCls : "icon-edit" , handler : function(){
-						}
-					},
-					"-",
-					{
-						text : "修改" , iconCls : "icon-edit" , handler : function(){
-						}
-			    	}
-					],
-				pagination : true
-			});  
-		})
-	</script>
-	<table id="gridUser"></table>
+		<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="${pageContext.request.contextPath}/index_center"  name="content"></iframe>
 	</div>
 </body>
 </html>
