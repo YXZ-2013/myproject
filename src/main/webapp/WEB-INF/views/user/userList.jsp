@@ -23,6 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<table id="gridUser"></table>
 	<script type="text/javascript">
 		$(function(){
+			$("form > div").css("margin" , "10px 0px 0px 0px");
+			
 			$('#gridUser').datagrid({   
 			    url:'${pageContext.request.contextPath}/manager/user/userList',
 			    fit:true,
@@ -43,6 +45,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    toolbar:[
 	                {
 						text : "添加" , iconCls : "icon-save" , handler : function(){
+							$("#dlgForm").show();
+							$('#dlgForm').dialog({   
+							    title: '添加用户',   
+							    width: 400,
+							    minimizable : true,
+							    maximizable : true,	
+							    height: 400,   
+							    modal: true  
+							});   
+
 						}
 					},
 					"-",
@@ -57,5 +69,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});  
 		})
 	</script>
+	
+	<div id = "dlgForm" style = "display:none;padding:5px">
+		<form id="ff" method="post">  
+		    <div>  
+		        <label for="name">用 &nbsp;户&nbsp;名:</label>  
+		        <input class="easyui-validatebox" type="text" name="name" data-options="required:true" />  
+		    </div>  
+		    <div>  
+		        <label for="email">电话号码:</label>  
+		        <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'" />  
+		    </div>
+		    <div>  
+		        <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>  
+		        <input class="easyui-validatebox" type="text" name="password"/>  
+		    </div>  
+		    <div>  
+		        <label for="repassword">重复密码:</label>  
+		        <input class="easyui-validatebox" type="text" name="repassword"/>  
+		    </div>  
+		</form>  
+	</div>
 </body>
 </html>
