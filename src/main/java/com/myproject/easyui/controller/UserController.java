@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.myproject.easyui.user.dao.UserDao;
 import com.myproject.easyui.web.util.ResponseResult;
 import com.myproject.model.User;
 
@@ -66,15 +69,18 @@ public class UserController {
 		InputStream is = UserController.class.getResourceAsStream(resource);
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 		SqlSession session = factory.openSession();
+		session.getMapper(UserDao.class);
 		String statement = "com.myproject.mybatis.user.userMapper.getAll";
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("pageNum", Integer.parseInt(page));
 		map.put("pageSize", Integer.parseInt(rows));
-		List<User> userList = session.selectList(statement, map);
+		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
+		List<User> userList = session.selectList(statement);
+		PageInfo<User> pageInfo = new PageInfo<User>(userList);
 		session.commit();
 		session.close();
 		ResponseResult result = new ResponseResult();
-		result.setTotal(100);
+		result.setTotal(pageInfo.getTotal());
 		result.setRows(userList);
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(result);

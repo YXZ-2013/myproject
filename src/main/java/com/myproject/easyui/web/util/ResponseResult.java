@@ -1,14 +1,14 @@
 package com.myproject.easyui.web.util;
 
 public class ResponseResult {
-	private int total;
+	private Long total;
 	private Object rows;
 
-	public int getTotal() {
+	public Long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(Long total) {
 		this.total = total;
 	}
 

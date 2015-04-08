@@ -31,7 +31,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        {field:'username',title:'用户名',width:'15%',sortable:true},   
 			        {field:'email',title:'邮箱',width:'15%'},   
 			        {field:'realname',title:'姓名',width:'5%'},   
-			        {field:'registerTime',title:'注册时间',width:'15%',sortable:true},   
+			        {field:'registerTime',title:'注册时间',width:'15%',sortable:true,formatter: function(value,row,index){
+			        	if (value != null) {
+			        		var date = new Date(value);
+			        		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-'
+			        		+ date.getDate();
+			        	}
+			        }},   
 			        {field:'ipsIdentification',title:'ips',width:'15%',sortable:true} 
 			    ]],
 			    toolbar:[
