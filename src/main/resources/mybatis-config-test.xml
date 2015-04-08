@@ -37,6 +37,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/myproject/easyui/controller/UserMapper.xml" />
+		<mapper resource="com/myproject/easyui/controller/userMapper.xml" />
 	</mappers>
 </configuration>
