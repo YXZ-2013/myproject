@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/demo.css">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.easyui.min.js"></script>
-<title>Insert title here</title>
+<title>管理系统</title>
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">north region</div>
@@ -18,7 +18,7 @@
 	<div class="easyui-accordion">
 		<div title="用户管理" style="overflow:auto;padding:10px;display:block">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/manager/user/userList" target="content">用户列表</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/userList" target="content">用户列表</a></li>
 				<li><a href="#" target="content">basic</a></li>
 				<li><a href="#">权限分配</a></li>
 			</ul>
@@ -31,11 +31,9 @@
 		</div>
 	</div>
 	</div>
-	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
-	</div>
 	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div>
-	<div data-options="region:'center',title:'Center'">
-		<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="${pageContext.request.contextPath}/index_center"  name="content"></iframe>
+	<div id="center" data-options="region:'center',title:'Center'">
+	<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="${pageContext.request.contextPath}/index_center"  name="content"></iframe>   
 	</div>
 </body>
 </html>

@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("form > div").css("margin" , "10px 0px 0px 0px");
 			
 			$('#gridUser').datagrid({   
-			    url:'${pageContext.request.contextPath}/manager/user/userList',
+			    url:'${pageContext.request.contextPath}/user/userList',
 			    fit:true,
 			    columns:[[   
 			        {field:'id',title:'ID',width:'10%',sortable:true},   
@@ -45,16 +45,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    toolbar:[
 	                {
 						text : "添加" , iconCls : "icon-save" , handler : function(){
-							$("#dlgForm").show();
+							$('#dlgForm').show();
 							$('#dlgForm').dialog({   
 							    title: '添加用户',   
-							    width: 400,
-							    minimizable : true,
-							    maximizable : true,	
-							    height: 400,   
+							    width: 400,   
+							    height: 400,
+							    minimizable:true,
+							    maximizable:true,
+							    resizable:true,
+							    closed: false,   
 							    modal: true  
 							});   
-
 						}
 					},
 					"-",
@@ -69,26 +70,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});  
 		})
 	</script>
-	
-	<div id = "dlgForm" style = "display:none;padding:5px">
-		<form id="ff" method="post">  
-		    <div>  
-		        <label for="name">用 &nbsp;户&nbsp;名:</label>  
-		        <input class="easyui-validatebox" type="text" name="name" data-options="required:true" />  
-		    </div>  
-		    <div>  
-		        <label for="email">电话号码:</label>  
-		        <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'" />  
-		    </div>
-		    <div>  
-		        <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码:</label>  
-		        <input class="easyui-validatebox" type="text" name="password"/>  
-		    </div>  
-		    <div>  
-		        <label for="repassword">重复密码:</label>  
-		        <input class="easyui-validatebox" type="text" name="repassword"/>  
-		    </div>  
-		</form>  
+	<div id="dlgForm">
+		<div style="padding:10px 60px 20px 60px">
+	    <form id="ff" class="easyui-form" method="post">
+			<table cellpadding="5px;">
+				<tr>
+					<td><label for="name">用户名:</label></td>
+					<td><input class="easyui-textbox" type="text" name="name" value="${user.username }" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td><label for="mobileNum">电话号码:</label></td>
+					<td><input class="easyui-textbox" type="text" name="mobileNum" value="${user.mobileNumber }" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td><label for="password">密码:</label></td>
+					<td><input class="easyui-textbox" type="text" name="password" value="${user.password }" data-options="required:true"/></td>
+				</tr>
+				<tr>
+					<td><label for="repassword">重复密码:</label></td>
+					<td><input class="easyui-textbox" type="text" name="repassword" data-options="required:true"/></td>
+				</tr>
+				<tr>
+					<td><label for="referee">重复密码:</label></td>
+					<td><input class="easyui-textbox" type="text" name="referee"/></td>
+				</tr>
+			</table>  
+		</form> 
+		<div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+	    </div>
 	</div>
+    <script>
+		function submitForm(){
+			//显示进度条
+			$.messager.progress();
+			$('#ff').form('submit', {
+				url: '${pageContext.request.contextPath}/user/userEdit',
+				onSubmit: function(){
+					var isValid = $(this).form('validate');
+					if (!isValid){
+						$.messager.progress('close');	// 当form不合法的时候隐藏工具条
+					}
+					return isValid;	// 返回false将停止form提交 
+				},
+				success: function(data){
+					$.messager.progress('close');// 当成功提交之后隐藏进度条
+					$('#dlgForm').dialog('close');//关闭添加用户对话框
+					$('#gridUser').datagrid('reload');//重新加载数据
+				}
+			});
+		}
+		function clearForm(){
+			$('#ff').form('clear');
+		}
+	</script> 
 </body>
 </html>

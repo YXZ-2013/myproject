@@ -5,6 +5,7 @@
 <mapper namespace="com.myproject.mybatis.user.userMapper">
 	<resultMap type="user" id="userModel">
 		<id column="id" property="id"/>
+		<result column="password" property="password"/>
 		<result column="username" property="username"/>
 		<result column="email" property="email"/>
 		<result column="realname" property="realname"/>
@@ -16,4 +17,8 @@
 	<select id="getAll" resultMap="userModel">
 		select * from user
 	</select>
+	
+	<insert id="saveUser" parameterType="user">
+		insert into user(id,username,password,email,realname,mobile_number,register_time,ipsAcctNo) values(#{id},#{username},#{password},#{email},#{realname},#{mobileNumber},#{registerTime},#{ipsIdentification})
+	</insert>
 </mapper>  

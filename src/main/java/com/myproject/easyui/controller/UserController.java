@@ -2,6 +2,7 @@ package com.myproject.easyui.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,14 +37,14 @@ import com.myproject.model.User;
 @Controller
 public class UserController {
 	/**
-	 * 用户列表显示
+	 * 用户列表显示页面
 	 * 
 	 * @author yinxunzhi
 	 * @time 2015年4月7日下午4:41:38
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/manager/user/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
 	public String userListView(Model model) {
 		return "/user/userList";
 	}
@@ -59,11 +61,17 @@ public class UserController {
 	 * @throws IOException
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/manager/user/userList", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/userList", method = RequestMethod.POST)
 	public String getUserData(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		String rows = request.getParameter("rows");
 		String page = request.getParameter("page");
+		if (rows == null) {
+			rows = "20";
+		}
+		if (page == null) {
+			page = "1";
+		}
 		String resource = "/mybatis-config-test.xml";
 		InputStream is = UserController.class.getResourceAsStream(resource);
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
@@ -82,5 +90,42 @@ public class UserController {
 		result.setRows(userList);
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(result);
+	}
+
+	/**
+	 * 用户添加编辑页面
+	 * 
+	 * @author yinxunzhi
+	 * @time 2015年4月9日下午12:37:57
+	 * @return
+	 */
+	@RequestMapping(value = "/user/userEdit", method = RequestMethod.GET)
+	public String userAddView(Model model) {
+		model.addAttribute("user", new User());
+		return "user/userEdit";
+	}
+
+	/**
+	 * 添加用户完成响应
+	 * 
+	 * @author yinxunzhi
+	 * @time 2015年4月9日下午5:07:51
+	 * @param model
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/user/userEdit", method = RequestMethod.POST)
+	public String userAddResponse(@ModelAttribute("user") User user,
+			HttpServletRequest request, HttpServletResponse response) {
+		user.setId(user.getUsername());
+		user.setRegisterTime(new Date());
+		String resource = "/mybatis-config-test.xml";
+		InputStream is = UserController.class.getResourceAsStream(resource);
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+		SqlSession session = factory.openSession();
+		String statement = "com.myproject.mybatis.user.userMapper.saveUser";
+		session.insert(statement, user);
+		session.commit();
+		session.close();
+		return null;
 	}
 }
