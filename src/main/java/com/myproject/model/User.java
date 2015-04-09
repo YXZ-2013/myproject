@@ -15,7 +15,6 @@ public class User {
 	private String photo;
 	private String email;
 	private String password;
-	private String status;
 	private String realname;
 	private String sex;
 	private String cashPassword;
@@ -31,6 +30,7 @@ public class User {
 	private String comment;
 	private Date disableTime;
 	private String ipsIdentification;
+	private boolean status;
 
 	public String getId() {
 		return id;
@@ -70,14 +70,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public String getRealname() {
@@ -198,5 +190,13 @@ public class User {
 
 	public void setIpsIdentification(String ipsIdentification) {
 		this.ipsIdentification = ipsIdentification;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }

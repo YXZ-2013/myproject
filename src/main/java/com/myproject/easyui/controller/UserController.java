@@ -118,6 +118,7 @@ public class UserController {
 			HttpServletRequest request, HttpServletResponse response) {
 		user.setId(user.getUsername());
 		user.setRegisterTime(new Date());
+		user.setStatus(true);
 		String resource = "/mybatis-config-test.xml";
 		InputStream is = UserController.class.getResourceAsStream(resource);
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);

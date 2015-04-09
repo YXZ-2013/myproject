@@ -12,6 +12,7 @@
 		<result column="mobile_number" property="mobileNumber"/>
 		<result column="register_time" property="registerTime"/>
 		<result column="ipsAcctNo" property="ipsIdentification"/>
+		<result column="status" property="status"/>
 	</resultMap>
 
 	<select id="getAll" resultMap="userModel">
