@@ -28,6 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('#gridUser').datagrid({   
 			    url:'${pageContext.request.contextPath}/user/userList',
 			    fit:true,
+			    fitColumns:true,
+			    rownumbers:true,
 			    columns:[[   
 			        {field:'id',title:'ID',width:'10%',sortable:true},   
 			        {field:'username',title:'用户名',width:'15%',sortable:true},   
@@ -75,12 +77,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <form id="ff" class="easyui-form" method="post">
 			<table cellpadding="5px;">
 				<tr>
-					<td><label for="name">用户名:</label></td>
-					<td><input class="easyui-textbox" type="text" name="name" value="${user.username }" data-options="required:true" /></td>
+					<td><label for="username">用户名:</label></td>
+					<td><input class="easyui-textbox" type="text" name="username" value="${user.username }" data-options="required:true" /></td>
 				</tr>
 				<tr>
-					<td><label for="mobileNum">电话号码:</label></td>
-					<td><input class="easyui-textbox" type="text" name="mobileNum" value="${user.mobileNumber }" data-options="required:true" /></td>
+					<td><label for="mobileNumber">电话号码:</label></td>
+					<td><input class="easyui-textbox" type="text" name="mobileNumber" value="${user.mobileNumber }" data-options="required:true" /></td>
 				</tr>
 				<tr>
 					<td><label for="password">密码:</label></td>

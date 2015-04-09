@@ -20,6 +20,7 @@
 	</select>
 	
 	<insert id="saveUser" parameterType="user">
-		insert into user(id,username,password,email,realname,mobile_number,register_time,ipsAcctNo) values(#{id},#{username},#{password},#{email},#{realname},#{mobileNumber},#{registerTime},#{ipsIdentification})
+		insert into user(id,username,password,email,realname,mobile_number,register_time,ipsAcctNo,status) 
+			values(#{id},#{username},#{password},#{email},#{realname},#{mobileNumber},#{registerTime},#{ipsIdentification},#{status})
 	</insert>
 </mapper>  

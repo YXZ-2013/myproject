@@ -116,6 +116,7 @@ public class UserController {
 	@RequestMapping(value = "/user/userEdit", method = RequestMethod.POST)
 	public String userAddResponse(@ModelAttribute("user") User user,
 			HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(user.getUsername());
 		user.setId(user.getUsername());
 		user.setRegisterTime(new Date());
 		user.setStatus(true);
