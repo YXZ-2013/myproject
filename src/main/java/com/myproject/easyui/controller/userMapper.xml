@@ -23,4 +23,8 @@
 		insert into user(id,username,password,email,realname,mobile_number,register_time,ipsAcctNo,status) 
 			values(#{id},#{username},#{password},#{email},#{realname},#{mobileNumber},#{registerTime},#{ipsIdentification},#{status})
 	</insert>
+	
+	<select id="getUser" parameterType="string" resultMap="userModel">
+		select * from user where id=#{id}
+	</select>
 </mapper>  

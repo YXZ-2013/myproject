@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -98,11 +99,25 @@ public class UserController {
 	 * @author yinxunzhi
 	 * @time 2015年4月9日下午12:37:57
 	 * @return
+	 * @throws JsonProcessingException 
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/user/userEdit", method = RequestMethod.GET)
-	public String userAddView(Model model) {
-		model.addAttribute("user", new User());
-		return "user/userEdit";
+	public String userAddView(Model model,HttpServletRequest request) throws JsonProcessingException {
+		String id = request.getParameter("id");
+		if(id != null){
+			String resource = "/mybatis-config-test.xml";
+			InputStream is = UserController.class.getResourceAsStream(resource);
+			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
+			SqlSession session = factory.openSession();
+			String statement = "com.myproject.mybatis.user.userMapper.getUser";
+			User user = session.selectOne(statement, id);
+			session.close();
+			ObjectMapper mapper = new ObjectMapper();
+			return mapper.writeValueAsString(user);
+		}else{
+			return "failer";
+		}
 	}
 
 	/**
@@ -116,7 +131,6 @@ public class UserController {
 	@RequestMapping(value = "/user/userEdit", method = RequestMethod.POST)
 	public String userAddResponse(@ModelAttribute("user") User user,
 			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(user.getUsername());
 		user.setId(user.getUsername());
 		user.setRegisterTime(new Date());
 		user.setStatus(true);
