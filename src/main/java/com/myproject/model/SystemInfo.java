@@ -25,10 +25,12 @@ public class SystemInfo {
 	/**
 	 * 总内存
 	 */
+	@SuppressWarnings("unused")
 	private Long totalRam;
 	/**
 	 * 已使用内存
 	 */
+	@SuppressWarnings("unused")
 	private Long usedRam;
 
 	public String getJavaVersion() {
