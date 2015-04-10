@@ -21,8 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id = "dlgForm" style = "display:none;padding:5px">
 		<form id="ff" method="post">  
 		    <div>  
-		        <label for="name">用 &nbsp;户&nbsp;名:</label>  
-		        <input class="easyui-validatebox" type="text" name="name" data-options="required:true" />  
+		        <label for="username">用 &nbsp;户&nbsp;名:</label>  
+		        <input class="easyui-validatebox" type="text" name="username" value="${user.username }" data-options="required:true" />  
 		    </div>  
 		    <div>  
 		        <label for="email">电话号码:</label>  

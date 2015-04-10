@@ -18,14 +18,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-util.js"></script>
 </head>
 <body>
 	<table id="gridUser"></table>
 	<script type="text/javascript">
+		var datagrid;
 		$(function(){
 			$("form > div").css("margin" , "10px 0px 0px 0px");
 			
-			$('#gridUser').datagrid({   
+			datagrid = $('#gridUser').datagrid({   
 			    url:'${pageContext.request.contextPath}/user/userList',
 			    fit:true,
 			    fitColumns:true,
@@ -45,27 +47,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        {field:'ipsIdentification',title:'ips',width:'15%',sortable:true} 
 			    ]],
 			    toolbar:[
-	                {
-						text : "添加" , iconCls : "icon-save" , handler : function(){
-							$('#dlgForm').show();
-							$('#dlgForm').dialog({   
-							    title: '添加用户',   
-							    width: 400,   
-							    height: 400,
-							    minimizable:true,
-							    maximizable:true,
-							    resizable:true,
-							    closed: false,   
-							    modal: true  
-							});   
+				    {
+						text : '增加',
+						iconCls : 'icon-add',
+						handler : function() {
+							append();
 						}
-					},
-					"-",
-					{
-						text : "修改" , iconCls : "icon-edit" , handler : function(){
+					},'-',{
+						text : '删除',
+						iconCls : 'icon-remove',
+						handler : function() {
+							remove();
 						}
-			    	}
-					],
+					}, '-', {
+						text : '修改',
+						iconCls : 'icon-edit',
+						handler : function() {
+							edit();
+						}
+					}, '-', {
+						text : '取消选中',
+						iconCls : 'icon-undo',
+						handler : function() {
+							datagrid.datagrid('clearSelections');
+							datagrid.datagrid('unselectAll');
+						}
+					}, '-', {
+						text : '批量修改用户角色',
+						iconCls : 'icon-edit',
+						handler : function() {
+							editRole();
+						}
+					}, '-'],
 				pagination : true,
 				pageSize : 20,
 				singleSelect : true
@@ -104,6 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div>
 	</div>
     <script>
+    	//提交表单
 		function submitForm(){
 			//显示进度条
 			$.messager.progress();
@@ -123,9 +137,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				}
 			});
 		}
+    	
+    	//清空表单
 		function clearForm(){
 			$('#ff').form('clear');
 		}
+    	
+    	//注册用户
+    	function append(){
+    		$('#dlgForm').show();
+			$('#dlgForm').dialog({   
+			    title: '添加用户',   
+			    width: 400,   
+			    height: 400,
+			    minimizable:true,
+			    maximizable:true,
+			    resizable:true,
+			    closed: false,   
+			    modal: true  
+			});   
+    	}
+    	
+    	//编辑用户
+    	function edit(){
+    		var row = datagrid.datagrid('getSelected');
+    		if (row != null) {
+    			$.messager.progress();
+    			$.get('${pageContext.request.contextPath}/user/userEdit',
+    					{id:row.id},
+    					function(data){
+    						$.messager.progress('close');
+    		    			$('#dlgForm').form('load', data);
+    						$('#dlgForm').show();
+	    					$('#dlgForm').dialog({   
+	    	    			    title: '编辑用户',   
+	    	    			    width: 400,   
+	    	    			    height: 400,
+	    	    			    minimizable:true,
+	    	    			    maximizable:true,
+	    	    			    resizable:true,
+	    	    			    closed: false,   
+	    	    			    modal: true  
+	    	    			});
+    					}
+    			);
+    			$('#dlgForm').form('load','${pageContext.request.contextPath}/user/userEdit?id='+row.id);
+    			$('#dlgForm').show();
+    		}else{
+    			$.messager.alert('提示', '请选择要编辑的记录！', 'error');
+    		}
+    	}
 	</script> 
 </body>
 </html>
