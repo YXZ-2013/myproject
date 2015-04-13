@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +38,7 @@ public class PermissionController {
 	 */
 	@RequestMapping(value="/user/permissionList",method=RequestMethod.GET)
 	public String getPermissonListView(){
-		return "/user/permisson";
+		return "/user/permissionList";
 	}
 	/**
 	 * 获取permission数据集合
@@ -46,6 +47,7 @@ public class PermissionController {
 	 * @time 2015年4月13日下午10:29:36
 	 *
 	 */
+	@ResponseBody
 	@RequestMapping(value="/user/permissionList",method=RequestMethod.POST)
 	public String getPermissonData(HttpServletRequest request,HttpServletResponse response) throws JsonProcessingException{
 		String rows = request.getParameter("rows");

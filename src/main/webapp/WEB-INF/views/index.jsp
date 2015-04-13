@@ -20,7 +20,7 @@
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/user/userList" target="content">用户列表</a></li>
 				<li><a href="#" target="content">basic</a></li>
-				<li><a href="#">权限分配</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/permissionList" target="content">权限列表</a></li>
 			</ul>
 		</div>
 		<div title="借款管理" style="overflow:auto;padding:10px;display:block">
