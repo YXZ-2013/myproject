@@ -11,6 +11,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.myproject.model.User" alias="user" />
+		<typeAlias type="com.myproject.model.Permission" alias="permission" />
 	</typeAliases>
 
 
@@ -38,5 +39,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/myproject/easyui/controller/userMapper.xml" />
+		<mapper resource="com/myproject/easyui/controller/permissionMapper.xml" />
 	</mappers>
 </configuration>
