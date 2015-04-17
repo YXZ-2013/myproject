@@ -12,6 +12,7 @@
 	<typeAliases>
 		<typeAlias type="com.myproject.model.User" alias="user" />
 		<typeAlias type="com.myproject.model.Permission" alias="permission" />
+		<typeAlias type="com.myproject.model.Role" alias="role" />
 	</typeAliases>
 
 
