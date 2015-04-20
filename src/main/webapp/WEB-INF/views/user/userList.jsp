@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				pageSize : 20,
 				singleSelect : true
 			});  
-		})
+		});
 	</script>
 	<div id="dlgForm">
 		<div style="padding:10px 60px 20px 60px">
@@ -115,6 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
 	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
 	    </div>
+	  </div>
 	</div>
     <script>
     	//提交表单

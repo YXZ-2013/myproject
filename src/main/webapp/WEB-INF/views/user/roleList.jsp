@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("form > div").css("margin" , "10px 0px 0px 0px");
 			
 			datagrid = $('#gridRloe').datagrid({   
-			    url:'${pageContext.request.contextPath}/role/roleList',
+			    url:'${pageContext.request.contextPath}/user/roleList',
 			    fit:true,
 			    fitColumns:true,
 			    rownumbers:true,
@@ -77,7 +77,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				pageSize : 20,
 				singleSelect : true
 			});  
-		})
+		});
 	</script>
+	<div id="addForm" >
+		<div style="padding:10px 60px 20px 60px">
+			<form id="addRoleForm" class="easyui-form" method="post" >
+				<table cellpadding="5px;" >
+					<tr>
+					<td><label for="name">用户名:</label></td>
+					<td><input class="easyui-textbox" type="text" name="name" value="${role.name }" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td><label for="description">备注:</label></td>
+					<td><input class="easyui-textbox" type="text" name="description" value="${role.description }" data-options="required:true" /></td>
+				</tr>
+				</table>
+			</form>
+			<br><br>
+			<div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitRoleForm()">Submit</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearRoleForm()">Clear</a>
+	    	</div>
+		</div>
+	</div>
+	
+	<script>
+		//添加Role数据
+		function append () {
+			$("#addForm").show();
+			$("#addForm").dialog({   
+			    title: '添加用户',   
+			    width: 400,   
+			    height: 250,
+			    minimizable:true,
+			    maximizable:true,
+			    resizable:true,
+			    closed: false,   
+			    modal: true  
+			});
+		}
+	
+		function submitRoleForm () {
+			$.messager.progress();
+			$("#addRoleForm").form('submit',{
+				url:'${pageContext.request.contextPath}/user/roleSave',				
+				onSubmit: function(){
+					var isValid = $(this).form('validate');
+					if (!isValid){
+						$.messager.progress('close');	// 当form不合法的时候隐藏工具条
+					}
+					return isValid;	// 返回false将停止form提交 
+				},
+				success: function(data){
+					$.messager.progress('close');// 当成功提交之后隐藏进度条
+					$('#addForm').dialog('close');//关闭添加用户对话框
+					$('#gridRloe').datagrid('reload');//重新加载数据
+				}
+			});
+		}
+		
+	
+	</script>
+	
+	
 </body>
 </html>
