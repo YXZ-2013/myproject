@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="../css/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="../css/demo.css">
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/demo.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body class="easyui-layout">
-	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">north region</div>
-	<div data-options="region:'west',split:true,title:'West'" style="width:250px;padding:10px;">
-	<div class="easyui-accordion">
-		<div title="layout" style="overflow:auto;padding:10px;display:block">
-			<ul>
-				<li><a href="http://localhost:8080/easyUIDemo/layout/full.html">full</a></li>
-				<li><a href="http://localhost:8080/easyUIDemo/layout/basic.html" target="content">basic</a></li>
-				<li><a href="#">权限分配</a></li>
-			</ul>
-		</div>
-		<div title="借款管理" style="overflow:auto;padding:10px;display:block">
-		</div>
-		<div title="资金管理" style="overflow:auto;padding:10px;display:block">
-		</div>
-		<div title="菜单管理" style="overflow:auto;padding:10px;display:block">
-		</div>
+<body>
+	<div id="loginPanel">
+		<form id="loginInputForm" method="post">
+			<table cellpadding="5">
+	    		<tr>
+	    			<td>用户名:</td>
+	    			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true,missingMessage:'请填写登录名称'"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>密码:</td>
+	    			<td><input class="easyui-textbox" type="password" name="name" data-options="required:true,missingMessage:'请填写密码'"></input></td>
+	    		</tr>
+    		</table>
+		</form>
+		<div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">登陆</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+	    </div>
 	</div>
-	</div>
-	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">
-	</div>
-	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div>
-	<div data-options="region:'center',title:'Center'">
-	<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="http://localhost:8080/easyUIDemo/layout/basic.html"  name="content">111</iframe>
-	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#loginPanel').panel({
+				width : 500,
+				height : 200,
+				title : '管理员登录'
+			});
+		})
+	</script>
 </body>
 </html>
