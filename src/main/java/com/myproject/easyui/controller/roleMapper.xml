@@ -13,4 +13,10 @@
 		select * from role
 	</select>
 	
+	
+	<insert id="saveUser" parameterType="role">
+		INSERT INTO role (id,name,description)
+			VALUES (#{id},#{name},#{description})
+	</insert>
+	
 </mapper>  
