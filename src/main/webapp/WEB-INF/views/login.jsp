@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/demo.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
 <script type="text/javascript">
@@ -32,7 +31,7 @@ $(function(){
 		    		</tr>
 		    		<tr>
 		    			<td>密码:</td>
-		    			<td><input class="easyui-textbox" type="password" name="name" style="width: 200px;" data-options="required:true,missingMessage:'请填写密码'"></input></td>
+		    			<td><input class="easyui-textbox" type="password" name="password" style="width: 200px;" data-options="required:true,missingMessage:'请填写密码'"></input></td>
 		    		</tr>
 	    		</table>
 			</form>
@@ -50,6 +49,23 @@ $(function(){
 				title : '管理员登录'
 			});
 		})
+		
+		//提交表单
+		function submitForm(){
+			$('#loginInputForm').form('submit', {
+				url: '${pageContext.request.contextPath}/user/login',
+				onSubmit: function(){
+					var isValid = $(this).form('validate');
+					if (!isValid){
+						$.messager.progress('close');	// 当form不合法的时候隐藏工具条
+					}
+					return isValid;	// 返回false将停止form提交 
+				},
+				success: function(data){
+				
+				}
+			});
+		}
 	</script>
 </body>
 </html>
