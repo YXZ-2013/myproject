@@ -66,6 +66,11 @@ $(function(){
 				}
 			});
 		}
+		
+		//清空表单
+		function clearForm(){
+			$('#loginInputForm').form('clear');
+		}
 	</script>
 </body>
 </html>
