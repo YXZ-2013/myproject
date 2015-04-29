@@ -1,5 +1,8 @@
 package com.myproject.model;
 
+import java.util.List;
+
+
 /**
  * 登陆后session集合
  * 
@@ -12,6 +15,7 @@ public class SessionInfo {
 	private String loginName;// 用户登录名称
 	private String loginPassword;// 登录密码
 	private String ip;// IP地址
+	private List<Permission> permissions;// 用户拥有的权限
 	private String authIds;// 拥有的权限ID集合
 	private String authNames;
 	private String authUrls;
@@ -88,6 +92,14 @@ public class SessionInfo {
 
 	public void setRoleNames(String roleNames) {
 		this.roleNames = roleNames;
+	}
+
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 
 }

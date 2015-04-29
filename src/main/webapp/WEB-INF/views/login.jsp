@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/demo.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/sha1.js"></script>
 <script type="text/javascript">
 $(function(){
 	 var L=($(window).width()/2)-($(".login").width()/2);
@@ -27,7 +28,7 @@ $(function(){
 				<table cellpadding="5" style="margin:30px auto 10px;">
 		    		<tr>
 		    			<td>用户名:</td>
-		    			<td><input class="easyui-textbox" type="text" name="name" style="width: 200px;" data-options="required:true,missingMessage:'请填写登录名称'"></input></td>
+		    			<td><input class="easyui-textbox" type="text" name="username" style="width: 200px;" data-options="required:true,missingMessage:'请填写登录名称'"></input></td>
 		    		</tr>
 		    		<tr>
 		    			<td>密码:</td>
@@ -52,8 +53,9 @@ $(function(){
 		
 		//提交表单
 		function submitForm(){
+			$('#loginInputForm').find('input[name=password]').val(hex_sha1($('#loginInputForm').find('input[name=password]').val()));
 			$('#loginInputForm').form('submit', {
-				url: '${pageContext.request.contextPath}/user/login',
+				url: '${pageContext.request.contextPath}/login',
 				onSubmit: function(){
 					var isValid = $(this).form('validate');
 					if (!isValid){
@@ -62,7 +64,25 @@ $(function(){
 					return isValid;	// 返回false将停止form提交 
 				},
 				success: function(data){
-				
+					var json = $.parseJSON(data);
+					if (json && json.success) {
+						$.messager.show({
+							title : '成功',
+							msg : json.msg
+						});
+						var user = json.obj;
+						afterLoginSuccess(user.loginName, user.ip);
+					} else {
+						$.messager.show({
+							title : '失败',
+							msg : json.msg,
+							showType:'fade',
+							style:{
+								right:'',
+								bottom:''
+							}
+						});
+					}
 				}
 			});
 		}
