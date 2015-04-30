@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
+import com.myproject.easyui.dao.UserDao;
 import com.myproject.model.User;
 
 public class UserDaoTest {
@@ -16,12 +17,10 @@ public class UserDaoTest {
 	public void findUserById() {
 		String resource = "/mybatis-config-test.xml";
 		InputStream is = UserDaoTest.class.getResourceAsStream(resource);
-
 		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
 		SqlSession session = factory.openSession();
-
-		String statement = "com.myproject.mybatis.user.userMapper.getUser";
-		User user = session.selectOne(statement, "admin");
+		UserDao userDao = session.getMapper(UserDao.class);
+		User user = userDao.getUser("admin");;
 		System.out.println(user);
 		session.close();
 	}

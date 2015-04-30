@@ -20,6 +20,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/myproject/mybatis/user/userMapper.xml" />
+		<mapper resource="com/myproject/model/UserMapper.xml" />
 	</mappers>
 </configuration>

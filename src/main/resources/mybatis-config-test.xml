@@ -39,7 +39,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/myproject/easyui/controller/userMapper.xml" />
+		<mapper resource="com/myproject/model/UserMapper.xml" />
 		<mapper resource="com/myproject/easyui/controller/permissionMapper.xml" />
 		<mapper resource="com/myproject/easyui/controller/roleMapper.xml" />
 	</mappers>
