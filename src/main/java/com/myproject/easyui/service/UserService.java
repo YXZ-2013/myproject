@@ -22,4 +22,13 @@ public interface UserService {
 	 */
 	List<Permission> getPermissions(User user);
 	
+	/**
+	 * 根据用户id获取用户
+	 * @author yinxunzhi
+	 * @time 2015年4月30日上午10:53:02
+	 * @param id
+	 * @return
+	 */
+	public User getUser(String id);
+	
 }
