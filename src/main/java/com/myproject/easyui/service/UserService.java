@@ -5,30 +5,25 @@ import java.util.List;
 import com.myproject.model.Permission;
 import com.myproject.model.User;
 
-/**
- * @author yinxunzhi
- * @creatTime 2015Äê4ÔÂ29ÈÕÉÏÎç11:17:47
- * @version 1.0
- * @description 
- */
 public interface UserService {
 
 	/**
-	 * »ñÈ¡ÓÃ»§µÄÈ¨ÏŞÁĞ±í
+	 * è·å–ç”¨æˆ·æƒé™
+	 * 
 	 * @author yinxunzhi
-	 * @time 2015Äê4ÔÂ29ÈÕÏÂÎç4:34:11
+	 * @time 2015å¹´4æœˆ30æ—¥ä¸‹åˆ2:50:45
 	 * @param user
 	 * @return
 	 */
 	List<Permission> getPermissions(User user);
-	
+
 	/**
-	 * ¸ù¾İÓÃ»§id»ñÈ¡ÓÃ»§
+	 * åŠ¨æ€è·å–ç”¨æˆ·
+	 * 
 	 * @author yinxunzhi
-	 * @time 2015Äê4ÔÂ30ÈÕÉÏÎç10:53:02
-	 * @param id
-	 * @return
+	 * @time 2015å¹´4æœˆ30æ—¥ä¸‹åˆ2:46:56
+	 * @param user
 	 */
-	public User getUser(String id);
-	
+	public User getUser(User user);
+
 }

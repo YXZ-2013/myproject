@@ -18,7 +18,7 @@ import com.myproject.model.User;
 public class LoginController extends BaseController {
 	@Autowired
 	UserService userService;
-	
+
 	@RequestMapping(value = "/login")
 	public String toLogin() {
 		return "login";
@@ -29,24 +29,27 @@ public class LoginController extends BaseController {
 		ResponseJson rj = new ResponseJson();
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
-		User user = null;
+		User user = new User();
+		user.setUsername(name);
+		user.setPassword(password);
+		userService.getUser(user);
 		if (user != null) {
 			SessionInfo sessionInfo = saveSessionInfo(user, request);
 			rj.setSuccess(true);
-			rj.setMsg("ÓÃ»§µÇÂ¼³É¹¦£¡");
+			rj.setMsg("ç™»å½•æˆåŠŸ");
 			rj.setObj(null);
 		} else {
-			rj.setMsg("ÓÃ»§Ãû»òÃÜÂë´íÎó!");
+			rj.setMsg("ç”¨æˆ·åå¯†ç é”™è¯¯ï¼");
 		}
 		writeJson(rj, response);
 	}
 
 	/**
-	 * ±£´æÓÃ»§µÄsessionĞÅÏ¢
-	 * 
+	 * ç™»å½•æˆåŠŸä¿å­˜sessionä¿¡æ¯
 	 * @author yinxunzhi
-	 * @time 2015Äê4ÔÂ29ÈÕÏÂÎç3:26:38
+	 * @time 2015å¹´4æœˆ30æ—¥ä¸‹åˆ2:44:53
 	 * @param user
+	 * @param request
 	 * @return
 	 */
 	private SessionInfo saveSessionInfo(User user, HttpServletRequest request) {
