@@ -19,6 +19,8 @@
 	<mvc:annotation-driven />
 	<!-- 设置使用注解的类所在的jar包 -->
 	<context:component-scan base-package="com.myproject.easyui.controller" />
+	<!-- 静态访问 -->
+	<mvc:resources mapping="layout/**" location="layout/" /> 
 
 	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀,在requestmapping输入的地址后自动调用该类进行视图解析 -->
 	<bean id="viewResolver"

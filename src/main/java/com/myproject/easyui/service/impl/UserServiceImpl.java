@@ -15,6 +15,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
 
 	public List<Permission> getPermissions(User user) {
 		return null;

@@ -2,6 +2,7 @@ package com.myproject.easyui.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ import com.myproject.model.User;
 public class LoginController extends BaseController {
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	HttpSession session;
 
 	@RequestMapping(value = "/login")
 	public String toLogin() {
@@ -32,16 +36,18 @@ public class LoginController extends BaseController {
 		User user = new User();
 		user.setUsername(name);
 		user.setPassword(password);
-		userService.getUser(user);
-		if (user != null) {
-			SessionInfo sessionInfo = saveSessionInfo(user, request);
+		User loginUser = userService.getUser(user);
+		if (loginUser != null) {
+			SessionInfo sessionInfo = saveSessionInfo(loginUser, request);
+			session.setAttribute("sessionInfo", sessionInfo);
+			session.setMaxInactiveInterval(30*60*60);
 			rj.setSuccess(true);
 			rj.setMsg("登录成功");
-			rj.setObj(null);
+			writeJson(rj, response);
 		} else {
 			rj.setMsg("用户名密码错误！");
+			writeJson(rj, response);
 		}
-		writeJson(rj, response);
 	}
 
 	/**
@@ -55,10 +61,9 @@ public class LoginController extends BaseController {
 	private SessionInfo saveSessionInfo(User user, HttpServletRequest request) {
 		SessionInfo sessionInfo = new SessionInfo();
 		sessionInfo.setUserId(user.getId());
-		sessionInfo.setLoginName(user.getPassword());
+		sessionInfo.setLoginName(user.getUsername());
 		sessionInfo.setIp(IpUtil.getIpAddr(request));
 		sessionInfo.setPermissions(userService.getPermissions(user));
-		request.getSession().setAttribute("sessionInfo", sessionInfo);
 		return sessionInfo;
 	}
 

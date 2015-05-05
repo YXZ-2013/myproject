@@ -58,20 +58,12 @@ $(function(){
 				url: '${pageContext.request.contextPath}/login',
 				onSubmit: function(){
 					var isValid = $(this).form('validate');
-					if (!isValid){
-						$.messager.progress('close');	// 当form不合法的时候隐藏工具条
-					}
 					return isValid;	// 返回false将停止form提交 
 				},
 				success: function(data){
 					var json = $.parseJSON(data);
 					if (json && json.success) {
-						$.messager.show({
-							title : '成功',
-							msg : json.msg
-						});
-						var user = json.obj;
-						afterLoginSuccess(user.loginName, user.ip);
+						window.location.href='${pageContext.request.contextPath}/';
 					} else {
 						$.messager.show({
 							title : '失败',

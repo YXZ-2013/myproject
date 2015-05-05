@@ -19,13 +19,13 @@ public class IndexController {
 
 	@RequestMapping(value = "/")
 	public ModelAndView indexView(Model model) {
-		SessionInfo sessionInfo = (SessionInfo) session
-				.getAttribute("sessionInfo");
-		if (sessionInfo != null && sessionInfo.getUserId() == null) {
+//		SessionInfo sessionInfo = (SessionInfo) session
+//				.getAttribute("sessionInfo");
+//		if (sessionInfo != null && sessionInfo.getUserId() != null) {
 			return new ModelAndView("index");
-		} else {
-			return new ModelAndView("login");
-		}
+		// } else {
+		// return new ModelAndView("login");
+		// }
 	}
 
 	@RequestMapping(value = "/index_center")

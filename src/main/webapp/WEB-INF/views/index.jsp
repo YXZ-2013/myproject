@@ -5,35 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="css/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="css/demo.css">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
 <title>管理系统</title>
+<%@ include file="base.jsp" %>
 </head>
-<body class="easyui-layout">
-	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">north region</div>
-	<div data-options="region:'west',split:true,title:'West'" style="width:250px;padding:10px;">
-	<div class="easyui-accordion">
-		<div title="用户管理" style="overflow:auto;padding:10px;display:block">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/user/userList" target="content">用户列表</a></li>
-				<li><a href="${pageContext.request.contextPath}/user/roleList" target="content">角色列表</a></li>
-				<li><a href="${pageContext.request.contextPath}/user/permissionList" target="content">权限列表</a></li>
-			</ul>
-		</div>
-		<div title="借款管理" style="overflow:auto;padding:10px;display:block">
-		</div>
-		<div title="资金管理" style="overflow:auto;padding:10px;display:block">
-		</div>
-		<div title="菜单管理" style="overflow:auto;padding:10px;display:block">
-		</div>
-	</div>
-	</div>
-	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div>
-	<div id="center" data-options="region:'center',title:'Center'">
-	<iframe frameborder="0" width="100%" height="100%" scrolling="auto" src="${pageContext.request.contextPath}/index_center"  name="content"></iframe>   
-	</div>
+<body id="indexLayout" class="easyui-layout">
+	<div region="north" title="north" style="height:60px;overflow: hidden;"></div>
+	<div region="center" title="center"  style="overflow: hidden;"></div>
+	<div region="west" title="west" split="false" style="width:200px;overflow: hidden;" href="layout/basic.html"></div>
+	<div region="south" title="south" style="height:20px;overflow: hidden;"></div>
 </body>
 </html>
