@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public User getUser(User user) {
-		return null;
+		return userDao.getUser(user);
 	}
 
 }

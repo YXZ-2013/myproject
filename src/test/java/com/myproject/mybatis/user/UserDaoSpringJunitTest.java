@@ -23,7 +23,10 @@ public class UserDaoSpringJunitTest {
 	
 	@Test
 	public void findUserById() {
-		User user = userDao.getUser("admin");;
-		System.out.println(user);
+		User user = new User();
+		user.setUsername("admin");
+		user.setPassword("4be30d9814c6d4e9800e0d2ea9ec9fb00efa887b");
+		user = userDao.getUser(user);;
+		System.out.println(user.toString());
 	}
 }
