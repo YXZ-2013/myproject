@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 %>
@@ -9,7 +9,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-
+<c:set value="${pageContext.request.contextPath}" var="ctx"></c:set>
 <link rel="stylesheet" type="text/css" href="css/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="css/demo.css">
 <script type="text/javascript" src="js/jquery.min.js"></script>

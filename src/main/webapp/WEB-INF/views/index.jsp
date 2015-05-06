@@ -9,9 +9,9 @@
 <%@ include file="base.jsp" %>
 </head>
 <body id="indexLayout" class="easyui-layout">
-	<div region="north" title="north" style="height:60px;overflow: hidden;"></div>
+	<div region="north" style="height:100px;overflow: hidden;background:url('images/bg.jpg');"></div>
 	<div region="center" title="center"  style="overflow: hidden;"></div>
-	<div region="west" title="west" split="false" style="width:200px;overflow: hidden;" href="layout/basic.html"></div>
+	<div region="west" split="false" style="width:200px;overflow: hidden;" href="${ctx }/layout/west.jsp"></div>
 	<div region="south" title="south" style="height:20px;overflow: hidden;"></div>
 </body>
 </html>
