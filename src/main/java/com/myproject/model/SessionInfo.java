@@ -2,6 +2,8 @@ package com.myproject.model;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
+
 
 /**
  * 登陆后session集合
@@ -16,6 +18,7 @@ public class SessionInfo {
 	private String loginPassword;// 登录密码
 	private String ip;// IP地址
 	private List<Permission> permissions;// 用户拥有的权限
+	private JSON menus;// 用户拥有的菜单
 	private String authIds;// 拥有的权限ID集合
 	private String authNames;
 	private String authUrls;
@@ -100,6 +103,14 @@ public class SessionInfo {
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+
+	public JSON getMenus() {
+		return menus;
+	}
+
+	public void setMenus(JSON menus) {
+		this.menus = menus;
 	}
 
 }

@@ -33,10 +33,10 @@
 		});
 
 		tree = $('#menu').tree({
-			url : 'menuAction!ctrlTree.action',
+			url : 'manager/getManagetMenus',
 			lines : true,
 			onClick : function(node) {
-				addTab(node);
+// 				addTab(node);
 			},
 			onDblClick : function(node) {
 				if (node.state == 'closed') {

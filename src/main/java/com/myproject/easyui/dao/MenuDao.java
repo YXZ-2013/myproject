@@ -1,0 +1,29 @@
+package com.myproject.easyui.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.myproject.model.Menu;
+
+@Repository(value = "menuDao")
+public interface MenuDao {
+	/**
+	 * 根据菜单类型获取菜单
+	 * @author yinxunzhi
+	 * @time 2015年5月7日上午10:40:06
+	 * @param menu
+	 * @return
+	 */
+	public List<Menu> getMenuListByType(String type);
+	
+	/**
+	 * 获取父菜单下的子菜单
+	 * @author yinxunzhi
+	 * @time 2015年5月7日上午11:14:39
+	 * @param menu
+	 * @return
+	 */
+	public List<Menu> getMenuListByParentId(String parentId);
+	
+}
