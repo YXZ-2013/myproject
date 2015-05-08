@@ -49,6 +49,7 @@ public class MenuServiceImpl implements MenuService{
 		node.setText(menu.getName());
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("url", menu.getUrl());
+		node.setAttributes(attributes);
 		if(menu.getChildren() != null && menu.getChildren().size() > 0){
 			node.setState("closed");
 			if(flag){

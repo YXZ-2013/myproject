@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.myproject.easyui.service.MenuService;
-import com.myproject.easyui.util.JsonUtil;
 import com.myproject.model.Menu;
-import com.myproject.model.SessionInfo;
 
 /**
  * @author yinxunzhi
@@ -35,7 +33,6 @@ public class MenuController extends BaseController{
 	 */
 	@RequestMapping(value="/manager/getManagetMenus",method=RequestMethod.POST)
 	public void ctrlTree(HttpServletResponse response) {
-		SessionInfo sessionInfo = (SessionInfo) session.getAttribute("sessionInfo");
-//		sessionInfo.setMenus(JsonUtil.writeJson(menuService.getMenuTree(new Menu(), true)));
+		writeJson(menuService.getMenuTree(new Menu(), true), response);
 	}
 }

@@ -10,7 +10,7 @@
 </head>
 <body id="indexLayout" class="easyui-layout">
 	<div region="north" style="height:100px;overflow: hidden;background:url('images/bg.jpg');"></div>
-	<div region="center" title="center"  style="overflow: hidden;"></div>
+	<div region="center" style="overflow: hidden;" href="${ctx }/layout/center.jsp"></div>
 	<div region="west" split="false" style="width:200px;overflow: hidden;" href="${ctx }/layout/west.jsp"></div>
 	<div region="south" title="south" style="height:20px;overflow: hidden;"></div>
 </body>

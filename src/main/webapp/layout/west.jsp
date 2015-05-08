@@ -32,11 +32,11 @@
 			} ]
 		});
 
-		tree = $('#menu').tree({
+		tree = $('#menuPanel').tree({
 			url : 'manager/getManagetMenus',
 			lines : true,
 			onClick : function(node) {
-// 				addTab(node);
+				addTab(node);
 			},
 			onDblClick : function(node) {
 				if (node.state == 'closed') {
@@ -49,8 +49,9 @@
 	});
 </script>
 <div class="easyui-accordion" fit="true" border="false">
-	<div id="menuPanel" fit="true" border="false" title="菜单"
-		style="padding: 5px;">
-		<ul id="menu"></ul>
+	<div title="菜单">
+		<div id="menuPanel" fit="true" border="false" title="功能菜单" style="padding: 5px;">
+			<ul id="menu"></ul>
+		</div>
 	</div>
 </div>
