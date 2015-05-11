@@ -25,4 +25,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(user);
 	}
 
+	public List<String> getResourceList(String id) {
+		
+		return null;
+	}
+
 }

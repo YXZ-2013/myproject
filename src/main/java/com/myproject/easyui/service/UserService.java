@@ -26,4 +26,13 @@ public interface UserService {
 	 */
 	public User getUser(User user);
 
+	/**
+	 * 获取用户可以访问的资源列表
+	 * @author yinxunzhi
+	 * @time 2015年5月11日下午3:01:21
+	 * @param id
+	 * @return
+	 */
+	List<String> getResourceList(String id);
+
 }

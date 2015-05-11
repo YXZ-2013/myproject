@@ -2,9 +2,6 @@ package com.myproject.model;
 
 import java.util.List;
 
-import com.alibaba.fastjson.JSON;
-
-
 /**
  * 登陆后session集合
  * 
@@ -14,16 +11,8 @@ import com.alibaba.fastjson.JSON;
  */
 public class SessionInfo {
 	private String userId;// 用户ID
-	private String loginName;// 用户登录名称
-	private String loginPassword;// 登录密码
 	private String ip;// IP地址
-	private List<Permission> permissions;// 用户拥有的权限
-	private JSON menus;// 用户拥有的菜单
-	private String authIds;// 拥有的权限ID集合
-	private String authNames;
-	private String authUrls;
-	private String roleIds;
-	private String roleNames;
+	private List<String> resourceList;// 用户可以访问的资源地址列表
 
 	public String getUserId() {
 		return userId;
@@ -31,22 +20,6 @@ public class SessionInfo {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getLoginPassword() {
-		return loginPassword;
-	}
-
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
 	}
 
 	public String getIp() {
@@ -57,60 +30,11 @@ public class SessionInfo {
 		this.ip = ip;
 	}
 
-	public String getAuthIds() {
-		return authIds;
+	public List<String> getResourceList() {
+		return resourceList;
 	}
 
-	public void setAuthIds(String authIds) {
-		this.authIds = authIds;
+	public void setResourceList(List<String> resourceList) {
+		this.resourceList = resourceList;
 	}
-
-	public String getAuthNames() {
-		return authNames;
-	}
-
-	public void setAuthNames(String authNames) {
-		this.authNames = authNames;
-	}
-
-	public String getAuthUrls() {
-		return authUrls;
-	}
-
-	public void setAuthUrls(String authUrls) {
-		this.authUrls = authUrls;
-	}
-
-	public String getRoleIds() {
-		return roleIds;
-	}
-
-	public void setRoleIds(String roleIds) {
-		this.roleIds = roleIds;
-	}
-
-	public String getRoleNames() {
-		return roleNames;
-	}
-
-	public void setRoleNames(String roleNames) {
-		this.roleNames = roleNames;
-	}
-
-	public List<Permission> getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(List<Permission> permissions) {
-		this.permissions = permissions;
-	}
-
-	public JSON getMenus() {
-		return menus;
-	}
-
-	public void setMenus(JSON menus) {
-		this.menus = menus;
-	}
-
 }
