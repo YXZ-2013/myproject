@@ -12,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myproject.model.SessionInfo;
 
 public class LoginInterceptor implements HandlerInterceptor {
-	private static final Logger logger = Logger
-			.getLogger(LoginInterceptor.class);
+	
+	private static final Logger logger = Logger.getLogger(LoginInterceptor.class);
 
 	private List<String> excludeUrls;// 不需要拦截的资源
 
@@ -46,8 +46,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return false;
 		}
 
-		if (!sessionInfo.getResourceList().contains(url)) {//
-		// 如果当前用户没有访问此资源的权限
+		if (sessionInfo.getResourceList() != null
+				&& !sessionInfo.getResourceList().contains(url)) {//
+			// 如果当前用户没有访问此资源的权限
 			request.setAttribute("msg", "您没有访问此资源的权限！<br/>请联系超管赋予您<br/>[" + url
 					+ "]<br/>的资源访问权限！");
 			request.getRequestDispatcher("/error/noSecurity.jsp").forward(

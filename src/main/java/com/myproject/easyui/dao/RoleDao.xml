@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC   
    "-//mybatis.org//DTD Mapper 3.0//EN"  
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.myproject.mybatis.role.roleMapper">
+<mapper namespace="com.myproject.easyui.dao.RoleDao">
 	<resultMap type="role" id="roleModel">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
@@ -11,6 +11,10 @@
 
 	<select id="getAll" resultMap="roleModel">
 		select * from role
+	</select>
+	
+	<select id="getRolesByUserId" resultMap="roleModel">
+		select * from role where id in (select role_id from user_role where user_id = #{userId})
 	</select>
 	
 	

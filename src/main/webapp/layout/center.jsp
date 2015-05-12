@@ -72,7 +72,7 @@
 					title : node.text,
 					closable : true,
 					iconCls : node.iconCls,
-					content : '<iframe src="' + node.attributes.url + '" frameborder="0" style="border:0;width:100%;height:99.4%;"></iframe>',
+					content : '<iframe src="${pageContext.request.contextPath}' + node.attributes.url + '" frameborder="0" style="border:0;width:100%;height:99.4%;"></iframe>',
 					tools : [ {
 						iconCls : 'icon-mini-refresh',
 						handler : function() {

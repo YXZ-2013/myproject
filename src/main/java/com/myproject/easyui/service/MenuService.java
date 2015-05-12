@@ -2,8 +2,6 @@ package com.myproject.easyui.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.myproject.model.EasyTreeNode;
 import com.myproject.model.Menu;
 
@@ -18,4 +16,15 @@ public interface MenuService {
 	 * @return
 	 */
 	public List<EasyTreeNode> getMenuTree(Menu menu, boolean flag);
+
+	/**
+	 * 获取菜单列表
+	 * @author yinxunzhi
+	 * @time 2015年5月12日下午4:11:16
+	 * @param menu
+	 * @param b
+	 * @return
+	 */
+	public List<EasyTreeNode> getMenuList(Menu menu, boolean flag);
+	
 }

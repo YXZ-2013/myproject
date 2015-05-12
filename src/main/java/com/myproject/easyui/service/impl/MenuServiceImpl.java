@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.myproject.easyui.dao.MenuDao;
 import com.myproject.easyui.service.MenuService;
 import com.myproject.model.EasyTreeNode;
@@ -21,6 +22,7 @@ import com.myproject.model.Menu;
  */
 @Service(value = "menuService")
 public class MenuServiceImpl implements MenuService{
+	
 	@Autowired
 	private MenuDao menuDao;
 	
@@ -62,5 +64,9 @@ public class MenuServiceImpl implements MenuService{
 			}
 		}
 		return node;
+	}
+
+	public List<EasyTreeNode> getMenuList(Menu menu, boolean flag) {
+		return null;
 	}
 }

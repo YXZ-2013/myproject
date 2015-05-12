@@ -26,4 +26,11 @@ public interface MenuDao {
 	 */
 	public List<Menu> getMenuListByParentId(String parentId);
 	
+	/**
+	 * 获取父菜单列表
+	 * @author yinxunzhi
+	 * @time 2015年5月12日下午5:40:06
+	 * @return
+	 */
+	public List<Menu> getAll();
 }

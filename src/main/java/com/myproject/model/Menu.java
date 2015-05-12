@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class Menu {
 	private String id;
-	private boolean state = true;// 是否展开(open,closed)
+	private boolean state = true;// 是否可用
 	private String parentId;
 	private String type;
 	private String name;

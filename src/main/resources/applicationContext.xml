@@ -29,6 +29,7 @@
 	</bean>
 	<!-- 2.mybatis的SqlSession工厂：org.mybatis.spring.SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="typeAliasesPackage" value="com.myproject.model"></property>
 	</bean>

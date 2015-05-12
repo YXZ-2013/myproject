@@ -2,7 +2,6 @@ package com.myproject.easyui.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.myproject.easyui.web.util.ResponseResult;
 import com.myproject.model.Role;
-import com.myproject.model.User;
 
 
 /**

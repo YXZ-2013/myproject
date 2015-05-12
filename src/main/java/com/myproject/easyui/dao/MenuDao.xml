@@ -21,4 +21,8 @@
 	<select id="getMenuListByParentId" resultMap="menuModel" useCache="true">
 		select * from menu where enable = 1 AND pid = #{parentId} ORDER BY seq_num
 	</select>
+	
+	<select id="getAll" resultMap="menuModel">
+		select * from menu where pid IS　NULL
+	</select>
 </mapper>  
