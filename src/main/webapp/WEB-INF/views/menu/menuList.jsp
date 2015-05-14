@@ -8,13 +8,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>菜单管理</title>
 	<script type="text/javascript">
+	$.canDelete = true;
+	$.canEdit = true;
 	var treeGrid;
 	$(function() {
 		treeGrid = $('#treeGrid').treegrid({
 			url : '${pageContext.request.contextPath}/admin/menu/menuList',
 			idField : 'id',
 			treeField : 'name',
-			parentField : 'pid',
+			parentField : 'parentId',
 			fit : true,
 			fitColumns : false,
 			border : false,
@@ -27,33 +29,28 @@
 			columns : [ [ {
 				field : 'name',
 				title : '资源名称',
-				width : 200
+				width : 150
 			}, {
 				field : 'url',
 				title : '资源路径',
-				width : 230
+				width : 300
 			}, {
-				field : 'typeId',
-				title : '资源类型ID',
-				width : 150,
-				hidden : true
-			}, {
-				field : 'typeName',
-				title : '资源类型',
-				width : 80
-			}, {
-				field : 'seq',
+				field : 'type',
+				title : '类型',
+				width : 100
+			},{
+				field : 'seqNum',
 				title : '排序',
 				width : 40
 			}, {
-				field : 'pid',
+				field : 'parentId',
 				title : '上级资源ID',
 				width : 150,
 				hidden : true
 			}, {
-				field : 'pname',
-				title : '上级资源',
-				width : 80
+				field : 'description',
+				title : '备注',
+				width : 300
 			}, {
 				field : 'action',
 				title : '操作',
@@ -61,33 +58,29 @@
 				formatter : function(value, row, index) {
 					var str = '';
 					if ($.canEdit) {
-						str += $.formatString('<img onclick="editFun(\'{0}\');" src="{1}" title="编辑"/>', row.id, '${pageContext.request.contextPath}/style/images/extjs_icons/pencil.png');
+						str += $.formatString('<img onclick="editFun(\'{0}\');" src="{1}" title="编辑"/>', row.id, '${pageContext.request.contextPath}/images/extjs_icons/pencil.png');
 					}
 					str += '&nbsp;';
 					if ($.canDelete) {
-						str += $.formatString('<img onclick="deleteFun(\'{0}\');" src="{1}" title="删除"/>', row.id, '${pageContext.request.contextPath}/style/images/extjs_icons/cancel.png');
+						str += $.formatString('<img onclick="deleteFun(\'{0}\');" src="{1}" title="删除"/>', row.id, '${pageContext.request.contextPath}/images/extjs_icons/cancel.png');
 					}
 					return str;
 				}
-			}, {
-				field : 'remark',
-				title : '备注',
-				width : 150
 			} ] ],
 			toolbar : '#toolbar',
 			onContextMenu : function(e, row) {
-				e.preventDefault();
-				$(this).treegrid('unselectAll');
-				$(this).treegrid('select', row.id);
-				$('#menu').menu('show', {
-					left : e.pageX,
-					top : e.pageY
-				});
+// 				e.preventDefault();
+// 				$(this).treegrid('unselectAll');
+// 				$(this).treegrid('select', row.id);
+// 				$('#menu').menu('show', {
+// 					left : e.pageX,
+// 					top : e.pageY
+// 				});
 			},
 			onLoadSuccess : function() {
-				parent.$.messager.progress('close');
+// 				parent.$.messager.progress('close');
 
-				$(this).treegrid('tooltip');
+// 				$(this).treegrid('tooltip');
 			}
 		})
 	})

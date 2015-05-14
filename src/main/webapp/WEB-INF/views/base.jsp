@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 %>
@@ -15,6 +16,7 @@
 <script type="text/javascript" src="${ctx }/js/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${ctx }/js/extJquery.js"></script>
 <%
 	String easyuiThemeName = "gray";
 	Cookie cookies[] = request.getCookies();
