@@ -25,6 +25,6 @@ public interface MenuService {
 	 * @param b
 	 * @return
 	 */
-	public List<EasyTreeNode> getMenuList(Menu menu, boolean flag);
+	public List<Menu> getMenuList();
 	
 }

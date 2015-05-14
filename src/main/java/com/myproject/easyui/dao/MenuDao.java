@@ -32,5 +32,5 @@ public interface MenuDao {
 	 * @time 2015年5月12日下午5:40:06
 	 * @return
 	 */
-	public List<Menu> getAll();
+	public List<Menu> getMenuList();
 }
