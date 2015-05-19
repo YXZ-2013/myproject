@@ -2,9 +2,7 @@ package com.myproject.easyui.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.myproject.easyui.service.RoleService;
 import com.myproject.easyui.web.util.ResponseResult;
 import com.myproject.model.Role;
 
@@ -35,13 +35,14 @@ import com.myproject.model.Role;
 @Controller
 public class RoleController {
 
-	
+	@Autowired
+	RoleService roleService;
 	/**
 	 * 角色显示页面     shaql
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/user/roleList", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/user/roleList", method = RequestMethod.GET)
 	public String roleListView(Model model){
 		return "/user/roleList";
 	} 
@@ -59,19 +60,10 @@ public class RoleController {
 		if (page == null) {
 			page = "1";
 		}
-		String resource = "/mybatis-config-test.xml";
-		InputStream is = RoleController.class.getResourceAsStream(resource);
-		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-		SqlSession session = factory.openSession();
-		String statement = "com.myproject.mybatis.role.roleMapper.getAll";
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("pageNum", Integer.parseInt(page));
-		map.put("pageSize", Integer.parseInt(rows));
+		
 		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
-		List<Role> roleList = session.selectList(statement);
+		List<Role> roleList = roleService.getAll();
 		PageInfo<Role>  pageInfo = new PageInfo<Role>(roleList);
-		session.commit();
-		session.close();
 		ResponseResult result = new ResponseResult();
 		result.setTotal(pageInfo.getTotal());
 		result.setRows(roleList);
