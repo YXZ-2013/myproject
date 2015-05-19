@@ -3,9 +3,7 @@ package com.myproject.easyui.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.myproject.easyui.service.UserService;
 import com.myproject.easyui.web.util.ResponseResult;
 import com.myproject.model.User;
 
@@ -37,6 +37,9 @@ import com.myproject.model.User;
  */
 @Controller
 public class UserController {
+	@Autowired
+	private UserService userService;
+	
 	/**
 	 * 用户列表显示页面
 	 * 
@@ -45,7 +48,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/user/userList", method = RequestMethod.GET)
 	public String userListView(Model model) {
 		return "/user/userList";
 	}
@@ -73,19 +76,9 @@ public class UserController {
 		if (page == null) {
 			page = "1";
 		}
-		String resource = "/mybatis-config-test.xml";
-		InputStream is = UserController.class.getResourceAsStream(resource);
-		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-		SqlSession session = factory.openSession();
-		String statement = "com.myproject.mybatis.user.userMapper.getAll";
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("pageNum", Integer.parseInt(page));
-		map.put("pageSize", Integer.parseInt(rows));
 		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
-		List<User> userList = session.selectList(statement);
+		List<User> userList =  userService.getUserList();
 		PageInfo<User> pageInfo = new PageInfo<User>(userList);
-		session.commit();
-		session.close();
 		ResponseResult result = new ResponseResult();
 		result.setTotal(pageInfo.getTotal());
 		result.setRows(userList);
