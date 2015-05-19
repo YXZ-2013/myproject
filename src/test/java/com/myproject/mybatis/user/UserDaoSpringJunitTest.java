@@ -1,5 +1,7 @@
 package com.myproject.mybatis.user;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +31,10 @@ public class UserDaoSpringJunitTest {
 		user = userDao.getUser(user);;
 		System.out.println(user.toString());
 	}
+	@Test
+	public void getUserList(){
+		List<User> users = userDao.getUserList();
+		System.out.println(users.size());
+	}
+	
 }

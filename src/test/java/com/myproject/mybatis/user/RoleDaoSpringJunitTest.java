@@ -12,7 +12,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.myproject.easyui.dao.RoleDao;
 import com.myproject.model.Role;
-import com.myproject.model.User;
 
 /**
  * @author yinxunzhi

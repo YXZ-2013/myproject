@@ -30,4 +30,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	public List<User> getUserList() {
+		return userDao.getUserList();
+	}
 }

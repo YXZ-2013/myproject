@@ -35,4 +35,12 @@ public interface UserService {
 	 */
 	List<String> getResourceList(String id);
 
+	/**
+	 * 动态获取用户
+	 * 
+	 * @author zhangdong
+	 * @time 
+	 * 
+	 */
+	public List<User> getUserList();
 }
