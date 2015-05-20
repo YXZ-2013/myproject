@@ -1,5 +1,7 @@
 package com.myproject.easyui.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.myproject.easyui.service.MenuService;
 import com.myproject.model.Menu;
+import com.myproject.model.ResponseJson;
 
 /**
  * @author yinxunzhi
@@ -59,8 +62,37 @@ public class MenuController extends BaseController {
 	 * @param response
 	 */
 	@RequestMapping(value = "/admin/menu/menuList", method = RequestMethod.POST)
-	public void getMenuList(HttpServletRequest request,
-			HttpServletResponse response) {
+	public void getMenuList(HttpServletRequest request,HttpServletResponse response) {
 		writeJson(menuService.getMenuList(), response);
+	}
+	
+	/**
+	 * 删除选中菜单
+	 * @author zhangdong
+	 */
+	@RequestMapping(value="/menu/delMenu",method=RequestMethod.POST)
+	public void delMenu(HttpServletRequest request,HttpServletResponse response){
+		ResponseJson rj = new ResponseJson();
+		String id = request.getParameter("id");
+			List<Menu> menus= menuService.getMenuList(id);
+			if(menus.size() == 0){
+				menuService.delMenu(id);
+				rj.setSuccess(true);
+				rj.setMsg("删除成功");
+				writeJson(rj, response);
+			}else {
+				rj.setMsg("该菜单下还有子菜单，不能删除，请先删除子菜单！");
+				writeJson(rj, response);
+			}
+	}
+	
+	/**
+	 * 修改菜单
+	 */
+	@RequestMapping(value="/menu/editMenu",method=RequestMethod.POST)
+	public String editMenu(HttpServletRequest request,HttpServletResponse response){
+		String id = request.getParameter("id");
+		System.out.println(id);
+		return "/menu/menuEdit";
 	}
 }

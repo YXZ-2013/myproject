@@ -102,13 +102,17 @@
 					},function(data){
 						if (data.success) {
 							treeGrid.treegrid('reload');
+							$.messager.alert('提示',data.msg,'info');
+						}else{
+							$.messager.alert('提示',data.msg,'error');
 						}
-						parent.$.messager.progress('close');
-					});
+						$.messager.progress('close');
+					},'JSON');
 				}
 			})
 		}
 	}
+
 	</script>
 </head>
 <body>

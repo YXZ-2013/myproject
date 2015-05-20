@@ -73,4 +73,12 @@ public class MenuServiceImpl implements MenuService{
 		}
 		return parents;
 	}
+	
+	public List<Menu> getMenuList(String menuId) {
+		return menuDao.getMenuListByParentId(menuId);
+	}
+	
+	public void delMenu(String id){
+			menuDao.delMenu(id);
+	}
 }

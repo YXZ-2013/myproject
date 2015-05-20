@@ -33,4 +33,13 @@ public interface MenuDao {
 	 * @return
 	 */
 	public List<Menu> getMenuList();
+	
+	/**
+	 * 获取menu
+	 */
+	public Menu getMenuById(String id);
+	/**
+	 * 删除菜单
+	 */
+	public void delMenu(String id);
 }

@@ -25,4 +25,12 @@
 	<select id="getMenuList" resultMap="menuModel">
 		select * from menu where pid IS NULL
 	</select>
+	
+	<delete id="delMenu">
+		delete from menu where id = #{id}
+	</delete>
+	
+	<select id="getMenuById" resultMap="menuModel" useCache="true">
+		select * from menu where  id = #{id}
+	</select>
 </mapper>  

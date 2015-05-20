@@ -27,4 +27,13 @@ public interface MenuService {
 	 */
 	public List<Menu> getMenuList();
 	
+	
+	/**
+	 * 删除选中菜单
+	 * @param id
+	 */
+	public void  delMenu(String id);
+
+	public List<Menu> getMenuList(String id);
 }
+

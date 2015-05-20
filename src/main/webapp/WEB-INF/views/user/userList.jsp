@@ -188,6 +188,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			$.messager.alert('提示', '请选择要编辑的记录！', 'error');
     		}
     	}
+    	
+    	
 	</script> 
 </body>
 </html>
