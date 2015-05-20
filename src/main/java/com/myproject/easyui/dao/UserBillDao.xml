@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC   
+   "-//mybatis.org//DTD Mapper 3.0//EN"  
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.easyui.dao.UserBillDao">
+	<resultMap type="userBill" id="userBillModel">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="type" property="type"/>
+		<result column="money" property="money"/>
+		<result column="type_info" property="typeInfo"/>
+		<result column="time" property="time"/>
+		<result column="detail" property="detail"/>
+	</resultMap>
+
+	<select id="getAll" resultMap="userBillModel">
+		select * from user_bill
+	</select>
+</mapper>  

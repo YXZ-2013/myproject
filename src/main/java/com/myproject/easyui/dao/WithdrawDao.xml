@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC   
+   "-//mybatis.org//DTD Mapper 3.0//EN"  
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.easyui.dao.WithdrawDao">
+	<resultMap type="withdraw" id="withdrawModel">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="fee" property="fee"/>
+		<result column="actual_money" property="actualMoney"/>
+		<result column="status" property="status"/>
+		<result column="time" property="time"/>
+		<result column="bank_card_id" property="bankCard"/>
+	</resultMap>
+
+	<select id="getAll" resultMap="withdrawModel">
+		select * from withdraw_cash
+	</select>
+</mapper>  

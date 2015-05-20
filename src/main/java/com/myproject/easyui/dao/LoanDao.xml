@@ -6,6 +6,10 @@
 	<resultMap type="loan" id="loanModel">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
+		<result column="money" property="money"/>
+		<result column="status" property="status"/>
+		<result column="commit_time" property="commitTime"/>
+		<result column="user_id" property="userId"/>
 	</resultMap>
 
 	<select id="getAll" resultMap="loanModel">

@@ -20,24 +20,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/easyui-util.js"></script>
  </head>
+ 
  <body>
-	<table id="gridLoan" ></table>
+	<table id="gridUserbill" ></table>
 	<script type="text/javascript">
 		var datagrid;
 		$(function(){
 // 			$("form > div").css("margin" , "10px 0px 0px 0px");
-			datagrid = $('#gridLoan').datagrid({   
-			    url:'${pageContext.request.contextPath}/verify/loanList',
+			datagrid = $('#gridUserbill').datagrid({   
+			    url:'${pageContext.request.contextPath}/fund/userBillList',
 			    fit:true,
 			    fitColumns:true,
 			    rownumbers:true,
 			    columns:[[   
-			        {field:'id',title:'ID',width:'12%',sortable:true},   
-			        {field:'name',title:'项目名称',width:'15%',sortable:true}, 
-			        {field:'userId',title:'项目发起人',width:'10%',sortable:true},
-			        {field:'money',title:'借款总金额',width:'10%'}, 
-			        {field:'status',title:'项目状态',width:'6%'},
-			        {field:'commitTime',title:'项目发起时间',width:'15%',sortable:true,formatter: function(value,row,index){
+			        {field:'id',title:'ID',width:'15%',sortable:true},   
+			        {field:'userId',title:'用户名',width:'10%',sortable:true}, 
+			        {field:'money',title:'金额',width:'6%',sortable:true},
+			        {field:'type',title:'费用类型',width:'8%'}, 
+			        {field:'typeInfo',title:'费用说明',width:'25%'},
+			        {field:'detail',title:'费用详情',width:'18%'},
+			        {field:'time',title:'时间',width:'10%',sortable:true,formatter: function(value,row,index){
 			        	if (value != null) {
 			        		var date = new Date(value);
 			        		return date.getFullYear() + '-' + (date.getMonth() + 1) + '-'
