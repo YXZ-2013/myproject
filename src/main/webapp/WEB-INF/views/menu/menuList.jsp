@@ -18,7 +18,7 @@
 			treeField : 'name',
 			parentField : 'parentId',
 			fit : true,
-			fitColumns : false,
+			fitColumns : true,
 			border : false,
 			frozenColumns : [ [ {
 				title : '编号',
@@ -84,6 +84,31 @@
 			}
 		})
 	})
+	
+	function deleteFun(id) {
+		if (id != undefined) {
+			treeGrid.treegrid('select', id);
+		}
+		var node = treeGrid.treegrid('getSelected');
+		if (node) {
+			$.messager.confirm('询问', '您是否要删除当前资源？', function(b) {
+				if (b) {
+					$.messager.progress({
+						title : '提示',
+						text : '数据处理中，请稍后....'
+					});
+					$.post('${pageContext.request.contextPath}/menu/delMenu', {
+						id : node.id
+					},function(data){
+						if (data.success) {
+							treeGrid.treegrid('reload');
+						}
+						parent.$.messager.progress('close');
+					});
+				}
+			})
+		}
+	}
 	</script>
 </head>
 <body>
