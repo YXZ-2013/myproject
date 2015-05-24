@@ -30,18 +30,23 @@
 		</where>
 	</select>
 	
+	<delete id="deleteUser">
+		delete from user where id = #{id}
+	</delete>
+	
 	<select id="getUserList" resultMap="userModel">
 		select * from user
 		<where> 
-			<if test="id != null">
-				id = #{id}
-			</if>
-			<if test="username != null">
-				AND username = #{username}
-			</if>
-			<if test="password != null">
-				AND password = #{password}
-			</if>
+			<if test="id != null">id = #{id}</if>
+			<if test="username != null">AND username = #{username}</if>
+			<if test="password != null">AND password = #{password}</if>
 		</where>
 	</select>
+	<insert id="addUser" >
+		   insert into user(id,username,mobile_number,password,register_time,status) values(#{id},#{username},#{mobileNumber},#{password},#{registerTime},#{status})
+	</insert>
+	<update id="updateUser">
+			update user set username=#{username},mobile_number=#{mobileNumber},password=#{password},register_time=#{registerTime},status=#{status} where id = #{id}
+<!-- 			update user set (id,username,mobile_number,password,register_time,status) values(#{id},#{username},#{mobileNumber},#{password},#{registerTime},#{status}) where id = #{id} -->
+	</update>
 </mapper>  

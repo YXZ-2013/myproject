@@ -19,4 +19,20 @@ public class RoleServiceImpl implements RoleService {
 		return roleList;
 	}
 
+	public Role getRole(Role role) {
+		return roleDao.getRole(role);
+	}
+
+	public void addRole(Role role) {
+		roleDao.addRole(role);
+	}
+
+	public void updateRole(Role role) {
+		roleDao.updateRole(role);
+	}
+
+	public void deleteRole(String id) {
+		roleDao.deleteRole(id);
+	}
+
 }

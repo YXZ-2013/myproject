@@ -13,4 +13,12 @@ public interface RoleService {
 	 * @return
 	 */
 	public List<Role> getAll();
+	
+	public Role getRole(Role role);
+	
+	public void addRole(Role role);
+	
+	public void updateRole(Role role);
+	
+	public void deleteRole(String id);
 }

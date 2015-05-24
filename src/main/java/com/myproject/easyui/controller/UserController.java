@@ -1,16 +1,12 @@
 package com.myproject.easyui.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.myproject.easyui.service.UserService;
 import com.myproject.easyui.web.util.ResponseResult;
+import com.myproject.model.ResponseJson;
 import com.myproject.model.User;
 
 /**
@@ -36,7 +33,7 @@ import com.myproject.model.User;
  * @description
  */
 @Controller
-public class UserController {
+public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
 	
@@ -99,13 +96,9 @@ public class UserController {
 	public String userAddView(Model model,HttpServletRequest request) throws JsonProcessingException {
 		String id = request.getParameter("id");
 		if(id != null){
-			String resource = "/mybatis-config-test.xml";
-			InputStream is = UserController.class.getResourceAsStream(resource);
-			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-			SqlSession session = factory.openSession();
-			String statement = "com.myproject.mybatis.user.userMapper.getUser";
-			User user = session.selectOne(statement, id);
-			session.close();
+			User user = new User();
+			user.setId(id);
+			user=userService.getUser(user);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.writeValueAsString(user);
 		}else{
@@ -124,17 +117,30 @@ public class UserController {
 	@RequestMapping(value = "/user/userEdit", method = RequestMethod.POST)
 	public String userAddResponse(@ModelAttribute("user") User user,
 			HttpServletRequest request, HttpServletResponse response) {
-		user.setId(user.getUsername());
-		user.setRegisterTime(new Date());
-		user.setStatus(true);
-		String resource = "/mybatis-config-test.xml";
-		InputStream is = UserController.class.getResourceAsStream(resource);
-		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(is);
-		SqlSession session = factory.openSession();
-		String statement = "com.myproject.mybatis.user.userMapper.saveUser";
-		session.insert(statement, user);
-		session.commit();
-		session.close();
+		String id = request.getParameter("id");
+		if(id != null && id != ""){//修改
+			user.setId(id);
+			user.setRegisterTime(new Date());
+			user.setStatus(true);
+			userService.updateUser(user);
+		}else { //新增
+			user.setId(user.getUsername());
+			user.setRegisterTime(new Date());
+			user.setStatus(true);
+			userService.addUser(user);
+		}
 		return null;
+	}
+	/**
+	 * 用户删除
+	 */
+	@RequestMapping(value="/user/userRemove",method=RequestMethod.POST)
+	 public void delUser(HttpServletRequest request, HttpServletResponse response){
+		ResponseJson rj = new ResponseJson();
+		String userId = request.getParameter("id");
+		userService.deltetUser(userId);
+		rj.setMsg("删除用户成功");
+		rj.setSuccess(true);
+		writeJson(rj,response);
 	}
 }

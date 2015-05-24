@@ -43,4 +43,19 @@ public interface UserService {
 	 * 
 	 */
 	public List<User> getUserList();
+	
+	/**
+	 * 添加用户
+	 */
+	public void addUser(User user);
+	
+	/**
+	 * 修改用户
+	 */
+	public void updateUser(User user);
+	/**
+	 * 删除用户
+	 * 
+	 */
+	public void deltetUser(String id);
 }

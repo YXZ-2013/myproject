@@ -23,4 +23,22 @@
 			VALUES (#{id},#{name},#{description})
 	</insert>
 	
+	<select id="getRole" resultMap="roleModel">
+		select * from role 
+		<where>
+			<if test="id !=null">id=#{id}</if>
+		</where>
+	</select>
+	
+	<insert id="addRole">
+		insert into role (id,name,description) values (#{id},#{name},#{description})
+	</insert>
+	
+	<update id="updateRole">
+		update role set name=#{name},description=#{description} where id=#{id}
+	</update>
+	
+	<delete id="deleteRole">
+		delete from role where id =#{id}
+	</delete>
 </mapper>  

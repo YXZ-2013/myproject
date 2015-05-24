@@ -33,4 +33,16 @@ public class UserServiceImpl implements UserService {
 	public List<User> getUserList() {
 		return userDao.getUserList();
 	}
+
+	public void deltetUser(String id) {
+		userDao.deleteUser(id);
+	}
+
+	public void addUser(User user) {
+		userDao.addUser(user);
+	}
+
+	public void updateUser(User user) {
+		userDao.updateUser(user);
+	}
 }

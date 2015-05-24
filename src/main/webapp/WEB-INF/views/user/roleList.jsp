@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div style="padding:10px 60px 20px 60px">
 			<form id="addRoleForm" class="easyui-form" method="post" >
 				<table cellpadding="5px;" >
+					<input  type="hidden" name="id" value="${role.id }" />
 					<tr>
 					<td><label for="name">用户名:</label></td>
 					<td><input class="easyui-textbox" type="text" name="name" value="${role.name }" data-options="required:true" /></td>
@@ -135,7 +136,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		}
 		
-	
+		function edit(){
+			var row = datagrid.datagrid('getSelected');
+			if(row!=null){
+				$.messager.progress();
+				$.get('${pageContext.request.contextPath}/role/roleEdit',
+						{id:row.id},
+						function(data){
+							$.messager.progress('close');
+							$('#addForm').form('load', data);
+							$('#addForm').show();
+							$('#addForm').dialog({
+								title:'编辑角色',
+								width: 400,   
+	    	    			    height: 250,
+	    	    			    minimizable:true,
+	    	    			    maximizable:true,
+	    	    			    resizable:true,
+	    	    			    closed: false,   
+	    	    			    modal: true  
+							});
+						});	
+				$('#addForm').form('load','${pageContext.request.contextPath}/user/roleSave?id='+row.id);
+    			$('#addForm').show();
+			}else{
+				$.messager.alert('提示', '请选择要编辑的记录！', 'error');
+			}	
+		}
+		
+		function remove(){
+			var row = datagrid.datagrid('getSelected');
+			if(row!=null){
+				$.messager.confirm('询问', '您是否要删除当前资源？',function(b) {
+					if(b){
+						$.messager.progress();
+						$.post('${pageContext.request.contextPath}/role/roleRemove',
+		    					{id:row.id},
+		    					function(data){
+		    						if(data.success){
+		    							datagrid.datagrid('reload');
+		    							$.messager.alert('提示',data.msg,'info');
+		    						}else{
+		    							$.messager.alert('提示',data.msg,'error');
+		    						}
+		    						$.messager.progress('close');
+		    					},'JSON');
+    					}
+					})
+			}else{
+				$.messager.alert('提示', '请选择要删除的记录！', 'error');
+			}
+		}
 	</script>
 	
 	

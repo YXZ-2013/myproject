@@ -89,6 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div style="padding:10px 60px 20px 60px">
 	    <form id="ff" class="easyui-form" method="post">
 			<table cellpadding="5px;">
+					<input  type="hidden" name="id" value="${user.id}" />
 				<tr>
 					<td><label for="username">用户名:</label></td>
 					<td><input class="easyui-textbox" type="text" name="username" value="${user.username }" data-options="required:true" /></td>
@@ -188,7 +189,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			$.messager.alert('提示', '请选择要编辑的记录！', 'error');
     		}
     	}
-    	
+    	//删除用户
+    	function remove(){
+    		var row = datagrid.datagrid('getSelected');
+    		if(row != null){
+    			$.messager.confirm('询问', '您是否要删除当前资源？',function(b) {
+    				if(b){
+		    			$.messager.progress();
+		    			$.post('${pageContext.request.contextPath}/user/userRemove',
+		    					{id:row.id},
+		    					function(data){
+		    						if(data.success){
+		    							datagrid.datagrid('reload');
+		    							$.messager.alert('提示',data.msg,'info');
+		    						}else{
+		    							$.messager.alert('提示',data.msg,'error');
+		    						}
+		    						$.messager.progress('close');
+		    					},'JSON');
+    					}
+    			})
+    			
+    		}else{
+    			$.messager.alert('提示', '请选择要删除的用户！', 'error');
+    		}
+    	}
     	
 	</script> 
 </body>
