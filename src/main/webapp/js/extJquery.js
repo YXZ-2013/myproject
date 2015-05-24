@@ -10,3 +10,5 @@ $.formatString = function(str) {
 	}
 	return str;
 };
+
+
