@@ -16,30 +16,30 @@
 					<td><label for="id">id:</label></td>
 					<td><input class="easyui-textbox" type="text" name="id" value="${menu.id }" data-options="required:true" /></td>
 				</tr>
-				<tr>
-					<td><label for="name">资源名称:</label></td>
-					<td><input class="easyui-textbox" type="text" name="name" value="${menu.username }" data-options="required:true" /></td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td><label for="name">资源名称:</label></td> -->
+<%-- 					<td><input class="easyui-textbox" type="text" name="name" value="${menu.username }" data-options="required:true" /></td> --%>
+<!-- 				</tr> -->
 				<tr>
 					<td><label for="url">资源路径:</label></td>
 					<td><input class="easyui-textbox" type="text" name="url" value="${menu.url}" data-options="required:true" /></td>
 				</tr>
-				<tr>
-					<td><label for="type">类型:</label></td>
-					<td><input class="easyui-textbox" type="text" name="type" value="${menu.type }" data-options="required:true"/></td>
-				</tr>
-				<tr>
-					<td><label for="seqNum">排序:</label></td>
-					<td><input class="easyui-textbox" type="text" name="seqNum" value="${menu.seqNum}" data-options="required:true"/></td>
-				</tr>
-				<tr>
-					<td><label for="description">备注:</label></td>
-					<td><input class="easyui-textbox" type="text" name="description" value="${menu.description }" data-options="required:true"/></td>
-				</tr>
-				<tr>
-					<td><label for="parentId">父节点:</label></td>
-					<td><input class="easyui-textbox" type="text" name="parentId" value="${menu.parentId }" data-options="required:true"/></td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td><label for="type">类型:</label></td> -->
+<%-- 					<td><input class="easyui-textbox" type="text" name="type" value="${menu.type }" data-options="required:true"/></td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td><label for="seqNum">排序:</label></td> -->
+<%-- 					<td><input class="easyui-textbox" type="text" name="seqNum" value="${menu.seqNum}" data-options="required:true"/></td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td><label for="description">备注:</label></td> -->
+<%-- 					<td><input class="easyui-textbox" type="text" name="description" value="${menu.description }" data-options="required:true"/></td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td><label for="parentId">父节点:</label></td> -->
+<%-- 					<td><input class="easyui-textbox" type="text" name="parentId" value="${menu.parentId }" data-options="required:true"/></td> --%>
+<!-- 				</tr> -->
 			</table>  
 		</form> 
 		<div style="text-align:center;padding:5px">

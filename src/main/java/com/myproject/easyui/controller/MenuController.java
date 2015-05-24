@@ -8,8 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myproject.easyui.service.MenuService;
 import com.myproject.model.Menu;
@@ -89,10 +92,17 @@ public class MenuController extends BaseController {
 	/**
 	 * 修改菜单
 	 */
-	@RequestMapping(value="/menu/editMenu",method=RequestMethod.POST)
-	public String editMenu(HttpServletRequest request,HttpServletResponse response){
+	@RequestMapping(value="/menu/editMenu",method=RequestMethod.GET)
+	public String editMenu(Model model,HttpServletRequest request,HttpServletResponse response){
 		String id = request.getParameter("id");
-		System.out.println(id);
+		if(StringUtils.isEmpty(id)){
+			return null;
+		}
+//		Menu menu = menuService.getMenuById(id);
+		Menu menu = new Menu();
+		menu.setId("1111");
+		menu.setUrl("aaaaaaaaaaaaa");
+		model.addAttribute("menu", menu);
 		return "/menu/menuEdit";
 	}
 }

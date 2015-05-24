@@ -17,6 +17,7 @@
 <script type="text/javascript" src="${ctx }/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${ctx }/js/extJquery.js"></script>
+<script type="text/javascript" src="${ctx }/js/easyui-util.js"></script>
 <%
 	String easyuiThemeName = "gray";
 	Cookie cookies[] = request.getCookies();

@@ -85,6 +85,25 @@
 		})
 	})
 	
+	function editFun(id){
+		if (id != undefined) {
+			treeGrid.treegrid('select', id);
+		}
+		var node = treeGrid.treegrid('getSelected');
+		if (node) {
+			$('<div/>').dialog({   
+			    title: '编辑菜单',   
+			    width: 400,   
+			    height: 400,   
+			    closed: false,   
+			    cache: false,   
+			    href: '${pageContext.request.contextPath}/menu/editMenu?id='+node.id,   
+			    modal: true  
+			});   
+
+		}
+	}
+	
 	function deleteFun(id) {
 		if (id != undefined) {
 			treeGrid.treegrid('select', id);
