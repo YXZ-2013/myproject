@@ -44,12 +44,6 @@ $.modalDialog = function(options) {
 				$.modalDialog.handler = undefined;
 				$(this).dialog('destroy');
 			},
-			onOpen : function() {
-				parent.$.messager.progress({
-					title : '提示',
-					text : '数据处理中，请稍后....'
-				});
-			}
 		}, options);
 		opts.modal = true;// 强制此dialog为模式化，无视传递过来的modal参数
 		return $.modalDialog.handler = $('<div/>').dialog(opts);

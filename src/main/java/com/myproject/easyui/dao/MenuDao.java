@@ -42,6 +42,11 @@ public interface MenuDao {
 	 * 删除菜单
 	 */
 	public void delMenu(String id);
-	
-	public void updateMenu(Menu menu);
+	/**
+	 * 更新菜单
+	 * @author 尹逊志
+	 * @time 2015年5月25日下午1:21:39
+	 *
+	 */
+	public void updateMenu(String menuId);
 }

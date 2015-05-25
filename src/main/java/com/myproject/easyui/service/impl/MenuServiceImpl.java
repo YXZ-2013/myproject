@@ -17,23 +17,24 @@ import com.myproject.model.Menu;
  * @author yinxunzhi
  * @creatTime 2015年5月7日上午10:06:12
  * @version 1.0
- * @description 
+ * @description
  */
 @Service(value = "menuService")
-public class MenuServiceImpl implements MenuService{
-	
+public class MenuServiceImpl implements MenuService {
+
 	@Autowired
 	private MenuDao menuDao;
-	
+
 	/**
 	 * 后台管理的菜单树
+	 * 
 	 * @author yinxunzhi
 	 * @time 2015年5月7日下午3:12:36
 	 * @param menu
 	 * @param flag
 	 * @return
 	 */
-	public List<EasyTreeNode> getMenuTree(Menu menu ,boolean flag){
+	public List<EasyTreeNode> getMenuTree(Menu menu, boolean flag) {
 		List<EasyTreeNode> tree = new ArrayList<EasyTreeNode>(0);
 		List<Menu> parent = menuDao.getMenuListByType("Management");
 		for (Menu m : parent) {
@@ -43,19 +44,19 @@ public class MenuServiceImpl implements MenuService{
 		}
 		return tree;
 	}
-	
-	private EasyTreeNode tree(Menu menu,boolean flag){
+
+	private EasyTreeNode tree(Menu menu, boolean flag) {
 		EasyTreeNode node = new EasyTreeNode();
 		node.setId(menu.getId());
 		node.setText(menu.getName());
 		Map<String, Object> attributes = new HashMap<String, Object>();
 		attributes.put("url", menu.getUrl());
 		node.setAttributes(attributes);
-		if(menu.getChildren() != null && menu.getChildren().size() > 0){
+		if (menu.getChildren() != null && menu.getChildren().size() > 0) {
 			node.setState("closed");
-			if(flag){
+			if (flag) {
 				List<EasyTreeNode> children = new ArrayList<EasyTreeNode>();
-				for(Menu m:menu.getChildren()){
+				for (Menu m : menu.getChildren()) {
 					tree(m, flag);
 					children.add(tree(m, true));
 				}
@@ -73,13 +74,13 @@ public class MenuServiceImpl implements MenuService{
 		}
 		return parents;
 	}
-	
+
 	public List<Menu> getMenuList(String menuId) {
 		return menuDao.getMenuListByParentId(menuId);
 	}
-	
-	public void delMenu(String id){
-			menuDao.delMenu(id);
+
+	public void delMenu(String id) {
+		menuDao.delMenu(id);
 	}
 
 	public Menu getMenuById(String id) {
@@ -88,6 +89,6 @@ public class MenuServiceImpl implements MenuService{
 	}
 
 	public void updateMenu(Menu menu) {
-		menuDao.updateMenu(menu);
+		menuDao.updateMenu(menu.getId());
 	}
 }

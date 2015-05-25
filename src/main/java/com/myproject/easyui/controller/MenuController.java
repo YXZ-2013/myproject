@@ -108,10 +108,10 @@ public class MenuController extends BaseController {
 	
 	@RequestMapping(value="/menu/updateMenu",method=RequestMethod.POST)
 	public void updateMenu(@ModelAttribute("menu")Menu menu,HttpServletRequest request, HttpServletResponse response){
-		if(StringUtils.isEmpty(menu.getId())){
-			return;
-		}
 		menuService.updateMenu(menu);
+		ResponseJson responseJson = new ResponseJson();
+		responseJson.setSuccess(true);
+		writeJson(responseJson, response);
 	}
 	
 }

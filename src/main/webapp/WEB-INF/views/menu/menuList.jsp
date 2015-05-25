@@ -93,7 +93,7 @@
 		}
 		var node = treeGrid.treegrid('getSelected');
 		if (node) {
-			$('<div/>').dialog({   
+			parent.$.modalDialog({   
 			    title: '编辑菜单',   
 			    width: 400,   
 			    height: 400,   
@@ -101,13 +101,11 @@
 			    cache: false,   
 			    href: '${pageContext.request.contextPath}/menu/editMenu?id='+node.id,   
 			    buttons : [ {
-					text : '编辑',
+					text : '添加',
 					handler : function() {
-						alert(1);
-						$('<div/>').dialog.treegrid = treeGrid;//因为修改成功之后，需要刷新这个treeGrid，所以先预定义好
-						alert($('<div/>').dialog);
-// 						var f = $('<div/>').dialog.handler.find('#ff');
-// 						f.submit();
+						parent.$.modalDialog.openner_treeGrid = treeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
+						var f = parent.$.modalDialog.handler.find('#ff');
+						f.submit();
 					}
 				} ]
 			});   
@@ -141,6 +139,7 @@
 			})
 		}
 	}
+	
 	</script>
 </head>
 <body>

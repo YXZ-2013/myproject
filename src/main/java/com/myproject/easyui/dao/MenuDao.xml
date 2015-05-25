@@ -34,7 +34,7 @@
 		select * from menu where  id = #{id}
 	</select>
 	
-	<update id="updateMenu">
+	<update id="updateMenu" parameterType="string">
 		update menu set type=#{type},label=#{name},url=#{url},pid=#{parentId},seq_num=#{seqNum},description=#{description} where id = #{id}
 	</update>
 </mapper>  
