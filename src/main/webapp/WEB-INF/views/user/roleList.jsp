@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table cellpadding="5px;" >
 					<input  type="hidden" name="id" value="${role.id }" />
 					<tr>
-					<td><label for="name">用户名:</label></td>
+					<td><label for="name">角色名:</label></td>
 					<td><input class="easyui-textbox" type="text" name="name" value="${role.name }" data-options="required:true" /></td>
 				</tr>
 				<tr>
@@ -140,25 +140,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var row = datagrid.datagrid('getSelected');
 			if(row!=null){
 				$.messager.progress();
-				$.get('${pageContext.request.contextPath}/role/roleEdit',
-						{id:row.id},
-						function(data){
-							$.messager.progress('close');
-							$('#addForm').form('load', data);
-							$('#addForm').show();
-							$('#addForm').dialog({
-								title:'编辑角色',
-								width: 400,   
-	    	    			    height: 250,
-	    	    			    minimizable:true,
-	    	    			    maximizable:true,
-	    	    			    resizable:true,
-	    	    			    closed: false,   
-	    	    			    modal: true  
-							});
-						});	
-				$('#addForm').form('load','${pageContext.request.contextPath}/user/roleSave?id='+row.id);
-    			$('#addForm').show();
+				$('<div/>').dialog({   
+				    title: '编辑菜单',   
+				    width: 400,   
+				    height: 250,   
+				    closed: false,   
+				    cache: false,   
+				    href: '${pageContext.request.contextPath}/role/roleEdit?id='+row.id,   
+				    modal: true  
+				});   
+// 				$.get('${pageContext.request.contextPath}/role/roleEdit',
+// 						{id:row.id},
+// 						function(data){
+// 							$.messager.progress('close');
+// 							$('#addForm').form('load', data);
+// 							$('#addForm').show();
+// 							$('#addForm').dialog({
+// 								title:'编辑角色',
+// 								width: 400,   
+// 	    	    			    height: 250,
+// 	    	    			    minimizable:true,
+// 	    	    			    maximizable:true,
+// 	    	    			    resizable:true,
+// 	    	    			    closed: false,   
+// 	    	    			    modal: true  
+// 							});
+// 						});	
+// 				$('#addForm').form('load','${pageContext.request.contextPath}/user/roleSave?id='+row.id);
+//     			$('#addForm').show();
 			}else{
 				$.messager.alert('提示', '请选择要编辑的记录！', 'error');
 			}	

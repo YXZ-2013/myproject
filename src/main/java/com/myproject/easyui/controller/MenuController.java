@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myproject.easyui.service.MenuService;
 import com.myproject.model.Menu;
@@ -98,11 +98,20 @@ public class MenuController extends BaseController {
 		if(StringUtils.isEmpty(id)){
 			return null;
 		}
-//		Menu menu = menuService.getMenuById(id);
-		Menu menu = new Menu();
-		menu.setId("1111");
-		menu.setUrl("aaaaaaaaaaaaa");
+		Menu menu = menuService.getMenuById(id);
+//		Menu menu = new Menu();
+//		menu.setId("1111");
+//		menu.setUrl("aaaaaaaaaaaaa");
 		model.addAttribute("menu", menu);
 		return "/menu/menuEdit";
 	}
+	
+	@RequestMapping(value="/menu/updateMenu",method=RequestMethod.POST)
+	public void updateMenu(@ModelAttribute("menu")Menu menu,HttpServletRequest request, HttpServletResponse response){
+		if(StringUtils.isEmpty(menu.getId())){
+			return;
+		}
+		menuService.updateMenu(menu);
+	}
+	
 }

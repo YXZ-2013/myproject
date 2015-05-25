@@ -35,5 +35,9 @@ public interface MenuService {
 	public void  delMenu(String id);
 
 	public List<Menu> getMenuList(String id);
+	
+	public Menu getMenuById(String id);
+	
+	public void updateMenu(Menu menu);
 }
 

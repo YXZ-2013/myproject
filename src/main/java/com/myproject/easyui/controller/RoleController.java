@@ -87,7 +87,7 @@ public class RoleController extends BaseController{
 	/**
 	 * 角色添加编辑页面
 	 */
-	@ResponseBody
+//	@ResponseBody
 	@RequestMapping(value = "/role/roleEdit", method = RequestMethod.GET)
 	public String roleAddView(Model model,HttpServletRequest request) throws JsonProcessingException {	
 		String id = request.getParameter("id");
@@ -95,8 +95,10 @@ public class RoleController extends BaseController{
 			Role role = new Role();
 			role.setId(id);
 			role=roleService.getRole(role);
-			ObjectMapper mapper = new ObjectMapper();
-			return mapper.writeValueAsString(role);
+			model.addAttribute("role", role);
+			return "/user/roleEdit";
+//			ObjectMapper mapper = new ObjectMapper();
+//			return mapper.writeValueAsString(role);
 		}else {
 			return "failer";
 		}

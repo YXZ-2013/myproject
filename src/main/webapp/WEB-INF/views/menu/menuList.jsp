@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../base.jsp" %>
@@ -98,9 +100,17 @@
 			    closed: false,   
 			    cache: false,   
 			    href: '${pageContext.request.contextPath}/menu/editMenu?id='+node.id,   
-			    modal: true  
+			    buttons : [ {
+					text : '编辑',
+					handler : function() {
+						alert(1);
+						$('<div/>').dialog.treegrid = treeGrid;//因为修改成功之后，需要刷新这个treeGrid，所以先预定义好
+						alert($('<div/>').dialog);
+// 						var f = $('<div/>').dialog.handler.find('#ff');
+// 						f.submit();
+					}
+				} ]
 			});   
-
 		}
 	}
 	
@@ -131,12 +141,11 @@
 			})
 		}
 	}
-
 	</script>
 </head>
 <body>
-	<div class="easyui-layout" data-options="fit:true,border:false">
-		<div data-options="region:'center',border:false" title="" style="overflow: hidden;">
+	<div  class="easyui-layout" data-options="fit:true,border:false">
+		<div  data-options="region:'center',border:false" title="" style="overflow: hidden;">
 			<table id="treeGrid"></table>
 		</div>
 	</div>

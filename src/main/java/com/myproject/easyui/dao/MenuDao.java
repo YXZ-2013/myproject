@@ -42,4 +42,6 @@ public interface MenuDao {
 	 * 删除菜单
 	 */
 	public void delMenu(String id);
+	
+	public void updateMenu(Menu menu);
 }

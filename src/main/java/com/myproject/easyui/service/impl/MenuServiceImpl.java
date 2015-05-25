@@ -81,4 +81,13 @@ public class MenuServiceImpl implements MenuService{
 	public void delMenu(String id){
 			menuDao.delMenu(id);
 	}
+
+	public Menu getMenuById(String id) {
+
+		return menuDao.getMenuById(id);
+	}
+
+	public void updateMenu(Menu menu) {
+		menuDao.updateMenu(menu);
+	}
 }
