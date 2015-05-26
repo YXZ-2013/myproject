@@ -56,18 +56,18 @@
 			centerTabs.tabs('select', node.text);
 		} else {
 			if (node.attributes.url && node.attributes.url.length > 0) {
-				if (node.attributes.url.indexOf('!druid.action') == -1) {/*数据源监控页面不需要开启等待提示*/
-					$.messager.progress({
-						text : '页面加载中....',
-						interval : 100
-					});
-					window.setTimeout(function() {
-						try {
-							$.messager.progress('close');
-						} catch (e) {
-						}
-					}, 5000);
-				}
+// 				if (node.attributes.url.indexOf('!druid.action') == -1) {/*数据源监控页面不需要开启等待提示*/
+// 					$.messager.progress({
+// 						text : '页面加载中....',
+// 						interval : 100
+// 					});
+// 					window.setTimeout(function() {
+// 						try {
+// 							$.messager.progress('close');
+// 						} catch (e) {
+// 						}
+// 					}, 5000);
+// 				}
 				centerTabs.tabs('add', {
 					title : node.text,
 					closable : true,

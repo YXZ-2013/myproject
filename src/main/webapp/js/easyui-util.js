@@ -49,3 +49,23 @@ $.modalDialog = function(options) {
 		return $.modalDialog.handler = $('<div/>').dialog(opts);
 	}
 };
+
+/**
+ * @author 孙宇
+ * 
+ * @requires jQuery,EasyUI
+ * 
+ * 通用错误提示
+ * 
+ * 用于datagrid/treegrid/tree/combogrid/combobox/form加载数据出错时的操作
+ */
+var easyuiErrorFunction = function(XMLHttpRequest) {
+	$.messager.progress('close');
+	$.messager.alert('错误', XMLHttpRequest.responseText);
+};
+$.fn.datagrid.defaults.onLoadError = easyuiErrorFunction;
+$.fn.treegrid.defaults.onLoadError = easyuiErrorFunction;
+$.fn.tree.defaults.onLoadError = easyuiErrorFunction;
+$.fn.combogrid.defaults.onLoadError = easyuiErrorFunction;
+$.fn.combobox.defaults.onLoadError = easyuiErrorFunction;
+$.fn.form.defaults.onLoadError = easyuiErrorFunction;

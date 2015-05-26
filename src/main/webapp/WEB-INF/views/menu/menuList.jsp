@@ -71,18 +71,17 @@
 			} ] ],
 			toolbar : '#toolbar',
 			onContextMenu : function(e, row) {
-// 				e.preventDefault();
-// 				$(this).treegrid('unselectAll');
-// 				$(this).treegrid('select', row.id);
-// 				$('#menu').menu('show', {
-// 					left : e.pageX,
-// 					top : e.pageY
-// 				});
+				e.preventDefault();
+				$(this).treegrid('unselectAll');
+				$(this).treegrid('select', row.id);
+				$('#menu').menu('show', {
+					left : e.pageX,
+					top : e.pageY
+				});
 			},
 			onLoadSuccess : function() {
-// 				parent.$.messager.progress('close');
-
-// 				$(this).treegrid('tooltip');
+				parent.$.messager.progress('close');
+				treeGrid.treegrid('collapseAll');
 			}
 		})
 	})
@@ -140,13 +139,44 @@
 		}
 	}
 	
+	function addFun() {
+		parent.$.modalDialog({
+			title : '添加资源',
+			width : 500,
+			height : 400,
+			href : '${pageContext.request.contextPath}/menu/addMenu',
+			buttons : [{
+				text : '添加',
+				handler : function() {
+					parent.$.modalDialog.openner_treeGrid = treeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
+					var f = parent.$.modalDialog.handler.find('#form');
+					f.submit();
+				}
+			}]
+		});
+	}
+	
+	function redo() {
+		treeGrid.treegrid('expandAll');
+	}
+
+	function undo() {
+		treeGrid.treegrid('collapseAll');
+	}
 	</script>
 </head>
 <body>
-	<div  class="easyui-layout" data-options="fit:true,border:false">
+	<div class="easyui-layout" data-options="fit:true,border:false">
 		<div  data-options="region:'center',border:false" title="" style="overflow: hidden;">
 			<table id="treeGrid"></table>
 		</div>
+	</div>
+	<div id="toolbar" style="display: none;">
+<%-- 		<c:if test="${fn:contains(sessionInfo.resourceList, '/resourceController/addPage')}"> --%>
+<%-- 		</c:if> --%>
+		<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'pencil_add'">添加</a>
+		<a onclick="redo();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'resultset_next'">展开</a> 
+		<a onclick="undo();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'resultset_previous'">折叠</a> <a onclick="treeGrid.treegrid('reload');" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'transmit'">刷新</a>
 	</div>
 </body>
 </html>

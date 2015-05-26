@@ -13,6 +13,7 @@
 <c:set value="${pageContext.request.contextPath}" var="ctx"></c:set>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${ctx }/css/demo.css">
+<link rel="stylesheet" type="text/css" href="${ctx }/css/extEasyUIIcon.css">
 <script type="text/javascript" src="${ctx }/js/jquery.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.cookie.js"></script>
