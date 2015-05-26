@@ -99,9 +99,6 @@ public class MenuController extends BaseController {
 			return null;
 		}
 		Menu menu = menuService.getMenuById(id);
-//		Menu menu = new Menu();
-//		menu.setId("1111");
-//		menu.setUrl("aaaaaaaaaaaaa");
 		model.addAttribute("menu", menu);
 		return "/menu/menuEdit";
 	}
@@ -112,6 +109,11 @@ public class MenuController extends BaseController {
 		ResponseJson responseJson = new ResponseJson();
 		responseJson.setSuccess(true);
 		writeJson(responseJson, response);
+	}
+	
+//	@RequestMapping(value="/menu/addMenu",method=RequestMethod.GET)
+	public String addMenu(){
+		return "/menu/menuEdit";
 	}
 	
 }
