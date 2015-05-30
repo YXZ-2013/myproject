@@ -94,8 +94,8 @@
 		if (node) {
 			parent.$.modalDialog({   
 			    title: '编辑菜单',   
-			    width: 400,   
-			    height: 400,   
+			    width: 500,   
+			    height: 500,   
 			    closed: false,   
 			    cache: false,   
 			    href: '${pageContext.request.contextPath}/menu/editMenu?id='+node.id,   
@@ -143,13 +143,13 @@
 		parent.$.modalDialog({
 			title : '添加资源',
 			width : 500,
-			height : 400,
+			height : 500,
 			href : '${pageContext.request.contextPath}/menu/addMenu',
 			buttons : [{
 				text : '添加',
 				handler : function() {
 					parent.$.modalDialog.openner_treeGrid = treeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#form');
+					var f = parent.$.modalDialog.handler.find('#ff');
 					f.submit();
 				}
 			}]

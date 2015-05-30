@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#ff').form({
-			url:'${pageContext.request.contextPath}/menu/updateMenu',
+			url:'${pageContext.request.contextPath}/menu/addMenu',
 			onSubmit : function() {
 				parent.$.messager.progress({
 					title : '提示',
@@ -33,7 +33,6 @@
 			lines : true,
 			panelHeight : 'auto',
 			value : '${menu.parentId}',
-			required: true,
 			onLoadSuccess : function() {
 				parent.$.messager.progress('close');
 			}
@@ -59,7 +58,7 @@
 			<tr>
 				<td><label for="type">类型:</label></td>
 				<td>
-					<select name="typeId" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto',required:true,missingMessage:'资源类型'">
+					<select name="type" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto',required:true,missingMessage:'资源类型'">
 						<option value="Management">Management</option>
 						<option value="other">other</option>
 					</select>
@@ -67,7 +66,7 @@
 			</tr>
 			<tr>
 				<td><label for="seqNum">排序:</label></td>
-				<td><input class="easyui-numberspinner" style="width:80px;" value="${menu.seqNum}" data-options="required:true,missingMessage:'排序'"></input>
+				<td><input class="easyui-numberspinner" style="width:80px;" name="seqNum" value="${menu.seqNum}" data-options="required:true,missingMessage:'排序'"></input>
 				</td>
 			</tr>
 			<tr>
@@ -76,8 +75,7 @@
 			</tr>
 			<tr>
 				<td><label for="parentId">父节点:</label></td>
-				<td><select id="pid" name="pid" style="width: 140px; height: 29px;" data-options="missingMessage:'父节点'"></select></td>
-<%-- 				<input class="easyui-textbox" type="text" name="parentId" value="${menu.parentId }" data-options="missingMessage:'父节点'"/></td> --%>
+				<td><select id="pid" name="parentId" style="width: 140px; height: 29px;" data-options="missingMessage:'父节点'"></select></td>
 			</tr>
 		</table>  
 	</form> 
