@@ -37,4 +37,8 @@
 	<update id="updateMenu" parameterType="string">
 		update menu set type=#{type},label=#{name},url=#{url},pid=#{parentId},seq_num=#{seqNum},description=#{description} where id = #{id}
 	</update>
+	
+	<insert id="addMenu">
+		insert menu 
+	</insert>
 </mapper>  

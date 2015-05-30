@@ -41,6 +41,8 @@
 				<property name="excludeUrls">
 					<list>
 						<value>/login</value>
+						<value>/index_center</value>
+						<value>/manager/getManagetMenus</value>
 					</list>
 				</property>
 			</bean>

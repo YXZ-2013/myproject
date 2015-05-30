@@ -49,4 +49,12 @@ public interface MenuDao {
 	 *
 	 */
 	public void updateMenu(String menuId);
+	
+	/**
+	 * 添加菜单
+	 * @author 尹逊志
+	 * @time 2015年5月30日下午7:07:15
+	 *
+	 */
+	public void addMenu(Menu menu);
 }

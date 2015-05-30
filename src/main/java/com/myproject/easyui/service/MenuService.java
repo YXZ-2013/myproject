@@ -39,5 +39,7 @@ public interface MenuService {
 	public Menu getMenuById(String id);
 	
 	public void updateMenu(Menu menu);
+
+	public void addMenu(Menu menu);
 }
 

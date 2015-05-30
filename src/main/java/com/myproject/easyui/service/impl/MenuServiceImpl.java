@@ -91,4 +91,8 @@ public class MenuServiceImpl implements MenuService {
 	public void updateMenu(Menu menu) {
 		menuDao.updateMenu(menu.getId());
 	}
+
+	public void addMenu(Menu menu) {
+		menuDao.addMenu(menu);
+	}
 }

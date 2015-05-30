@@ -23,7 +23,7 @@ public class Menu {
 	private String type;
 	private String name;
 	private String url;
-	private Long seqNum;
+	private Integer seqNum;
 	private String description;
 	private List<Menu> children;
 
@@ -67,11 +67,11 @@ public class Menu {
 		this.url = url;
 	}
 
-	public Long getSeqNum() {
+	public Integer getSeqNum() {
 		return seqNum;
 	}
 
-	public void setSeqNum(Long seqNum) {
+	public void setSeqNum(Integer seqNum) {
 		this.seqNum = seqNum;
 	}
 
