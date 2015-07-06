@@ -117,6 +117,7 @@ public class MenuController extends BaseController {
 		menuService.updateMenu(menu);
 		ResponseJson responseJson = new ResponseJson();
 		responseJson.setSuccess(true);
+		responseJson.setMsg("添加成功");
 		writeJson(responseJson, response);
 	}
 
@@ -139,6 +140,7 @@ public class MenuController extends BaseController {
 		}
 		menuService.addMenu(menu);
 		responseJson.setSuccess(true);
+		writeJson(responseJson, response);
 	}
 
 	/**
