@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,12 +38,26 @@ public class MenuServiceImpl implements MenuService {
 	 */
 	public List<EasyTreeNode> getMenuTree(Menu menu, boolean flag) {
 		List<EasyTreeNode> tree = new ArrayList<EasyTreeNode>(0);
-		List<Menu> parent = menuDao.getMenuListByType("Management");
-		for (Menu m : parent) {
-			List<Menu> children = menuDao.getMenuListByParentId(m.getId());
-			m.setChildren(children);
-			tree.add(tree(m, flag));
+		TreeSet<Menu> treeSet = new TreeSet<Menu>();
+		List<Menu> menuList = menuDao.getMenuListByType("Management");
+		for (int i = 0; i < menuList.size(); i++) {
+			if (menuList.get(i).getParentId()==null) {
+				treeSet.add(menuList.get(i));
+				List<Menu> childList = new ArrayList<Menu>();
+				for (int j = 0; j < menuList.size(); j++) {
+					String parentId = menuList.get(i).getParentId();
+					if (parentId.equals(menuList.get(j).getParentId())) {
+						childList.add(menuList.get(j));
+					}
+				}
+				menuList.get(i).setChildren(childList);
+			}
 		}
+//		for (Menu m : parent) {
+//			List<Menu> children = menuDao.getMenuListByParentId(m.getId());
+//			m.setChildren(children);
+//			tree.add(tree(m, flag));
+//		}
 		return tree;
 	}
 
