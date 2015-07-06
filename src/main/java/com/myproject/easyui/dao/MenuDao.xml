@@ -15,7 +15,8 @@
 	</resultMap>
 	
 	<select id="getMenuListByType" resultMap="menuModel" useCache="true">
-		select * from menu where pid IS NULL AND enable = 1 AND type = #{type} ORDER BY seq_num
+<!-- 		select * from menu where pid IS NULL AND enable = 1 AND type = #{type} ORDER BY seq_num -->
+		select * from menu where  enable = 1 AND type = #{type} ORDER BY seq_num
 	</select>
 	
 	<select id="getMenuListByParentId" resultMap="menuModel" useCache="true">
@@ -34,11 +35,11 @@
 		select * from menu where  id = #{id}
 	</select>
 	
-	<update id="updateMenu" parameterType="string">
+	<update id="updateMenu">
 		update menu set type=#{type},label=#{name},url=#{url},pid=#{parentId},seq_num=#{seqNum},description=#{description} where id = #{id}
 	</update>
 	
 	<insert id="addMenu">
-		insert menu 
+		insert into menu (id,label,url,type,seq_num,description,pid,enable) values(#{id},#{name},#{url},#{type},#{seqNum},#{description},#{parentId},#{state});
 	</insert>
 </mapper>  
