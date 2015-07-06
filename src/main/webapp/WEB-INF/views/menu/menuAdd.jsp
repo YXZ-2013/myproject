@@ -27,16 +27,16 @@
 			}
 		});
 		
-		$('#pid').combotree({
-			url : '${pageContext.request.contextPath}/menu/tree',
-			parentField : 'parentId',
-			lines : true,
-			panelHeight : 'auto',
-			value : '${menu.parentId}',
-			onLoadSuccess : function() {
-				parent.$.messager.progress('close');
-			}
-		});
+// 		$('#pid').combotree({
+// 			url : '${pageContext.request.contextPath}/menu/tree',
+// 			parentField : 'parentId',
+// 			lines : true,
+// 			panelHeight : 'auto',
+// 			value : '${menu.parentId}',
+// 			onLoadSuccess : function() {
+// 				parent.$.messager.progress('close');
+// 			}
+// 		});
 	});
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
@@ -75,7 +75,8 @@
 			</tr>
 			<tr>
 				<td><label for="parentId">父节点:</label></td>
-				<td><select id="pid" name="parentId" style="width: 140px; height: 29px;" data-options="missingMessage:'父节点'"></select></td>
+				<td><input id="pid" type="hidden" name="parentId" style="width: 140px; height: 29px;" readonly="readonly" data-options="missingMessage:'父节点'"></input></br>
+				<input id="pname" style="width: 140px; height: 29px;" readonly="readonly" data-options="missingMessage:'父节点'"></input></td>
 			</tr>
 		</table>  
 	</form> 

@@ -140,11 +140,21 @@
 	}
 	
 	function addFun() {
+		var row = treeGrid.treegrid('getSelected');
+		if(row == null){
+			parent.$.messager.alert('11','11');
+			return;
+		}
 		parent.$.modalDialog({
 			title : '添加资源',
 			width : 500,
 			height : 500,
 			href : '${pageContext.request.contextPath}/menu/addMenu',
+			onLoad : function(){
+				var f = parent.$.modalDialog.handler.find('#ff');
+				f.find('#pid').val(row.id);
+				f.find('#pname').val(row.name);
+			},
 			buttons : [{
 				text : '添加',
 				handler : function() {
