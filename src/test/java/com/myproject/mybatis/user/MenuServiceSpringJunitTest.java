@@ -35,10 +35,10 @@ public class MenuServiceSpringJunitTest{
 	
 	@Test
 	public void getAllMenus(){
-		List<EasyTreeNode> nodes = menuService.getAllMenus();
+		List<Menu> nodes = menuService.getAllMenus();
 		System.out.println(nodes.size());
-		for (EasyTreeNode easyTreeNode : nodes) {
-			System.out.println(easyTreeNode.toString());
+		for (Menu menu : nodes) {
+			System.out.println(menu.toString());
 		}
 	}
 }

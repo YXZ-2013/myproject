@@ -42,6 +42,6 @@ public interface MenuService {
 
 	public void addMenu(Menu menu);
 	
-	public List<EasyTreeNode> getAllMenus();
+	public List<Menu> getAllMenus();
 }
 

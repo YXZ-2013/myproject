@@ -119,38 +119,31 @@ public class MenuServiceImpl implements MenuService {
 		menuDao.addMenu(menu);
 	}
 
-	public List<EasyTreeNode> getAllMenus() {
+	public List<Menu> getAllMenus() {
 		long now = System.currentTimeMillis();
 		List<Menu> menuList = menuDao.getAllMenus();
-		Map<String, EasyTreeNode> maps = new HashMap<String, EasyTreeNode>();
-		List<EasyTreeNode> nodeList = new ArrayList<EasyTreeNode>();
-		EasyTreeNode root = new EasyTreeNode();
+		Map<String, Menu> maps = new HashMap<String, Menu>();
 		for (Menu menu : menuList) {
-			EasyTreeNode node = new EasyTreeNode();
-			node.setId(menu.getId());
-			node.setText(menu.getName());
-			Map<String, Object> attributes = new HashMap<String, Object>();
-			attributes.put("url", menu.getUrl());
-			node.setAttributes(attributes);
 			if(StringUtils.isEmpty(menu.getParentId())){
-				maps.put(menu.getId(), node);
+				maps.put(menu.getId(), menu);
 			}else{
-				EasyTreeNode parentNode = maps.get(menu.getParentId());
-				if(parentNode == null){
-					maps.put(menu.getId(), node);
+				Menu parent = maps.get(menu.getParentId());
+				if(parent == null){
+					maps.put(menu.getId(), menu);
 				}
-				if(parentNode.getChildren() == null){
-					List<EasyTreeNode> children = new ArrayList<EasyTreeNode>();
-					parentNode.setChildren(children);
+				if(parent.getChildren() == null){
+					List<Menu> children = new ArrayList<Menu>();
+					parent.setChildren(children);
 				}
-				parentNode.getChildren().add(node);
+				parent.getChildren().add(menu);
 			}
 		}
-		for(EasyTreeNode easyTreeNode:maps.values()){
-			nodeList.add(easyTreeNode);
+		menuList.removeAll(menuList);
+		for(Menu menu:maps.values()){
+			menuList.add(menu);
 		}
 		long end = System.currentTimeMillis();
 		logger.debug("处理菜单用时"+(end-now));
-		return nodeList;
+		return menuList;
 	}
 }
