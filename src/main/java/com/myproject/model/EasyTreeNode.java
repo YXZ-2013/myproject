@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class EasyTreeNode implements Serializable {
 	/**
 	 * 
@@ -64,4 +66,8 @@ public class EasyTreeNode implements Serializable {
 		this.state = state;
 	}
 
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 }

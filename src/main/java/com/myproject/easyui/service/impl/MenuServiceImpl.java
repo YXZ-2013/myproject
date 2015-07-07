@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class MenuServiceImpl implements MenuService {
 		TreeSet<Menu> treeSet = new TreeSet<Menu>();
 		List<Menu> menuList = menuDao.getMenuListByType("Management");
 		for (int i = 0; i < menuList.size(); i++) {
-			if (menuList.get(i).getParentId()==null) {
+			if (menuList.get(i).getParentId() == null) {
 				treeSet.add(menuList.get(i));
 				List<Menu> childList = new ArrayList<Menu>();
 				for (int j = 0; j < menuList.size(); j++) {
@@ -53,11 +54,11 @@ public class MenuServiceImpl implements MenuService {
 				menuList.get(i).setChildren(childList);
 			}
 		}
-//		for (Menu m : parent) {
-//			List<Menu> children = menuDao.getMenuListByParentId(m.getId());
-//			m.setChildren(children);
-//			tree.add(tree(m, flag));
-//		}
+		// for (Menu m : parent) {
+		// List<Menu> children = menuDao.getMenuListByParentId(m.getId());
+		// m.setChildren(children);
+		// tree.add(tree(m, flag));
+		// }
 		return tree;
 	}
 
@@ -110,5 +111,33 @@ public class MenuServiceImpl implements MenuService {
 
 	public void addMenu(Menu menu) {
 		menuDao.addMenu(menu);
+	}
+
+	public List<EasyTreeNode> getAllMenus() {
+		List<Menu> menuList = menuDao.getAllMenus();
+		Map<String, EasyTreeNode> maps = new HashMap<String, EasyTreeNode>();
+		List<EasyTreeNode> nodeList = new ArrayList<EasyTreeNode>();
+		for (Menu menu : menuList) {
+			EasyTreeNode node = new EasyTreeNode();
+			node.setId(menu.getId());
+			node.setText(menu.getName());
+			Map<String, Object> attributes = new HashMap<String, Object>();
+			attributes.put("url", menu.getUrl());
+			node.setAttributes(attributes);
+			if(StringUtils.isEmpty(menu.getParentId())){
+				maps.put(menu.getId(), node);
+			}else{
+				EasyTreeNode parentNode = maps.get(menu.getParentId());
+				if(parentNode == null){
+					maps.put(menu.getId(), node);
+				}
+				if(parentNode.getChildren() == null){
+					List<EasyTreeNode> children = new ArrayList<EasyTreeNode>();
+					parentNode.setChildren(children);
+				}
+				parentNode.getChildren().add(node);
+			}
+		}
+		return nodeList;
 	}
 }

@@ -32,4 +32,13 @@ public class MenuServiceSpringJunitTest{
 		List<EasyTreeNode> nodes = menuService.getMenuTree(new Menu(), true);
 		System.out.println(JsonUtil.writeJson(nodes));
 	}
+	
+	@Test
+	public void getAllMenus(){
+		List<EasyTreeNode> nodes = menuService.getAllMenus();
+		System.out.println(nodes.size());
+		for (EasyTreeNode easyTreeNode : nodes) {
+			System.out.println(easyTreeNode.toString());
+		}
+	}
 }

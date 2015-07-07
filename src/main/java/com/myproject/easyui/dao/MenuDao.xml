@@ -27,6 +27,10 @@
 		select * from menu where pid IS NULL
 	</select>
 	
+	<select id="getAllMenus" resultMap="menuModel">
+		select * from menu ORDER BY pid ASC,seq_num ASC
+	</select>
+	
 	<delete id="delMenu">
 		delete from menu where id = #{id}
 	</delete>

@@ -57,4 +57,6 @@ public interface MenuDao {
 	 *
 	 */
 	public void addMenu(Menu menu);
+
+	public List<Menu> getAllMenus();
 }
