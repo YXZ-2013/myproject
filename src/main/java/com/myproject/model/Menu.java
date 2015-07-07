@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @description
  */
-public class Menu implements  java.lang.Comparable{
+public class Menu{
 	private String id;
 	private boolean state = true;// 是否可用
 	private String parentId;
@@ -104,18 +104,4 @@ public class Menu implements  java.lang.Comparable{
 		return ToStringBuilder.reflectionToString(this);
 
 	}
-
-	public int compareTo(Object o) {
-		Menu m =(Menu) o;
-		return Integer.parseInt(this.id)- Integer.parseInt(m.id);
-	}
-	@Override
-	public boolean equals(Object o) {
-		  boolean flag = false;
-          if(o instanceof Menu){
-               if(this.id == ((Menu)o).id)
-                   flag = true;
-          }
-          return false;          
-   }    
 }

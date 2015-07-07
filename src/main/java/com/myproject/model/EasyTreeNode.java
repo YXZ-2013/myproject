@@ -11,6 +11,7 @@ public class EasyTreeNode implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private EasyTreeNode parent;
 	private String id;
 	private String text;// 树节点名称
 	private Boolean checked = false;// 是否勾选状态
@@ -24,6 +25,15 @@ public class EasyTreeNode implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	
+	public EasyTreeNode getParent() {
+		return parent;
+	}
+
+	public void setParent(EasyTreeNode parent) {
+		this.parent = parent;
 	}
 
 	public String getText() {
