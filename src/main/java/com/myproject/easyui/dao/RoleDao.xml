@@ -10,35 +10,35 @@
 	</resultMap>
 
 	<select id="getAll" resultMap="roleModel">
-		select * from role
+		select * from tab_role
 	</select>
 	
 	<select id="getRolesByUserId" resultMap="roleModel">
-		select * from role where id in (select role_id from user_role where user_id = #{userId})
+		select * from tab_role where id in (select role_id from user_role where user_id = #{userId})
 	</select>
 	
 	
 	<insert id="saveUser" parameterType="role">
-		INSERT INTO role (id,name,description)
+		INSERT INTO tab_role (id,name,description)
 			VALUES (#{id},#{name},#{description})
 	</insert>
 	
 	<select id="getRole" resultMap="roleModel">
-		select * from role 
+		select * from tab_role 
 		<where>
 			<if test="id !=null">id=#{id}</if>
 		</where>
 	</select>
 	
 	<insert id="addRole">
-		insert into role (id,name,description) values (#{id},#{name},#{description})
+		insert into tab_role (name,description) values (#{name},#{description})
 	</insert>
 	
 	<update id="updateRole">
-		update role set name=#{name},description=#{description} where id=#{id}
+		update tab_role set name=#{name},description=#{description} where id=#{id}
 	</update>
 	
 	<delete id="deleteRole">
-		delete from role where id =#{id}
+		delete from tab_role where id =#{id}
 	</delete>
 </mapper>  
