@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(function(){
 		$('#addRoleForm').form({
-			url:'${pageContext.request.contextPath}/role/updateRole',
+			url:'${pageContext.request.contextPath}/user/roleSave',
 			onSubmit : function() {
 				parent.$.messager.progress({
 					title : '提示',
@@ -20,9 +20,11 @@
 			success : function(data) {
 				$.messager.progress('close');// 当成功提交之后隐藏进度条
 				parent.$.modalDialog.openner_datagrid.datagrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_treeGrid这个对象，是因为resource.jsp页面预定义好了
-				parent.$.modalDialog.handler.dialog('close'); 
+				parent.$.modalDialog.handler.dialog('close');
+				
 			}
 		});
+		
 	});
 </script>
 <div id = "addForm" class="easyui-layout" data-options="fit:true,border:false" >
