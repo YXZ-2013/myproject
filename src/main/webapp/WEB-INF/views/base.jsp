@@ -40,4 +40,6 @@
 	</script>
 </c:if>
 <link id="easyuiTheme" rel="stylesheet" type="text/css" href="${ctx }/css/themes/<%=easyuiThemeName%>/easyui.css">
-	
+<script type="text/javascript">
+	var baseUrl = "<%=basePath%>";	
+</script>
