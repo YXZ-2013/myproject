@@ -19,6 +19,7 @@
 <script type="text/javascript" src="${ctx }/js/jquery.cookie.js"></script>
 <script type="text/javascript" src="${ctx }/js/extJquery.js"></script>
 <script type="text/javascript" src="${ctx }/js/easyui-util.js"></script>
+<script type="text/javascript" src="${ctx }/js/easyui-lang-zh_CN.js"></script>
 <%
 	String easyuiThemeName = "gray";
 	Cookie cookies[] = request.getCookies();
@@ -39,3 +40,4 @@
 	</script>
 </c:if>
 <link id="easyuiTheme" rel="stylesheet" type="text/css" href="${ctx }/css/themes/<%=easyuiThemeName%>/easyui.css">
+	
