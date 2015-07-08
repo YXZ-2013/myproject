@@ -71,21 +71,22 @@ public class RoleController extends BaseController{
 	
 	
 	@RequestMapping(value = "/user/roleSave", method = RequestMethod.POST)
-	public String userAddResponse(@ModelAttribute("role") Role role,
+	public void userAddResponse(@ModelAttribute("role") Role role,
 			HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		if(id != null && id != ""){//修改
-			role.setId(id);
-			roleService.updateRole(role);
-		}else {//新增
-			role.setId(role.getName());
-			roleService.addRole(role);
-		}
-		return null;
+		ResponseJson responseJson = new ResponseJson();
+//		String id = request.getParameter("id");
+//		if(id != null && id != ""){//修改
+//			role.setId(id);
+//			roleService.updateRole(role);
+//		}else {//新增
+//			//role.setId(role.getName());
+//		}
+		roleService.addRole(role);
+		responseJson.setSuccess(true);
 	} 
 	
 	/**
-	 * 角色添加编辑页面
+	 * 角色编辑页面
 	 */
 //	@ResponseBody
 	@RequestMapping(value = "/role/roleEdit", method = RequestMethod.GET)
@@ -104,6 +105,16 @@ public class RoleController extends BaseController{
 		}
 	}
 	
+	@RequestMapping(value = "/role/updateRole", method = RequestMethod.POST)
+	public void updateRole(@ModelAttribute("role") Role role,
+			HttpServletRequest request, HttpServletResponse response){
+		roleService.updateRole(role);
+		ResponseJson responseJson = new ResponseJson();
+		responseJson.setSuccess(true);
+		writeJson(responseJson, response);
+	}
+	
+	
 	/**
 	 * 角色删除
 	 * @param request
@@ -118,4 +129,16 @@ public class RoleController extends BaseController{
 		rj.setSuccess(true);
 		writeJson(rj,response);
 	}
+	
+	/**
+	 * 角色添加页面     shaql
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/user/roleAdd", method = RequestMethod.GET)
+	public String roleAddView(Model model){
+		return "/user/roleAdd";
+	} 
+
+	
 }	
