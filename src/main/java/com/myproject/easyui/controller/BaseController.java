@@ -14,8 +14,7 @@ public class BaseController {
 
 	public void writeJson(Object object, HttpServletResponse response) {
 		try {
-			String json = JSON.toJSONStringWithDateFormat(object,
-					"yyyy-MM-dd HH:mm:ss");
+			String json = JSON.toJSONStringWithDateFormat(object,"yyyy-MM-dd HH:mm:ss");
 			response.setContentType("text/html;charset=utf-8");
 			response.getWriter().write(json);
 			response.getWriter().flush();
