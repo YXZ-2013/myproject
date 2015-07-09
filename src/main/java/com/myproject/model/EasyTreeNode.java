@@ -17,7 +17,7 @@ public class EasyTreeNode implements Serializable {
 	private Boolean checked = false;// 是否勾选状态
 	private Map<String, Object> attributes;// 其他参数
 	private List<EasyTreeNode> children;// 子节点
-	private String state = "open";// 是否展开(open,closed)
+	private String state = "closed";// 是否展开(open,closed)
 
 	public String getId() {
 		return id;

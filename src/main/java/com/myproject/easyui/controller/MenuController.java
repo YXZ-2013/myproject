@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myproject.easyui.service.MenuService;
@@ -42,8 +44,12 @@ public class MenuController extends BaseController {
 	 * @time 2015年5月7日上午10:00:58
 	 */
 	@RequestMapping(value = "/manager/getManagetMenus", method = RequestMethod.POST)
-	public void ctrlTree(HttpServletResponse response) {
-		writeJson(menuService.getMenuTree(new Menu(), true), response);
+	public void ctrlTree(@RequestParam(required=false) String id, HttpServletResponse response) {
+//		String id = request.getParameter("id");
+		if (id == null) {
+			writeJson(menuService.getParentMenuTree(new Menu(), true), response);
+		}
+//		writeJson(menuService.getMenuTree(new Menu(), true), response);
 	}
 
 	/**
@@ -66,9 +72,8 @@ public class MenuController extends BaseController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "/admin/menu/menuList", method = RequestMethod.POST)
-	public void getMenuList(HttpServletRequest request,
-			HttpServletResponse response) {
+	@RequestMapping(value = "/menu/menuList", method = RequestMethod.POST)
+	public void getMenuList(HttpServletRequest request,HttpServletResponse response) {
 		writeJson(menuService.getAllMenus(), response);
 	}
 

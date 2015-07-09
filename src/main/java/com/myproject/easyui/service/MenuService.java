@@ -17,6 +17,7 @@ public interface MenuService {
 	 */
 	public List<EasyTreeNode> getMenuTree(Menu menu, boolean flag);
 
+	public List<EasyTreeNode> getParentMenuTree(Menu menu, boolean flag);
 	/**
 	 * 获取菜单列表
 	 * @author yinxunzhi
