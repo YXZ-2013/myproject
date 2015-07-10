@@ -1,6 +1,9 @@
 package com.myproject.easyui.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,12 +46,36 @@ public class MenuController extends BaseController {
 	 * @time 2015年5月7日上午10:00:58
 	 */
 	@RequestMapping(value = "/manager/getManagetMenus", method = RequestMethod.POST)
-	public void ctrlTree(@RequestParam(required=false) String id, HttpServletResponse response) {
-//		String id = request.getParameter("id");
-		if (id == null) {
-			writeJson(menuService.getParentMenuTree(new Menu(), true), response);
+	@ResponseBody
+	public List<EasyTreeNode> ctrlTree(@RequestParam(required = false) String id) {
+		List<Menu> menuList = new ArrayList<Menu>(0);
+		List<EasyTreeNode> nodeList = new ArrayList<EasyTreeNode>(0);
+		if(id == null){
+			menuList = menuService.getParentMenus();
+		}else{
+			menuList = menuService.getChildrenMenus(id);
 		}
-//		writeJson(menuService.getMenuTree(new Menu(), true), response);
+		for(Menu menu :menuList){
+			EasyTreeNode node = new EasyTreeNode();
+			convertMenuToTreeNode(menu,node);
+			nodeList.add(node);
+		}
+		return nodeList;
+	}
+	/**
+	 * 把菜单实体类转换为树节点格式
+	 * @param menu
+	 * @param node
+	 */
+	private void convertMenuToTreeNode(Menu menu, EasyTreeNode node) {
+		node.setId(menu.getId());
+		node.setText(menu.getName());
+		Map<String, Object> attributes = new HashMap<String, Object>();
+		attributes.put("url", menu.getUrl());
+		node.setAttributes(attributes);
+		if(menu.getUrl() ==null){
+			node.setState("closed");
+		}
 	}
 
 	/**
@@ -72,8 +98,9 @@ public class MenuController extends BaseController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "/menu/menuList", method = RequestMethod.POST)
-	public void getMenuList(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(value = "/admin/menu/menuList", method = RequestMethod.POST)
+	public void getMenuList(HttpServletRequest request,
+			HttpServletResponse response) {
 		writeJson(menuService.getAllMenus(), response);
 	}
 
@@ -128,16 +155,19 @@ public class MenuController extends BaseController {
 		return "/menu/menuAdd";
 	}
 
-	@RequestMapping(value="/menu/addMenu",method=RequestMethod.POST)
-	public void addMenu(@ModelAttribute("menu")Menu menu,HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping(value = "/menu/addMenu", method = RequestMethod.POST)
+	public void addMenu(@ModelAttribute("menu") Menu menu,
+			HttpServletRequest request, HttpServletResponse response) {
 		ResponseJson responseJson = new ResponseJson();
-		if(StringUtils.isEmpty(menu.getId()) && StringUtils.isEmpty(menu.getUrl()) && StringUtils.isEmpty(menu.getName())){
+		if (StringUtils.isEmpty(menu.getId())
+				&& StringUtils.isEmpty(menu.getUrl())
+				&& StringUtils.isEmpty(menu.getName())) {
 			responseJson.setSuccess(false);
 			responseJson.setMsg("资源ID,资源路径,资源名称不能为空");
 			writeJson(responseJson, response);
 			return;
 		}
-		if(StringUtils.isEmpty(menu.getSeqNum())){
+		if (StringUtils.isEmpty(menu.getSeqNum())) {
 			menu.setSeqNum(1);
 		}
 		menuService.addMenu(menu);
