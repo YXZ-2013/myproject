@@ -17,7 +17,6 @@ public interface MenuService {
 	 */
 	public List<EasyTreeNode> getMenuTree(Menu menu, boolean flag);
 
-	public List<EasyTreeNode> getParentMenuTree(Menu menu, boolean flag);
 	/**
 	 * 获取菜单列表
 	 * @author yinxunzhi
@@ -44,5 +43,17 @@ public interface MenuService {
 	public void addMenu(Menu menu);
 	
 	public List<Menu> getAllMenus();
+	
+	/**
+	 * 获取所有父菜单
+	 */
+	public List<Menu> getParentMenus();
+	
+	/**
+	 * 获取父节点下面的子菜单
+	 * @param id
+	 * @return
+	 */
+	public List<Menu> getChildrenMenus(String id);
 }
 
