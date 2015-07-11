@@ -75,7 +75,7 @@
 			</tr>
 			<tr>
 				<td><label for="parentId">父节点:</label></td>
-				<td><input id="pid" type="hidden" name="parentId" style="width: 140px; height: 29px;" readonly="readonly" data-options="missingMessage:'父节点'"></input></br>
+				<td><input id="pid" type="hidden" name="parentId"></input></br>
 				<input id="pname" style="width: 140px; height: 29px;" readonly="readonly" data-options="missingMessage:'父节点'"></input></td>
 			</tr>
 		</table>  

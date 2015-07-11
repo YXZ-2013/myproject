@@ -142,7 +142,7 @@
 	function addFun() {
 		var row = treeGrid.treegrid('getSelected');
 		if(row == null){
-			parent.$.messager.alert('11','11');
+			parent.$.messager.alert('提示','请选择父菜单后添加！');
 			return;
 		}
 		parent.$.modalDialog({

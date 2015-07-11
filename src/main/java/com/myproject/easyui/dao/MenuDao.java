@@ -48,7 +48,7 @@ public interface MenuDao {
 	 * @time 2015年5月25日下午1:21:39
 	 *
 	 */
-	public void updateMenu(String menuId);
+	public void updateMenu(Menu menu);
 	
 	/**
 	 * 添加菜单

@@ -20,6 +20,7 @@ public class Menu{
 	private String id;
 	private boolean state = true;// 是否可用
 	private String parentId;
+	private String parentName;
 	private String type;
 	private String name;
 	private String url;
@@ -104,4 +105,13 @@ public class Menu{
 		return ToStringBuilder.reflectionToString(this);
 
 	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+	
 }
