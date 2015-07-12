@@ -95,18 +95,24 @@
 			parent.$.modalDialog({   
 			    title: '编辑菜单',   
 			    width: 500,   
-			    height: 500,   
+			    height: 460,   
 			    closed: false,   
 			    cache: false,   
 			    href: '${pageContext.request.contextPath}/menu/editMenu?id='+node.id,   
 			    buttons : [ {
-					text : '添加',
+					text : '修改',
 					handler : function() {
 						parent.$.modalDialog.openner_treeGrid = treeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
 						var f = parent.$.modalDialog.handler.find('#ff');
 						f.submit();
 					}
-				} ]
+				} ,{
+					text : '取消',
+					handler : function(){
+						parent.$.modalDialog.handler.dialog('close');
+					}
+					
+				}]
 			});   
 		}
 	}
@@ -141,19 +147,23 @@
 	
 	function addFun() {
 		var row = treeGrid.treegrid('getSelected');
-		if(row == null){
-			parent.$.messager.alert('提示','请选择父菜单后添加！');
-			return;
-		}
+// 		if(row == null){
+// 			parent.$.messager.alert('提示','请选择父菜单后添加！');
+// 			return;
+// 		}
 		parent.$.modalDialog({
 			title : '添加资源',
 			width : 500,
-			height : 500,
+			height : 460,
 			href : '${pageContext.request.contextPath}/menu/addMenu',
 			onLoad : function(){
 				var f = parent.$.modalDialog.handler.find('#ff');
-				f.find('#pid').val(row.id);
-				f.find('#pname').val(row.name);
+				if(row==null){
+					f.find('#ptr').hide();
+				}else{
+					f.find('#pid').val(row.id);
+					f.find('#pname').val(row.name);
+				}
 			},
 			buttons : [{
 				text : '添加',
@@ -161,6 +171,12 @@
 					parent.$.modalDialog.openner_treeGrid = treeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
 					var f = parent.$.modalDialog.handler.find('#ff');
 					f.submit();
+				}
+			},{
+				text : '取消',
+				handler : function(){
+					parent.$.modalDialog.handler.dialog('close');
+// 					parent.$.modalDialog.handler = undefined;
 				}
 			}]
 		});

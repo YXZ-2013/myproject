@@ -45,20 +45,20 @@
 		<table cellpadding="5px;">
 			<tr>
 				<td><label for="id">id:</label></td>
-				<td><input class="easyui-textbox" type="text" name="id" value="${menu.id }" data-options="required:true,missingMessage:'资源ID'" /></td>
+				<td><input class="easyui-textbox" style="width:200px;height:22px" type="text" name="id" value="${menu.id }" data-options="required:true,missingMessage:'资源ID'" /></td>
 			</tr>
 			<tr>
 				<td><label for="name">资源名称:</label></td>
-				<td><input class="easyui-textbox" type="text" name="name" value="${menu.name }" data-options="required:true,missingMessage:'资源名称'" /></td>
+				<td><input class="easyui-textbox" style="width:200px;height:22px" type="text" name="name" value="${menu.name }" data-options="required:true,missingMessage:'资源名称'" /></td>
 			</tr>
 			<tr>
 				<td><label for="url">资源路径:</label></td>
-				<td><input class="easyui-textbox" type="text" name="url" value="${menu.url}" data-options="required:true,missingMessage:'资源路径'"/></td>
+				<td><input class="easyui-textbox" style="width:200px;height:22px" type="text" name="url" value="${menu.url}" data-options="required:true,missingMessage:'资源路径'"/></td>
 			</tr>
 			<tr>
 				<td><label for="type">类型:</label></td>
 				<td>
-					<select name="type" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto',required:true,missingMessage:'资源类型'">
+					<select name="type" class="easyui-combobox" data-options="width:200,height:29,editable:false,panelHeight:'auto',required:true,missingMessage:'资源类型'">
 						<option value="Management">Management</option>
 						<option value="other">other</option>
 					</select>
@@ -71,12 +71,12 @@
 			</tr>
 			<tr>
 				<td><label for="description">备注:</label></td>
-				<td><input class="easyui-textbox" type="text" name="description" value="${menu.description }" data-options="missingMessage:'资源描述',multiline:true" style="width:200px;height:100px"/></td>
+				<td><input class="easyui-textbox" type="text" name="description" value="${menu.description }" data-options="missingMessage:'资源描述',multiline:true" style="width:200px;height:80px"/></td>
 			</tr>
-			<tr>
+			<tr id="ptr">
 				<td><label for="parentId">父节点:</label></td>
-				<td><input id="pid" type="hidden" name="parentId"></input></br>
-				<input id="pname" style="width: 140px; height: 29px;" readonly="readonly" data-options="missingMessage:'父节点'"></input></td>
+				<td><input id="pid" type="hidden" name="parentId"></input>
+				<input id="pname" class="easyui-textbox" style="width: 200px; height: 29px;" readonly="readonly" data-options="missingMessage:'父节点'"></input></td>
 			</tr>
 		</table>  
 	</form> 
