@@ -9,22 +9,33 @@ package com.myproject.model;
  */
 public class Role {
 
-	private String id;
+	private Integer id;
 	
 	private String name;
 	
 	private String description;
+	
+	private Boolean deleted;
+	
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public void setName(String name) {
