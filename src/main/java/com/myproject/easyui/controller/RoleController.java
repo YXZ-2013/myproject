@@ -45,7 +45,15 @@ public class RoleController extends BaseController{
 		return "/user/roleList";
 	} 
 	
-	
+	/**
+	 * shaql
+	 * 角色页面数据查询
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/roleList", method = RequestMethod.POST)
 	public String getRoleData(Model model, HttpServletRequest request,
@@ -70,6 +78,13 @@ public class RoleController extends BaseController{
 	}
 	
 	
+	/**
+	 * shaql
+	 * 角色添加
+	 * @param role
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/user/roleSave", method = RequestMethod.POST)
 	public void userAddResponse(@ModelAttribute("role") Role role,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -91,8 +106,8 @@ public class RoleController extends BaseController{
 //	@ResponseBody
 	@RequestMapping(value = "/role/roleEdit", method = RequestMethod.GET)
 	public String roleAddView(Model model,HttpServletRequest request) throws JsonProcessingException {	
-		String id = request.getParameter("id");
-		if(id!=null){
+		int id = Integer.valueOf(request.getParameter("id"));
+		if(id > 0){
 			Role role = new Role();
 			role.setId(id);
 			role=roleService.getRole(role);
@@ -105,6 +120,14 @@ public class RoleController extends BaseController{
 		}
 	}
 	
+	
+	/**
+		shaql
+	 * 角色更新 	
+	 * @param role
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/role/updateRole", method = RequestMethod.POST)
 	public void updateRole(@ModelAttribute("role") Role role,
 			HttpServletRequest request, HttpServletResponse response){
@@ -116,6 +139,7 @@ public class RoleController extends BaseController{
 	
 	
 	/**
+	 * shaql
 	 * 角色删除
 	 * @param request
 	 * @param response
