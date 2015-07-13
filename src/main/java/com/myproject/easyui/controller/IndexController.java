@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myproject.model.SessionInfo;
 import com.myproject.model.SystemInfo;
 
 @Controller

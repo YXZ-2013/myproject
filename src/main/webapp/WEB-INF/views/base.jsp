@@ -32,13 +32,14 @@
 		}
 	}
 %>
+<!--  
 <c:if test="${sessionInfo == null or sessionInfo.userId == null }">
 	<script type="text/javascript">
 		if(self.frameElement != null && self.frameElement.tagName != null && self.frameElement.tagName=="IFRAME"){
 			window.parent.location.href='${ctx}/login';
 		}
 	</script>
-</c:if>
+</c:if>-->
 <link id="easyuiTheme" rel="stylesheet" type="text/css" href="${ctx }/css/themes/<%=easyuiThemeName%>/easyui.css">
 <script type="text/javascript">
 	var baseUrl = "<%=request.getContextPath() %>";	

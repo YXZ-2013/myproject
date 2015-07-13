@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户添加</title>
+</head>
+<body>
+<div id="dlgForm">
+	<div style="padding:10px 60px 20px 60px">
+    <form id="ff" class="easyui-form" method="post">
+		<table cellpadding="5px;">
+				<input  type="hidden" name="id" value="${user.id}" />
+			<tr>
+				<td><label for="username">用户名:</label></td>
+				<td><input class="easyui-textbox" type="text" name="username" data-options="required:true" /></td>
+			</tr>
+			<tr>
+				<td><label for="mobileNumber">电话号码:</label></td>
+				<td><input class="easyui-textbox" type="text" name="mobileNumber" data-options="required:true" /></td>
+			</tr>
+			<tr>
+				<td><label for="password">密码:</label></td>
+				<td><input class="easyui-textbox" type="text" name="password" data-options="required:true"/></td>
+			</tr>
+			<tr>
+				<td><label for="repassword">重复密码:</label></td>
+				<td><input class="easyui-textbox" type="text" name="repassword" data-options="required:true"/></td>
+			</tr>
+			<tr>
+				<td><label for="referee">重复密码:</label></td>
+				<td><input class="easyui-textbox" type="text" name="referee"/></td>
+			</tr>
+		</table>  
+	</form> 
+	<div style="text-align:center;padding:5px">
+    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
+    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
