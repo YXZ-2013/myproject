@@ -14,7 +14,14 @@
 
 </head>
 <body>
-	<table id="gridRloe" ></table>
+
+	
+ 	<div id= "" style="height: 5%">
+ 		<INPUT id = "ss" type="text" name="username" style="width: 200px;" >
+ 	</div>
+ 	<div id= "" style="height: 95%">
+		<table id="gridRloe" ></table>
+	</div>
 	<script type="text/javascript">
 	$(function(){
 		$("form > div").css("margin" , "10px 0px 0px 0px");
@@ -24,8 +31,11 @@
 		    fit:true,
 		    fitColumns:true,
 		    rownumbers:true,
+		    rowStyler: function (index, row) {
+                if (hideIndexs.indexOf(index)>=0) { return 'background:red; display:none'; }
+            },
 		    columns:[[   
-		        {field:'id',title:'ID',width:'10%',sortable:true},   
+		        {field:'id',title:'ID',width:'10%',sortable:true,hidden:true},   
 		        {field:'name',title:'用户名',width:'15%',sortable:true},   
 		        {field:'description',title:'备注',width:'15%'}  
 		        
@@ -143,6 +153,50 @@
 		}
 		
 	}
+	
+	var hideIndexs = new Array();
+    $('#ss').searchbox({
+    	
+        width: 200,
+        searcher: function (value) {
+        	debugger
+            hideIndexs.length = 0;
+            if (value == '请输入查询内容') {
+                value = '';
+            }
+            //结束datagrid的编辑.
+            endEdit();
+            var rows = $('#gridRloe').datagrid('getRows');
+
+            var cols = $('#gridRloe').datagrid('options').columns[0];
+
+            for (var i = rows.length - 1; i >= 0; i--) {
+                var row = rows[i];
+                var isMatch = false;
+                for (var j = 0; j < cols.length; j++) {
+
+                    var pValue = row[cols[j].field];
+                    if (pValue == undefined) {
+                        continue;
+                    }
+                    if (pValue.toString().indexOf(value) >= 0) {
+                        isMatch = true;
+                        break;
+                    }
+                }
+                if (!isMatch)
+                    hideIndexs.push(i);
+                $('#gridRloe').datagrid('refreshRow', i);
+            }
+        },
+        prompt: '请输入查询内容'
+    });
+    function endEdit() {
+        var rows = $('#gridRloe').datagrid('getRows');
+        for (var i = 0; i < rows.length; i++) {
+            $('#gridRloe').datagrid('endEdit', i);
+        }
+    }
 	
 	</script>
 </body>
