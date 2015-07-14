@@ -162,7 +162,10 @@
 					f.find('#ptr').hide();
 				}else{
 					f.find('#pid').val(row.id);
-					f.find('#pname').val(row.name);
+// 					f.find('#pname').val(row.name);
+//					因为当class="easyui-textbox"，它是把你原有的input隐藏，
+// 					然后自己生成一个新的input，所以你点击的已经不是原来那个input也就没回应了，应该使用它的方法
+					f.find('#pname').textbox('setValue',row.name);
 				}
 			},
 			buttons : [{
