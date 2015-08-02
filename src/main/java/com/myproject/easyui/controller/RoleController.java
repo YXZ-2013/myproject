@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.myproject.easyui.service.MenuService;
 import com.myproject.easyui.service.RoleService;
 import com.myproject.easyui.web.util.ResponseResult;
+import com.myproject.model.EasyTreeNode;
+import com.myproject.model.Menu;
 import com.myproject.model.ResponseJson;
 import com.myproject.model.Role;
 
@@ -35,6 +39,8 @@ public class RoleController extends BaseController{
 
 	@Autowired
 	RoleService roleService;
+	@Autowired
+	MenuService menuService;
 	/**
 	 * 角色显示页面     shaql
 	 * @param model
@@ -86,7 +92,7 @@ public class RoleController extends BaseController{
 	 * @param response
 	 */
 	@RequestMapping(value = "/user/roleSave", method = RequestMethod.POST)
-	public void userAddResponse(@ModelAttribute("role") Role role,
+	public  void userAddResponse(@ModelAttribute("role") Role role,
 			HttpServletRequest request, HttpServletResponse response) {
 		ResponseJson responseJson = new ResponseJson();
 //		String id = request.getParameter("id");
@@ -97,6 +103,7 @@ public class RoleController extends BaseController{
 //			//role.setId(role.getName());
 //		}
 		roleService.addRole(role);
+		roleService.addRoleMenu(role);
 		responseJson.setSuccess(true);
 	} 
 	
@@ -160,9 +167,21 @@ public class RoleController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/user/roleAdd", method = RequestMethod.GET)
-	public String roleAddView(Model model){
+	public String roleAddView(Model model,HttpServletResponse response){
 		return "/user/roleAdd";
 	} 
 
+	/**
+	 * 给角色添加菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/user/roleAdd2", method = RequestMethod.POST)
+	@ResponseBody
+	public List<EasyTreeNode> roleAdd(HttpServletRequest request,HttpServletResponse response){
+		List<EasyTreeNode> tree = menuService.getMenuTree(new Menu(), true);
+		return tree;
+	} 
 	
 }	
