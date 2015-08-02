@@ -21,4 +21,6 @@ public interface RoleService {
 	public void updateRole(Role role);
 	
 	public void deleteRole(String id);
+	
+	public void addRoleMenu(Role role);
 }

@@ -1,7 +1,6 @@
 package com.myproject.model;
 
 
-
 /**
  *   shaql
  * @author Administrator
@@ -17,6 +16,7 @@ public class Role {
 	
 	private Boolean deleted;
 	
+	private String menuIds;
 
 	public Integer getId() {
 		return id;
@@ -54,5 +54,12 @@ public class Role {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	public String getMenuIds() {
+		return menuIds;
+	}
+
+	public void setMenuIds(String menuIds) {
+		this.menuIds = menuIds;
+	}
 }
