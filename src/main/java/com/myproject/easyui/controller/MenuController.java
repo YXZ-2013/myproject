@@ -126,7 +126,7 @@ public class MenuController extends BaseController {
 	}
 
 	/**
-	 * 修改菜单
+	 * 修改菜单页面
 	 */
 	@RequestMapping(value = "/menu/editMenu", method = RequestMethod.GET)
 	public String editMenu(Model model, HttpServletRequest request,
@@ -139,7 +139,12 @@ public class MenuController extends BaseController {
 		model.addAttribute("menu", menu);
 		return "/menu/menuEdit";
 	}
-
+	/**
+	 * 修改菜单数据
+	 * @param menu
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/menu/updateMenu", method = RequestMethod.POST)
 	public void updateMenu(@ModelAttribute("menu") Menu menu,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -150,11 +155,21 @@ public class MenuController extends BaseController {
 		writeJson(responseJson, response);
 	}
 
+	/**
+	 * 添加页面
+	 * @return
+	 */
 	@RequestMapping(value = "/menu/addMenu", method = RequestMethod.GET)
 	public String addMenuView() {
 		return "/menu/menuAdd";
 	}
 
+	/**
+	 * 添加数据
+	 * @param menu
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/menu/addMenu", method = RequestMethod.POST)
 	public void addMenu(@ModelAttribute("menu") Menu menu,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -177,10 +192,8 @@ public class MenuController extends BaseController {
 
 	/**
 	 * 请求获取菜单(资源)节点
-	 * 
 	 * @author 尹逊志
 	 * @time 2015年5月27日下午10:53:35
-	 * 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "menu/tree", method = RequestMethod.POST)
