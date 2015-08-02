@@ -7,9 +7,9 @@ $(function(){
 	    fit:true,
 	    fitColumns:true,
 	    rownumbers:true,
-	    rowStyler: function (index, row) {
-            if (hideIndexs.indexOf(index)>=0) { return 'background:red; display:none'; }
-        },
+//	    rowStyler: function (index, row) {
+//            if (hideIndexs.indexOf(index)>=0) { return 'background:red; display:none'; }
+//        },
 	    columns:[[   
 	        {field:'id',title:'ID',width:'10%',sortable:true,hidden:true},   
 	        {field:'name',title:'用户名',width:'15%',sortable:true},   
@@ -58,14 +58,14 @@ $(function(){
 function append () {
 	var row = datagrid.datagrid('getSelected');
 	parent.$.modalDialog({   
-	    title: '添加用户',   
+	    title: '添加角色',   
 	    width: 400,   
 	    height: 250,
 	    minimizable:true,
 	    maximizable:true,
 	    resizable:true,
 	    closed: false,
-	    href: '${pageContext.request.contextPath}/user/roleAdd',
+	    href: baseUrl+'/user/roleAdd',
 	    buttons : [{
 			text : '添加',
 			handler : function() {
@@ -86,7 +86,7 @@ function edit () {
 		    height: 200,   
 		    closed: false,   
 		    cache: false,   
-		    href: '${pageContext.request.contextPath}/role/roleEdit?id='+row.id,   
+		    href: baseUrl+'/role/roleEdit?id='+row.id,   
 		    buttons : [ {
 				text : '提交',
 				handler : function() {
@@ -108,7 +108,7 @@ function remove (){
 					title : '提示',
 					text : '数据处理中，请稍后....'
 				});
-				$.post('${pageContext.request.contextPath}/role/roleRemove', {
+				$.post(baseUrl+'/role/roleRemove', {
 					id : row.id
 				},function(data){
 					if (data.success) {

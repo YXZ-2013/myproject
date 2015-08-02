@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	$(function(){
+		$('#menu').combotree({
+			url:'${pageContext.request.contextPath}/user/roleAdd2',
+			multiple: true,
+			panelHeight : 'auto',
+			value : '${role.menuIds}'
+	 	});
 		$('#addRoleForm').form({
 			url:'${pageContext.request.contextPath}/role/updateRole',
 			onSubmit : function() {
@@ -37,6 +43,11 @@
 			<tr>
 				<td><label for="description">备注:</label></td>
 				<td><input class="easyui-textbox" type="text" name="description" value="${role.description }" data-options="required:true" missingMessage="不能为空"/></td>
+			</tr>
+			<tr>
+				<td><label for="menus">菜单:</label></td>
+				<td><input id="menu" name="menuIds"/></td>
+<!-- 				<td><select id="pid" name="pid" style="width: 140px; height: 29px;"></select><img src="${pageContext.request.contextPath}/style/images/extjs_icons/cut_red.png" onclick="$('#pid').combotree('clear');" /></td> -->
 			</tr>
 		</table> 
 	</form> 

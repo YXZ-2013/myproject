@@ -4,6 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	$(function(){
+		 $('#menu').combotree({
+				url:'${pageContext.request.contextPath}/user/roleAdd2',
+				 multiple: true,
+				panelHeight : 'auto'
+		 });
 		$('#addRoleForm').form({
 			url:'${pageContext.request.contextPath}/user/roleSave',
 			onSubmit : function() {
@@ -25,6 +30,7 @@
 			}
 		});
 		
+   
 	});
 </script>
 <div id = "addForm" class="easyui-layout" data-options="fit:true,border:false" >
@@ -39,6 +45,10 @@
 			<tr>
 				<td><label for="description">备注:</label></td>
 				<td><input class="easyui-textbox" type="text" name="description" value="${role.description }" data-options="required:true" missingMessage="不能为空"/></td>
+			</tr>
+			<tr>
+				<td><label for="menus">菜单:</label></td>
+				<td><input id="menu" name="menuIds"/></td>
 			</tr>
 		</table> 
 	</form> 
