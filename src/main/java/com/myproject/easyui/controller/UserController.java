@@ -22,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import com.myproject.easyui.service.UserService;
 import com.myproject.easyui.web.util.ResponseResult;
 import com.myproject.model.ResponseJson;
+import com.myproject.model.Role;
 import com.myproject.model.User;
 
 /**
@@ -91,16 +92,16 @@ public class UserController extends BaseController {
 	 * @return
 	 * @throws JsonProcessingException 
 	 */
-	@ResponseBody
+//	@ResponseBody
 	@RequestMapping(value = "/user/userEdit", method = RequestMethod.GET)
-	public String userAddView(Model model,HttpServletRequest request) throws JsonProcessingException {
+	public String userAddView(Model model,HttpServletRequest request)   {
 		String id = request.getParameter("id");
 		if(id != null){
 			User user = new User();
 			user.setId(id);
 			user=userService.getUser(user);
-			ObjectMapper mapper = new ObjectMapper();
-			return mapper.writeValueAsString(user);
+			model.addAttribute("user", user);
+			return "/user/userEdit";
 		}else{
 			return "failer";
 		}
@@ -123,11 +124,6 @@ public class UserController extends BaseController {
 			user.setRegisterTime(new Date());
 			user.setStatus(true);
 			userService.updateUser(user);
-		}else { //新增
-			user.setId(user.getUsername());
-			user.setRegisterTime(new Date());
-			user.setStatus(true);
-			userService.addUser(user);
 		}
 		return null;
 	}
@@ -142,5 +138,26 @@ public class UserController extends BaseController {
 		rj.setMsg("删除用户成功");
 		rj.setSuccess(true);
 		writeJson(rj,response);
+	}
+	
+	/*
+	 * 用户添加页面
+	 */
+	@RequestMapping(value = "/user/userAdd", method = RequestMethod.GET)
+	public String userAddView(Model model){
+		return "/user/userAdd";
+	}
+	
+	
+	@RequestMapping(value = "/user/userSave", method = RequestMethod.POST)
+	public void usersAddResponse(@ModelAttribute("user") User user,
+			HttpServletRequest request, HttpServletResponse response) {
+		ResponseJson responseJson = new ResponseJson();
+		user.setId(user.getUsername());
+		Date date = new Date();
+		user.setRegisterTime(date);
+		user.setStatus(false);
+		userService.addUser(user);
+		responseJson.setSuccess(true);
 	}
 }
