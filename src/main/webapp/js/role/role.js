@@ -73,6 +73,11 @@ function append () {
 				var f = parent.$.modalDialog.handler.find('#addRoleForm');
 				f.submit();
 			}
+		},{
+			text:'取消',
+			handler:function(){
+				parent.$.modalDialog.handler.dialog('close');
+			}
 		}]
 	});
 }

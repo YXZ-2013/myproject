@@ -31,6 +31,16 @@ public class User {
 	private Date disableTime;
 	private String ipsIdentification;
 	private boolean status;
+	private String roleIds;
+	
+	
+	public String getRoleIds() {
+		return roleIds;
+	}
+
+	public void setRoleIds(String roleIds) {
+		this.roleIds = roleIds;
+	}
 
 	public String getId() {
 		return id;

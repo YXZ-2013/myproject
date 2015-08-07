@@ -1,6 +1,7 @@
 package com.myproject.easyui.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,8 +20,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.myproject.easyui.service.RoleService;
 import com.myproject.easyui.service.UserService;
 import com.myproject.easyui.web.util.ResponseResult;
+import com.myproject.model.EasyTreeNode;
 import com.myproject.model.ResponseJson;
 import com.myproject.model.Role;
 import com.myproject.model.User;
@@ -37,6 +40,8 @@ import com.myproject.model.User;
 public class UserController extends BaseController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RoleService roleService;
 	
 	/**
 	 * 用户列表显示页面
@@ -147,8 +152,21 @@ public class UserController extends BaseController {
 	public String userAddView(Model model){
 		return "/user/userAdd";
 	}
-	
-	
+	/**
+	 * 用户添加角色
+	 */
+	@RequestMapping(value="/user/userAddRole",method=RequestMethod.POST)
+	@ResponseBody
+	public List<EasyTreeNode> userAddRole(Model model,HttpServletResponse response){
+		List<EasyTreeNode> tree = roleService.getRoleTree(new Role(), true);
+		return tree;
+	}
+	/**
+	 * 用户保存
+	 * @param user
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping(value = "/user/userSave", method = RequestMethod.POST)
 	public void usersAddResponse(@ModelAttribute("user") User user,
 			HttpServletRequest request, HttpServletResponse response) {

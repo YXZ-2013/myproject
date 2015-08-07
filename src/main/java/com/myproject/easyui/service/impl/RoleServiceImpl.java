@@ -1,5 +1,6 @@
 package com.myproject.easyui.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.myproject.easyui.dao.RoleDao;
 import com.myproject.easyui.dao.RoleMenuDao;
 import com.myproject.easyui.service.RoleService;
+import com.myproject.model.EasyTreeNode;
 import com.myproject.model.Role;
 import com.myproject.model.RoleMenu;
 
@@ -91,4 +93,19 @@ public class RoleServiceImpl implements RoleService {
 		}
 	}
 
+	public List<EasyTreeNode> getRoleTree(Role role, boolean flag) {
+		List<EasyTreeNode> tree = new ArrayList<EasyTreeNode>(0);
+		List<Role> rolelList = roleDao.getAll();
+		for (Role role2 : rolelList) {
+			tree.add(tree(role2, flag));
+		}
+		return tree;
+	}
+
+	private EasyTreeNode tree(Role role,boolean flag){
+		EasyTreeNode node= new EasyTreeNode();
+		node.setId(role.getId().toString());
+		node.setText(role.getName());
+		return node;
+	}
 }

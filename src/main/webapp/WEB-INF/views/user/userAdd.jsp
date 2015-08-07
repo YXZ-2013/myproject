@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	$(function(){
+		$("#role").combotree({
+			url:baseUrl+'/user/userAddRole',
+	        multiple: true,
+	        panelHeight : 'auto'
+		});
+		
 		$('#addUserForm').form({
 			url:baseUrl+'/user/userSave',
 			onSubmit : function() {
@@ -48,6 +54,10 @@
 			<tr>
 				<td><label for="repassword">重复密码:</label></td>
 				<td><input class="easyui-textbox" type="password" name="repassword" data-options="required:true,validType:'length[1,16]'" missingMessage="请先填写密码"/></td>
+			</tr>
+			<tr>
+				<td><label for="roles">角色:</label></td>
+				<td><input name="roleIds" id="role"/></td>
 			</tr>
 		</table> 
 	</form> 

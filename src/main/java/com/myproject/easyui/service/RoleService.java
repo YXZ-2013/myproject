@@ -2,6 +2,7 @@ package com.myproject.easyui.service;
 
 import java.util.List;
 
+import com.myproject.model.EasyTreeNode;
 import com.myproject.model.Role;
 
 public interface RoleService {
@@ -23,4 +24,6 @@ public interface RoleService {
 	public void deleteRole(String id);
 	
 	public void addRoleMenu(Role role);
+	
+	public List<EasyTreeNode> getRoleTree(Role role,boolean flag);
 }

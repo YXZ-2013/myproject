@@ -66,7 +66,24 @@ function append(){
 	    title: '添加用户',   
 	    width: 400,   
 	    height: 400,
-	    href: baseUrl+'/layout/user/userAdd.html'
+	    minimizable:true,
+	    maximizable:true,
+	    resizable:true,
+	    closed: false,
+	    href: baseUrl+'/user/userAdd',
+	    buttons:[{
+	    	text:'添加',
+	    	handler:function(){
+	    		parent.$.modalDialog.openner_datagrid = datagrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
+	    		var f = parent.$.modalDialog.handler.find("#addUserForm");
+	    		f.submit();
+	    	}
+	    },{
+	    	text:'取消',
+	    	handler:function(){
+	    		parent.$.modalDialog.handler.dialog('close');
+	    	}
+	    }]
 	});   
 }
 
@@ -103,7 +120,7 @@ function edit(){
 	var row = datagrid.datagrid('getSelected');
 	if (row != null) {
 		$.messager.progress();
-		$.get('${pageContext.request.contextPath}/user/userEdit',
+		$.get(baseUrl+'/user/userEdit',
 				{id:row.id},
 				function(data){
 					$.messager.progress('close');
@@ -134,7 +151,7 @@ function remove(){
 		$.messager.confirm('询问', '您是否要删除当前资源？',function(b) {
 			if(b){
     			$.messager.progress();
-    			$.post('${pageContext.request.contextPath}/user/userRemove',
+    			$.post(baseUrl+'/user/userRemove',
     					{id:row.id},
     					function(data){
     						if(data.success){
