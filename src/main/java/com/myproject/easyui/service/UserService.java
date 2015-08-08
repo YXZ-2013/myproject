@@ -58,4 +58,9 @@ public interface UserService {
 	 * 
 	 */
 	public void deltetUser(String id);
+	
+	/**
+	 * 添加用户角色
+	 */
+	public void addUserRole(User user);
 }

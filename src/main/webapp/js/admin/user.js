@@ -118,28 +118,30 @@ function clearForm(){
 //编辑用户
 function edit(){
 	var row = datagrid.datagrid('getSelected');
-	if (row != null) {
-		$.messager.progress();
-		$.get(baseUrl+'/user/userEdit',
-				{id:row.id},
-				function(data){
-					$.messager.progress('close');
-	    			$('#dlgForm').form('load', data);
-					$('#dlgForm').show();
-					$('#dlgForm').dialog({   
-	    			    title: '编辑用户',   
-	    			    width: 400,   
-	    			    height: 400,
-	    			    minimizable:true,
-	    			    maximizable:true,
-	    			    resizable:true,
-	    			    closed: false,   
-	    			    modal: true  
-	    			});
-				}
-		);
-		$('#dlgForm').form('load','${pageContext.request.contextPath}/user/userEdit?id='+row.id);
-		$('#dlgForm').show();
+	if (row) {
+		parent.$.modalDialog({
+			title:'编辑用户',
+			width: 400,   
+		    height: 300,
+		    minimizable:true,
+		    maximizable:true,
+		    resizable:true,
+		    closed: false,
+		    href: baseUrl+'/user/userEdit?id='+row.id,
+		    buttons : [{
+		    	text:'提交',
+		    	handler:function(){
+		    		parent.$.modalDialog.openner_datagrid=datagrid;
+		    		var f = parent.$.modalDialog.handler.find("#editUserForm");
+		    		f.submit();
+		    	}
+		    },{
+		    	text:'取消',
+		    	handler:function(){
+		    		parent.$.modalDialog.handler.dialog('close');
+		    	}
+		    }]
+		});
 	}else{
 		$.messager.alert('提示', '请选择要编辑的记录！', 'error');
 	}
@@ -163,8 +165,7 @@ function remove(){
     						$.messager.progress('close');
     					},'JSON');
 				}
-		})
-		
+		});
 	}else{
 		$.messager.alert('提示', '请选择要删除的用户！', 'error');
 	}

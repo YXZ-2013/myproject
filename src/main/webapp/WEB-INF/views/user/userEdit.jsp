@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript">
 	$(function(){
+		$("#role").combotree({
+			url:baseUrl+'/user/userAddRole',
+	        multiple: true,
+	        panelHeight : 'auto',
+	        value:'${user.roleIds}'
+		});
 		$('#editUserForm').form({
 			url:baseUrl+'/user/userEdit',
 			onSubmit : function() {
@@ -37,6 +43,10 @@
 			<tr>
 				<td><label for="email">电子邮箱:</label></td>
 				<td><input class="easyui-textbox" type="text" name="email" value="${user.email}" data-options="required:true,validType:'email'" missingMessage="请填写Email"/></td>
+			</tr>
+			<tr>
+				<td><label for="role">角色:</label></td>
+				<td><input name="roleIds" id="role"></input></td>
 			</tr>
 		</table> 
 	</form> 

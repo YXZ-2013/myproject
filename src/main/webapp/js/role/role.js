@@ -101,6 +101,8 @@ function edit () {
 				}
 			}]
 		});   
+	}else{
+		$.messager.alert('提示', '请选择要编辑的记录！', 'error');
 	}
 }
 

@@ -10,10 +10,10 @@ import com.myproject.model.UserRole;
 @Repository(value = "userRoleDao")
 public interface UserRoleDao {
 	
-	public void addRoleMenu(UserRole userRole);
+	public void addUserRole(UserRole userRole);
 	
-	public List<UserRole> getMenuId(String userId);
+	public List<UserRole> getRoleId(String userId);
 	
-	public void deleteRoleMenu(UserRole userRole);
+	public void deleteUserRole(UserRole userRole);
 }
 

@@ -56,7 +56,7 @@ public class RoleServiceImpl implements RoleService {
 		String menuIds = role.getMenuIds();
 		if (roleMenus.size()>0) {
 			roleMenuDao.deleteRoleMenu(roleMenu2);
-			if (menuIds!=null&&menuIds.length()>0) {
+			if (menuIds!=null&&""!=menuIds) {
 				for (RoleMenu roleMenu : roleMenus) {
 					roleMenu.setRoleId(role.getId().toString());
 						String[] menuids = menuIds.split(",");
@@ -67,7 +67,7 @@ public class RoleServiceImpl implements RoleService {
 				}
 			}
 		}else {
-			if (menuIds!=null&&menuIds.length()>0) {
+			if (menuIds!=null&&""!=menuIds) {
 				String[] menuids = menuIds.split(",");
 				for (String menuId : menuids) {
 					roleMenu2.setMenuId(menuId);
@@ -83,13 +83,15 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	public void addRoleMenu(Role role) {
-		String menus = role.getMenuIds();
-		String[] menuList = menus.split(",");
 		RoleMenu roleMenu = new RoleMenu();
-		for (int i = 0; i < menuList.length; i++) {
-			roleMenu.setRoleId(role.getId().toString());
-			roleMenu.setMenuId(menuList[i]);
-			roleMenuDao.addRoleMenu(roleMenu);
+		String menus = role.getMenuIds();
+		if (menus!=null&&""!=menus) {
+			String[] menuList = menus.split(",");
+			for (int i = 0; i < menuList.length; i++) {
+				roleMenu.setRoleId(role.getId().toString());
+				roleMenu.setMenuId(menuList[i]);
+				roleMenuDao.addRoleMenu(roleMenu);
+			}
 		}
 	}
 

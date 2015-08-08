@@ -113,10 +113,8 @@ public class UserController extends BaseController {
 	}
 
 	/**
-	 * 添加用户完成响应
-	 * 
-	 * @author yinxunzhi
-	 * @time 2015年4月9日下午5:07:51
+	 * 修改用户
+	 * @author zd
 	 * @param model
 	 * @throws IOException
 	 */
@@ -176,6 +174,7 @@ public class UserController extends BaseController {
 		user.setRegisterTime(date);
 		user.setStatus(false);
 		userService.addUser(user);
+		userService.addUserRole(user);
 		responseJson.setSuccess(true);
 	}
 }
