@@ -43,10 +43,10 @@
 <div data-options="region:'center',border:false" title="" style="overflow: hidden;padding:10px 60px 20px 60px">
     <form id="ff" class="easyui-form" method="post">
 		<table cellpadding="5px;">
-			<tr>
-				<td><label for="id">id:</label></td>
-				<td><input class="easyui-textbox" style="width:200px;height:22px" type="text" name="id" value="${menu.id }" data-options="required:true,missingMessage:'资源ID'" /></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td><label for="id">id:</label></td> -->
+<!-- 				<td><input class="easyui-textbox" style="width:200px;height:22px" type="text" name="id" value="${menu.id }" data-options="required:true,missingMessage:'资源ID'" /></td> -->
+<!-- 			</tr> -->
 			<tr>
 				<td><label for="name">资源名称:</label></td>
 				<td><input class="easyui-textbox" style="width:200px;height:22px" type="text" name="name" value="${menu.name }" data-options="required:true,missingMessage:'资源名称'" /></td>

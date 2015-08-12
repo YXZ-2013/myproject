@@ -99,8 +99,7 @@ public class MenuController extends BaseController {
 	 * @param response
 	 */
 	@RequestMapping(value = "/admin/menu/menuList", method = RequestMethod.POST)
-	public void getMenuList(HttpServletRequest request,
-			HttpServletResponse response) {
+	public void getMenuList(HttpServletRequest request,HttpServletResponse response) {
 		writeJson(menuService.getAllMenus(), response);
 	}
 

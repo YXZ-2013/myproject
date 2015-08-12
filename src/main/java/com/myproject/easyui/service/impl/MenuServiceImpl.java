@@ -115,11 +115,13 @@ public class MenuServiceImpl implements MenuService {
 				if(parent == null){
 					maps.put(menu.getId(), menu);
 				}
+				if (parent!=null) {
 				if(parent.getChildren() == null){
 					List<Menu> children = new ArrayList<Menu>();
 					parent.setChildren(children);
 				}
 				parent.getChildren().add(menu);
+				}
 			}
 		}
 		menuList.removeAll(menuList);

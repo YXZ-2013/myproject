@@ -15,35 +15,35 @@
 	</resultMap>
 	
 	<select id="getMenuListByType" resultMap="menuModel" useCache="true">
-		select * from menu where pid IS NULL AND enable = 1 AND type = #{type} ORDER BY seq_num 
+		select * from tab_menu where pid IS NULL AND enable = 1 AND type = #{type} ORDER BY seq_num 
 <!-- 		select * from menu where  enable = 1 AND type = #{type} ORDER BY seq_num -->
 	</select>
 	
 	<select id="getMenuListByParentId" resultMap="menuModel" useCache="true">
-		select * from menu where enable = 1 AND pid = #{parentId} ORDER BY seq_num
+		select * from tab_menu where enable = 1 AND pid = #{parentId} ORDER BY seq_num
 	</select>
 	
 	<select id="getMenuList" resultMap="menuModel">
-		select * from menu where pid IS NULL order by seq_num
+		select * from tab_menu where pid IS NULL order by seq_num
 	</select>
 	
 	<select id="getAllMenus" resultMap="menuModel">
-		select * from menu ORDER BY pid ASC,seq_num ASC
+		select * from tab_menu ORDER BY pid ASC,seq_num ASC
 	</select>
 	
 	<delete id="delMenu">
-		delete from menu where id = #{id}
+		delete from tab_menu where id = #{id}
 	</delete>
 	
 	<select id="getMenuById" resultMap="menuModel" useCache="true">
-		select * from menu where  id = #{id}
+		select * from tab_menu where  id = #{id}
 	</select>
 	
 	<update id="updateMenu">
-		update menu set type=#{type},label=#{name},url=#{url},pid=#{parentId},seq_num=#{seqNum},description=#{description} where id = #{id}
+		update tab_menu set type=#{type},label=#{name},url=#{url},pid=#{parentId},seq_num=#{seqNum},description=#{description} where id = #{id}
 	</update>
 	
 	<insert id="addMenu">
-		insert into menu (id,label,url,type,seq_num,description,pid,enable) values(#{id},#{name},#{url},#{type},#{seqNum},#{description},#{parentId},#{state});
+		insert into tab_menu (id,label,url,type,seq_num,description,pid,enable) values(#{id},#{name},#{url},#{type},#{seqNum},#{description},#{parentId},#{state});
 	</insert>
 </mapper>  
