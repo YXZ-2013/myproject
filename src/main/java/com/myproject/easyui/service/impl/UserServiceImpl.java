@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 			user=userDao.getUser(user);
 			List<UserRole> roles = userRoleDao.getRoleId(user.getId());
 			StringBuffer roleIds =new StringBuffer();
-			if (roles.size()>0) {
+			if (roles!=null &&roles.size()>0) {
 				for (int i = 0; i < roles.size(); i++) {
 					if (i!=roles.size()-1) {
 						roleIds.append(roles.get(i).getRoleId().toString()).append(",");

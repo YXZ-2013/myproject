@@ -42,9 +42,16 @@ public class MenuServiceImpl implements MenuService {
 		List<EasyTreeNode> tree = new ArrayList<EasyTreeNode>(0);
 		List<Menu> menuList = menuDao.getMenuListByType("Management");
 		 for (Menu m : menuList) {
-		 List<Menu> children = menuDao.getMenuListByParentId(m.getId());
-		 m.setChildren(children);
-		 tree.add(tree(m, flag));
+			 List<Menu> childrens = menuDao.getMenuListByParentId(m.getId());
+			 if (childrens!=null&&childrens.size()>0) {
+				 for (Menu m2 : childrens) {
+					 List<Menu> children = menuDao.getMenuListByParentId(m2.getId());
+					 m2.setChildren(children);
+					 tree(m2, flag);
+				 }
+			 }
+			 m.setChildren(childrens);
+			 tree.add(tree(m, flag));
 		 }
 		return tree;
 	}
@@ -113,14 +120,35 @@ public class MenuServiceImpl implements MenuService {
 			}else{
 				Menu parent = maps.get(menu.getParentId());
 				if(parent == null){
-					maps.put(menu.getId(), menu);
-				}
-				if (parent!=null) {
-				if(parent.getChildren() == null){
+					Menu parentMenu = menuDao.getMenuById(menu.getParentId());
+					List<Menu> childMenus = menuDao.getMenuListByParentId(parentMenu.getId());
 					List<Menu> children = new ArrayList<Menu>();
-					parent.setChildren(children);
-				}
-				parent.getChildren().add(menu);
+					if (parentMenu.getChildren()==null) {
+						parentMenu.setChildren(children);
+					}
+					for (int i = 0; i < childMenus.size(); i++) {
+						parentMenu.getChildren().add(childMenus.get(i));
+					}
+				    parent = maps.get(parentMenu.getParentId());//根菜单
+				    if (parent.getChildren()==null) {
+						parent.setChildren(children);
+						parent.getChildren().add(parentMenu);
+					}else {
+						for (int i = 0; i < parent.getChildren().size(); i++) {
+							if (parent.getChildren().get(i).getId().equals(parentMenu.getId())) {
+								parent.getChildren().remove(i);
+								break;
+							}
+						}
+						parent.getChildren().add(parentMenu);
+					}
+//					maps.put(menu.getId(), menu);
+				}else{
+					if(parent.getChildren() == null){
+						List<Menu> children = new ArrayList<Menu>();
+						parent.setChildren(children);
+					}
+					parent.getChildren().add(menu);
 				}
 			}
 		}

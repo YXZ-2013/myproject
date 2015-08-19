@@ -31,7 +31,7 @@ public class RoleServiceImpl implements RoleService {
 		roleMenu.setRoleId(role.getId().toString());
 		List<RoleMenu> menus = roleMenuDao.getMenuId(roleMenu.getRoleId());
 		StringBuffer menuIds= new StringBuffer();
-		if (menus.size()!=0) {
+		if (menus!=null&&menus.size()>0) {
 			for(int i=0;i<menus.size();i++){
 				if (i!=menus.size()-1) {
 					menuIds.append(menus.get(i).getMenuId()).append(",");
