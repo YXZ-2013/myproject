@@ -1,5 +1,6 @@
 package com.myproject.easyui.service.impl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,11 +9,15 @@ import javax.swing.text.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myproject.easyui.dao.RoleMenuDao;
 import com.myproject.easyui.dao.UserDao;
 import com.myproject.easyui.dao.UserRoleDao;
 import com.myproject.easyui.service.MenuService;
 import com.myproject.easyui.service.UserService;
+import com.myproject.model.Menu;
 import com.myproject.model.Permission;
+import com.myproject.model.Role;
+import com.myproject.model.RoleMenu;
 import com.myproject.model.User;
 import com.myproject.model.UserRole;
 
@@ -24,6 +29,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRoleDao userRoleDao;
+	
+	@Autowired
+	private RoleMenuDao roleMenuDao;
 	
 	@Autowired
 	private MenuService menuService;
@@ -51,10 +59,26 @@ public class UserServiceImpl implements UserService {
 
 	public List<String> getResourceList(String id) {
 //		List<String> resourceList = new ArrayList<String>(0);
-		// List<Menu> menuList = menuService.getMenuList();
-		// for (Menu menu : menuList) {
-		// resourceList.add(menu.getUrl());
-		// }
+//		List<UserRole> roles  = userRoleDao.getRoleId(id);
+//		if (roles!=null && roles.size()>0) {
+//			List<RoleMenu> menus =new ArrayList<RoleMenu>();
+//			for (UserRole userRole : roles) {
+//				menus = roleMenuDao.getMenuId(userRole.getRoleId().toString());
+//			}
+//			if (menus!=null && menus.size()>0) {
+//				List<Menu> menuList = new ArrayList<Menu>();
+//				for (RoleMenu roleMenu : menus) {
+//					menuList = menuService.getMenuList(roleMenu.getMenuId().toString());
+//				}
+//				if (menuList!=null && menuList.size()>0) {
+//					for (Menu menu : menuList) {
+//						if (menu.getUrl()!=null) {
+//							resourceList.add(menu.getUrl());
+//						}
+//					}
+//				}
+//			}
+//		}
 		return null;
 	}
 
