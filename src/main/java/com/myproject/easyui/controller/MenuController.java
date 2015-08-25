@@ -23,6 +23,7 @@ import com.myproject.easyui.service.MenuService;
 import com.myproject.model.EasyTreeNode;
 import com.myproject.model.Menu;
 import com.myproject.model.ResponseJson;
+import com.myproject.model.SessionInfo;
 
 /**
  * @author yinxunzhi
@@ -60,6 +61,42 @@ public class MenuController extends BaseController {
 			convertMenuToTreeNode(menu,node);
 			nodeList.add(node);
 		}
+//		SessionInfo sInfo = (SessionInfo) session.getAttribute("sessionInfo");
+//		List<String> urlLists = new ArrayList<String>();
+//		urlLists.add("1");
+//		urlLists.add("2");
+//		urlLists.add("3");
+//		urlLists.add("6");
+//		urlLists.add("/admin/menu/menuList.htm");
+//		urlLists.add("/admin/user/roleList.htm");
+//		urlLists.add("/admin/user/userList.htm");
+//		sInfo.setResourceList(urlLists);
+//		List<String> urlList =sInfo.getResourceList();
+//		if (urlList!=null&&urlList.size()>0) {
+//			for (String url : urlList) {
+//				if (id!=null) {
+//					if (url.indexOf("/")==0) {
+//						for(Menu menu :menuList){
+//							if (url.equals(menu.getUrl())) {
+//								EasyTreeNode node = new EasyTreeNode();
+//								convertMenuToTreeNode(menu,node);
+//								nodeList.add(node);
+//								break;
+//							}
+//						}
+//					}
+//				}else {
+//					for(Menu menu :menuList){
+//						if (url.equals(menu.getId())) {
+//							EasyTreeNode node = new EasyTreeNode();
+//							convertMenuToTreeNode(menu,node);
+//							nodeList.add(node);
+//							break;
+//						}
+//					}
+//				}
+//			}
+//		}
 		return nodeList;
 	}
 	/**
