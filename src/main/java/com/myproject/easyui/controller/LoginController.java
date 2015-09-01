@@ -62,7 +62,7 @@ public class LoginController extends BaseController {
 		SessionInfo sessionInfo = new SessionInfo();
 		sessionInfo.setUserId(user.getId());
 		sessionInfo.setIp(IpUtil.getIpAddr(request));
-		sessionInfo.setResourceList(userService.getResourceList(user.getId()));
+		sessionInfo.setMenuList(userService.getResourceList(user.getId()));
 		return sessionInfo;
 	}
 

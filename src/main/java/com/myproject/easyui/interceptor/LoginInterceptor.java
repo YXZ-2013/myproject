@@ -46,8 +46,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return false;
 		}
 
-		if (sessionInfo.getResourceList() != null
-				&& !sessionInfo.getResourceList().contains(url)) {//
+		if (sessionInfo.getMenuList() != null
+				&& !sessionInfo.getMenuList().contains(url)) {//
 			// 如果当前用户没有访问此资源的权限
 			request.setAttribute("msg", "您没有访问此资源的权限！<br/>请联系超管赋予您<br/>[" + url
 					+ "]<br/>的资源访问权限！");

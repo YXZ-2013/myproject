@@ -2,6 +2,7 @@ package com.myproject.easyui.service;
 
 import java.util.List;
 
+import com.myproject.model.Menu;
 import com.myproject.model.Permission;
 import com.myproject.model.User;
 
@@ -33,7 +34,7 @@ public interface UserService {
 	 * @param id
 	 * @return
 	 */
-	List<String> getResourceList(String id);
+	List<Menu> getResourceList(String id);
 
 	/**
 	 * 动态获取用户
