@@ -53,24 +53,24 @@ public class MenuController extends BaseController {
 		List<Menu> menuList = new ArrayList<Menu>(0);
 		List<EasyTreeNode> nodeList = new ArrayList<EasyTreeNode>(0);
 		if(id == null){
-//			menuList = menuService.getParentMenus();
-			SessionInfo sessionInfo=(SessionInfo) session.getAttribute("sessionInfo");
-			List<Menu> menus = sessionInfo.getMenuList();
-			for (Menu menu : menus) {
-				if (menu.getParentId()==null) {
-					menuList.add(menuService.getMenuById(menu.getId()));
-				}else {
-					Menu pMenu = menuService.getMenuById(menu.getParentId());
-					if (pMenu.getParentId()==null) {
-						menuList.add(menuService.getMenuById(pMenu.getId()));
-					}else {
-						Menu ppmMenu = menuService.getMenuById(pMenu.getParentId());
-						if (ppmMenu.getParentId()==null) {
-							menuList.add(menuService.getMenuById(ppmMenu.getId()));
-						}
-					}
-				}
-			}
+			menuList = menuService.getParentMenus();
+//			SessionInfo sessionInfo=(SessionInfo) session.getAttribute("sessionInfo");
+//			List<Menu> menus = sessionInfo.getMenuList();
+//			for (Menu menu : menus) {
+//				if (menu.getParentId()==null) {
+//					menuList.add(menuService.getMenuById(menu.getId()));
+//				}else {
+//					Menu pMenu = menuService.getMenuById(menu.getParentId());
+//					if (pMenu.getParentId()==null) {
+//						menuList.add(menuService.getMenuById(pMenu.getId()));
+//					}else {
+//						Menu ppmMenu = menuService.getMenuById(pMenu.getParentId());
+//						if (ppmMenu.getParentId()==null) {
+//							menuList.add(menuService.getMenuById(ppmMenu.getId()));
+//						}
+//					}
+//				}
+//			}
 		}else{
 			menuList = menuService.getChildrenMenus(id);
 		}
