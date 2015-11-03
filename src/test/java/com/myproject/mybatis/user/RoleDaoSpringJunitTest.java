@@ -25,17 +25,26 @@ public class RoleDaoSpringJunitTest {
 	@Autowired
 	private RoleDao roleDao;
 
-	@Test
-	public void getAll() {
-		PageHelper.startPage(1,5,false);
-		List<Role> roleList = roleDao.getAll();
-		PageInfo<Role> pageInfo = new PageInfo<Role>(roleList);
-		System.out.println(pageInfo.toString());
-	}
-	
+//	@Test
+//	public void getAll() {
+//		PageHelper.startPage(1,5,false);
+//		List<Role> roleList = roleDao.getAll();
+//		PageInfo<Role> pageInfo = new PageInfo<Role>(roleList);
+//		System.out.println(pageInfo.toString());
+//	}
+//	
 	@Test
 	public void getRolesByUserId() {
 		List<Role> roleList = roleDao.getRolesByUserId("admin");
 		System.out.println(roleList.size());
+	}
+//	
+	@Test
+	public void getRoleId(){
+		Role role =new Role();
+		role.setName("经理");
+	    roleDao.addRole(role);
+	    int id = role.getId();
+		System.out.println("-------------"+id+"-------------------");
 	}
 }
